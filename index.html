@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         :root {
@@ -21,22 +21,25 @@
             --secondary-light: #F472B6;
             --accent: #06B6D4;
             --accent2: #10B981;
-            --bg: #0A0A1A;
-            --bg2: #111128;
-            --card-bg: #1A1A35;
-            --card-bg2: #222245;
-            --card-bg3: #16163A;
+            --bg: #050510;
+            --bg2: #0C0C20;
+            --bg3: #111130;
+            --card: #12122A;
+            --card2: #1A1A3E;
+            --card3: #0F0F28;
             --text: #FFFFFF;
-            --text-secondary: #9CA3AF;
-            --text-muted: #6B7280;
+            --text2: #C4C4DC;
+            --text3: #7A7A9E;
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
             --bkash: #E2136E;
             --nagad: #F6921E;
-            --glow-primary: rgba(124, 58, 237, 0.3);
-            --glow-secondary: rgba(236, 72, 153, 0.3);
-            --glow-accent: rgba(6, 182, 212, 0.3);
+            --glass: rgba(255,255,255,0.03);
+            --border: rgba(124, 58, 237, 0.12);
+            --glow1: rgba(124, 58, 237, 0.25);
+            --glow2: rgba(236, 72, 153, 0.2);
+            --glow3: rgba(6, 182, 212, 0.2);
         }
 
         body {
@@ -44,105 +47,92 @@
             color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
-            padding-bottom: 80px;
+            padding-bottom: 85px;
         }
 
-        /* ============ ANIMATED BACKGROUND ============ */
         body::before {
             content: '';
             position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 50%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
-                        radial-gradient(ellipse at 50% 100%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 15% 15%, rgba(124,58,237,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 20%, rgba(236,72,153,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(6,182,212,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(16,185,129,0.05) 0%, transparent 40%);
             z-index: -1;
-            animation: bgFloat 20s ease-in-out infinite;
+            pointer-events: none;
         }
 
-        @keyframes bgFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(2%, -2%) rotate(1deg); }
-            66% { transform: translate(-1%, 1%) rotate(-1deg); }
-        }
+        /* ============ SCROLLBAR ============ */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
 
         /* ============ HEADER ============ */
         .header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            background-size: 200% 200%;
-            animation: gradientShift 8s ease infinite;
-            padding: 25px 20px;
+            background: linear-gradient(135deg, #1a0533, #2d1b69, #1a0533);
+            padding: 22px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            border-bottom: 1px solid var(--border);
         }
 
         .header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(124,58,237,0.1), transparent, rgba(236,72,153,0.08), transparent);
+            animation: headerSpin 15s linear infinite;
+        }
+
+        @keyframes headerSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
 
         .header h1 {
-            font-size: 26px;
-            font-weight: 800;
-            margin-bottom: 5px;
-            position: relative;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--primary-light), var(--secondary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
         }
 
         .header p {
-            font-size: 13px;
-            opacity: 0.9;
-            position: relative;
+            font-size: 12px;
+            color: var(--text2);
         }
 
-        .header-decoration {
+        .header-orb {
             position: absolute;
-            width: 100px;
-            height: 100px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            top: -30px;
-            right: -20px;
+            filter: blur(40px);
+            opacity: 0.4;
         }
 
-        .header-decoration2 {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            bottom: -15px;
-            left: 20px;
-        }
+        .header-orb.o1 { width: 100px; height: 100px; background: var(--primary); top: -30px; right: -20px; }
+        .header-orb.o2 { width: 70px; height: 70px; background: var(--secondary); bottom: -20px; left: 10px; }
+        .header-orb.o3 { width: 50px; height: 50px; background: var(--accent); top: 10px; left: 30%; }
 
         /* ============ BOTTOM NAV ============ */
         .bottom-nav {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg2);
-            border-top: 1px solid rgba(124, 58, 237, 0.2);
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(180deg, rgba(12,12,32,0.95), rgba(5,5,16,0.98));
+            border-top: 1px solid var(--border);
             display: flex;
-            z-index: 100;
-            padding: 5px 0;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 -5px 30px rgba(0,0,0,0.5);
+            z-index: 500;
+            padding: 4px 6px 8px;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
         }
 
         .nav-item {
@@ -151,45 +141,35 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 8px 5px;
+            padding: 8px 4px;
             cursor: pointer;
             transition: all 0.3s;
+            border-radius: 14px;
+            margin: 0 2px;
             position: relative;
-            border-radius: 12px;
-            margin: 3px;
         }
 
         .nav-item.active {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.1));
+            background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(236,72,153,0.08));
         }
 
-        .nav-item.active::before {
+        .nav-item.active::after {
             content: '';
             position: absolute;
-            top: -1px;
-            left: 50%;
+            top: 0; left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 3px;
+            width: 24px; height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 0 0 5px 5px;
+            border-radius: 0 0 4px 4px;
         }
 
-        .nav-icon {
-            font-size: 22px;
-            margin-bottom: 3px;
-            transition: transform 0.3s;
-        }
-
-        .nav-item.active .nav-icon {
-            transform: scale(1.15);
-        }
+        .nav-icon { font-size: 21px; margin-bottom: 3px; transition: transform 0.3s; }
+        .nav-item.active .nav-icon { transform: scale(1.1) translateY(-1px); }
 
         .nav-label {
             font-size: 10px;
             font-weight: 600;
-            color: var(--text-muted);
-            transition: color 0.3s;
+            color: var(--text3);
         }
 
         .nav-item.active .nav-label {
@@ -199,255 +179,154 @@
 
         .nav-badge {
             position: absolute;
-            top: 2px;
-            right: 50%;
-            transform: translateX(12px);
-            background: var(--danger);
+            top: 3px; right: 50%;
+            transform: translateX(14px);
+            background: linear-gradient(135deg, var(--danger), #DC2626);
             color: white;
-            font-size: 9px;
-            font-weight: 700;
+            font-size: 9px; font-weight: 800;
             padding: 1px 5px;
             border-radius: 10px;
             min-width: 16px;
             text-align: center;
+            box-shadow: 0 2px 8px rgba(239,68,68,0.4);
         }
 
         /* ============ PAGES ============ */
         .page {
             display: none;
             padding: 15px;
-            animation: pageIn 0.4s ease;
+            animation: pageIn 0.35s ease;
         }
 
-        .page.active {
-            display: block;
-        }
+        .page.active { display: block; }
 
         @keyframes pageIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ============ COURSE CARDS ============ */
+        /* ============ SECTION TITLE ============ */
         .section-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .section-title .highlight {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .grad-text {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .course-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        .course-card {
-            background: var(--card-bg);
+        /* ============ WELCOME BANNER ============ */
+        .welcome-banner {
+            background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(236,72,153,0.06), rgba(6,182,212,0.04));
+            border: 1px solid var(--border);
             border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(124, 58, 237, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 18px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
             position: relative;
+            overflow: hidden;
         }
 
-        .course-card::before {
+        .welcome-banner::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: -50%; right: -50%;
+            width: 100%; height: 200%;
+            background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
         }
 
-        .course-card:hover::before,
-        .course-card:active::before {
-            opacity: 1;
-        }
-
-        .course-card:active {
-            transform: scale(0.98);
-        }
-
-        .course-banner {
-            height: 150px;
+        .welcome-avatar {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 55px;
+            font-size: 20px;
+            flex-shrink: 0;
+            overflow: hidden;
+            border: 2px solid rgba(124,58,237,0.3);
+            position: relative;
+        }
+
+        .welcome-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .welcome-text { position: relative; }
+        .welcome-text h3 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+        .welcome-text p { font-size: 11px; color: var(--text3); }
+
+        /* ============ FEATURED SLIDER ============ */
+        .featured-slider {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+
+        .featured-slider::-webkit-scrollbar { display: none; }
+
+        .featured-card {
+            min-width: 280px;
+            border-radius: 18px;
+            padding: 22px;
             position: relative;
             overflow: hidden;
-        }
-
-        .course-banner::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: linear-gradient(transparent, var(--card-bg));
-        }
-
-        .course-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 5px 12px;
-            border-radius: 25px;
-            font-size: 11px;
-            font-weight: 700;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 2;
-        }
-
-        .badge-popular {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.9), rgba(249, 115, 22, 0.9));
-        }
-
-        .badge-new {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(6, 182, 212, 0.9));
-        }
-
-        .badge-discount {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(236, 72, 153, 0.9));
-        }
-
-        .course-info {
-            padding: 16px;
-        }
-
-        .course-title {
-            font-size: 17px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            line-height: 1.4;
-            background: linear-gradient(135deg, #fff, #e0e0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .course-desc {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-
-        .course-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
-        }
-
-        .course-price {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-        }
-
-        .price-current {
-            font-size: 24px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--success), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .price-old {
-            font-size: 14px;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-
-        .course-rating {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 13px;
-            color: var(--warning);
-        }
-
-        .course-features {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-bottom: 14px;
-        }
-
-        .feature-tag {
-            background: rgba(124, 58, 237, 0.12);
-            color: var(--primary-light);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 600;
-            border: 1px solid rgba(124, 58, 237, 0.15);
-        }
-
-        .buy-btn {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 14px;
-            font-size: 15px;
-            font-weight: 800;
+            scroll-snap-align: start;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: transform 0.3s;
+        }
+
+        .featured-card:active { transform: scale(0.97); }
+
+        .featured-card .fc-emoji { font-size: 40px; margin-bottom: 10px; }
+        .featured-card .fc-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+        .featured-card .fc-desc { font-size: 11px; opacity: 0.8; margin-bottom: 10px; }
+
+        .featured-card .fc-price {
+            font-size: 20px; font-weight: 900;
+            display: flex; align-items: baseline; gap: 8px;
+        }
+
+        .featured-card .fc-old { font-size: 13px; opacity: 0.6; text-decoration: line-through; }
+
+        .featured-card .fc-btn {
+            margin-top: 12px;
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
             color: white;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
         }
 
-        .buy-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .buy-btn:hover::before {
-            left: 100%;
-        }
-
-        .buy-btn:active {
-            transform: scale(0.97);
-        }
-
-        /* ============ SEARCH & FILTERS ============ */
+        /* ============ SEARCH ============ */
         .search-box {
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-            padding: 14px 20px 14px 45px;
-            border-radius: 16px;
-            border: 1px solid rgba(124, 58, 237, 0.15);
-            background: var(--card-bg);
+            padding: 13px 18px 13px 42px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--card);
             color: var(--text);
             font-size: 14px;
             outline: none;
@@ -456,38 +335,31 @@
 
         .search-box input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 20px var(--glow-primary);
+            box-shadow: 0 0 20px var(--glow1);
         }
 
-        .search-box::before {
-            content: '🔍';
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 16px;
-        }
+        .search-box input::placeholder { color: var(--text3); }
+        .search-box::before { content: '🔍'; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 15px; }
 
+        /* ============ CATEGORY FILTERS ============ */
         .category-filters {
             display: flex;
             gap: 8px;
             overflow-x: auto;
             padding-bottom: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
 
-        .category-filters::-webkit-scrollbar {
-            display: none;
-        }
+        .category-filters::-webkit-scrollbar { display: none; }
 
-        .cat-filter {
-            padding: 9px 18px;
-            border-radius: 25px;
-            border: 1px solid rgba(124, 58, 237, 0.15);
-            background: var(--card-bg);
-            color: var(--text-secondary);
+        .cat-btn {
+            padding: 8px 16px;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text3);
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
@@ -495,597 +367,471 @@
             transition: all 0.3s;
         }
 
-        .cat-filter.active {
+        .cat-btn.active {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border-color: transparent;
-            box-shadow: 0 4px 15px var(--glow-primary);
+            box-shadow: 0 4px 15px var(--glow1);
         }
 
-        /* ============ PROFILE PAGE ============ */
-        .profile-header {
-            text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(236, 72, 153, 0.1));
-            border-radius: 24px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(124, 58, 237, 0.1);
-            position: relative;
+        /* ============ COURSE CARDS ============ */
+        .course-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .course-card {
+            background: var(--card);
+            border-radius: 18px;
             overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .profile-header::before {
+        .course-card::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .course-card:active::after { opacity: 1; }
+        .course-card:active { transform: scale(0.985); }
+
+        .course-banner {
+            height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 45px;
+            font-size: 50px;
             position: relative;
-            border: 3px solid rgba(255,255,255,0.2);
-            box-shadow: 0 8px 30px var(--glow-primary);
             overflow: hidden;
         }
 
-        .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .profile-online {
+        .course-banner::after {
+            content: '';
             position: absolute;
-            bottom: 5px;
-            right: 5px;
-            width: 16px;
-            height: 16px;
-            background: var(--success);
-            border-radius: 50%;
-            border: 3px solid var(--card-bg);
+            bottom: 0; left: 0; right: 0; height: 50px;
+            background: linear-gradient(transparent, var(--card));
         }
 
-        .profile-name {
-            font-size: 22px;
+        .c-badge {
+            position: absolute;
+            top: 10px; right: 10px;
+            padding: 5px 12px;
+            border-radius: 22px;
+            font-size: 10px;
             font-weight: 800;
-            margin-bottom: 5px;
-            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.3px;
         }
 
-        .profile-username {
-            font-size: 14px;
-            color: var(--primary-light);
-            margin-bottom: 5px;
-            position: relative;
+        .c-badge.hot { background: linear-gradient(135deg, rgba(245,158,11,0.9), rgba(249,115,22,0.9)); }
+        .c-badge.new { background: linear-gradient(135deg, rgba(16,185,129,0.9), rgba(6,182,212,0.9)); }
+        .c-badge.sale { background: linear-gradient(135deg, rgba(239,68,68,0.9), rgba(236,72,153,0.9)); }
+
+        .course-info { padding: 14px 16px 16px; }
+
+        .course-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            line-height: 1.4;
         }
 
-        .profile-id {
+        .course-desc {
             font-size: 12px;
-            color: var(--text-muted);
-            position: relative;
+            color: var(--text2);
+            margin-bottom: 10px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .profile-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
+        .course-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
         }
 
-        .profile-stat {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 16px 10px;
-            text-align: center;
-            border: 1px solid rgba(124, 58, 237, 0.1);
+        .c-tag {
+            background: rgba(124,58,237,0.1);
+            color: var(--primary-light);
+            padding: 4px 10px;
+            border-radius: 18px;
+            font-size: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(124,58,237,0.12);
         }
 
-        .profile-stat-number {
+        .course-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .c-price-wrap { display: flex; align-items: baseline; gap: 8px; }
+
+        .c-price {
             font-size: 22px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--success), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .profile-stat-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 4px;
+        .c-price-old {
+            font-size: 13px;
+            color: var(--text3);
+            text-decoration: line-through;
         }
 
-        .profile-menu {
-            background: var(--card-bg);
-            border-radius: 20px;
+        .c-rating { font-size: 12px; color: var(--warning); }
+
+        .buy-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 13px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            margin-top: 12px;
+            transition: all 0.3s;
+            position: relative;
             overflow: hidden;
-            border: 1px solid rgba(124, 58, 237, 0.1);
         }
 
-        .profile-menu-item {
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.6s;
+        }
+
+        .buy-btn:hover::before { left: 100%; }
+        .buy-btn:active { transform: scale(0.97); }
+
+        /* ============ COURSE DETAIL MODAL ============ */
+        .detail-banner {
+            height: 180px;
             display: flex;
             align-items: center;
-            padding: 16px 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
         }
 
-        .profile-menu-item:last-child {
-            border-bottom: none;
+        .detail-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(transparent, var(--bg2));
         }
 
-        .profile-menu-item:hover,
-        .profile-menu-item:active {
-            background: rgba(124, 58, 237, 0.08);
+        .detail-screenshots {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin: 15px 0;
         }
 
-        .menu-icon {
-            width: 40px;
-            height: 40px;
+        .detail-screenshots::-webkit-scrollbar { display: none; }
+
+        .detail-ss {
+            min-width: 200px;
+            height: 120px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            margin-right: 14px;
+            font-size: 14px;
+            color: var(--text2);
+            border: 1px solid var(--border);
+            background: var(--card);
+            overflow: hidden;
         }
 
-        .menu-text {
+        .detail-ss img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .detail-info-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .detail-info-item {
             flex: 1;
+            background: var(--card);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
         }
 
-        .menu-text h4 {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 2px;
+        .detail-info-item .dii-val {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary-light);
         }
 
-        .menu-text p {
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .menu-arrow {
-            color: var(--text-muted);
-            font-size: 14px;
+        .detail-info-item .dii-label {
+            font-size: 10px;
+            color: var(--text3);
+            margin-top: 3px;
         }
 
         /* ============ MODAL ============ */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(12px);
             z-index: 1000;
             align-items: flex-end;
             justify-content: center;
-            padding: 0;
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal {
             background: var(--bg2);
-            border-radius: 24px 24px 0 0;
+            border-radius: 22px 22px 0 0;
             width: 100%;
             max-width: 500px;
-            max-height: 92vh;
+            max-height: 93vh;
             overflow-y: auto;
-            animation: modalSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes modalSlideUp {
+        @keyframes slideUp {
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
         }
 
         .modal-handle {
-            width: 40px;
-            height: 4px;
-            background: rgba(255,255,255,0.2);
+            width: 36px; height: 4px;
+            background: rgba(255,255,255,0.15);
             border-radius: 2px;
-            margin: 12px auto;
+            margin: 10px auto;
         }
 
         .modal-header {
-            padding: 10px 20px 20px;
+            padding: 8px 20px 16px;
             text-align: center;
         }
 
         .modal-header h2 {
-            font-size: 20px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 18px; font-weight: 800;
         }
 
-        .modal-body {
-            padding: 0 20px 30px;
-        }
+        .modal-body { padding: 0 20px 30px; }
 
-        /* ============ PAYMENT SECTION ============ */
-        .payment-info-box {
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 18px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .payment-info-box.bkash-box {
-            background: linear-gradient(135deg, rgba(226, 19, 110, 0.12), rgba(226, 19, 110, 0.05));
-            border: 1px solid rgba(226, 19, 110, 0.25);
-        }
-
-        .payment-info-box.nagad-box {
-            background: linear-gradient(135deg, rgba(246, 146, 30, 0.12), rgba(246, 146, 30, 0.05));
-            border: 1px solid rgba(246, 146, 30, 0.25);
-        }
-
-        .payment-info-box h3 {
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .payment-number {
-            font-size: 22px;
-            font-weight: 900;
-            color: var(--text);
-            margin: 10px 0;
-            letter-spacing: 2px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .copy-btn {
-            border: none;
-            color: white;
-            padding: 8px 18px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .copy-btn:active {
-            transform: scale(0.95);
-        }
-
-        .payment-methods {
+        /* ============ PAYMENT ============ */
+        .pay-methods {
             display: flex;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
-        .payment-method {
+        .pay-method {
             flex: 1;
-            padding: 18px 10px;
-            border-radius: 16px;
+            padding: 16px 10px;
+            border-radius: 14px;
             text-align: center;
             cursor: pointer;
-            border: 2px solid rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.06);
+            background: var(--card);
             transition: all 0.3s;
-            background: var(--card-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .payment-method::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .payment-method.bkash::before {
-            background: linear-gradient(135deg, rgba(226, 19, 110, 0.1), transparent);
-        }
-
-        .payment-method.nagad::before {
-            background: linear-gradient(135deg, rgba(246, 146, 30, 0.1), transparent);
-        }
-
-        .payment-method.selected::before {
-            opacity: 1;
-        }
-
-        .payment-method.bkash.selected {
-            border-color: var(--bkash);
-            box-shadow: 0 0 20px rgba(226, 19, 110, 0.2);
-        }
-
-        .payment-method.nagad.selected {
-            border-color: var(--nagad);
-            box-shadow: 0 0 20px rgba(246, 146, 30, 0.2);
-        }
-
-        .payment-method-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
             position: relative;
         }
 
-        .payment-method-name {
-            font-size: 14px;
-            font-weight: 700;
-            position: relative;
-        }
+        .pay-method.bk.selected { border-color: var(--bkash); box-shadow: 0 0 20px rgba(226,19,110,0.2); background: rgba(226,19,110,0.08); }
+        .pay-method.ng.selected { border-color: var(--nagad); box-shadow: 0 0 20px rgba(246,146,30,0.2); background: rgba(246,146,30,0.08); }
 
-        .payment-method .check-mark {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 22px;
-            height: 22px;
+        .pay-method .pm-icon { font-size: 30px; margin-bottom: 6px; }
+        .pay-method .pm-name { font-size: 13px; font-weight: 700; }
+        .pay-method .pm-check {
+            position: absolute; top: 6px; right: 6px;
+            width: 20px; height: 20px;
             border-radius: 50%;
             background: var(--success);
             display: none;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 11px;
         }
 
-        .payment-method.selected .check-mark {
-            display: flex;
-        }
+        .pay-method.selected .pm-check { display: flex; }
 
-        /* ============ FORM ============ */
-        .form-group {
+        .pay-box {
+            border-radius: 14px;
+            padding: 16px;
             margin-bottom: 16px;
         }
 
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-secondary);
+        .pay-box.bk-box { background: rgba(226,19,110,0.08); border: 1px solid rgba(226,19,110,0.2); }
+        .pay-box.ng-box { background: rgba(246,146,30,0.08); border: 1px solid rgba(246,146,30,0.2); }
+
+        .pay-number {
+            font-size: 24px; font-weight: 900;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+            margin: 8px 0;
         }
 
-        .form-group input, .form-group select {
+        .copy-btn {
+            border: none; color: white;
+            padding: 7px 16px;
+            border-radius: 8px;
+            font-size: 11px; font-weight: 700;
+            cursor: pointer;
+        }
+
+        .copy-btn:active { transform: scale(0.95); }
+
+        /* ============ FORM ============ */
+        .fg { margin-bottom: 14px; }
+        .fg label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px; color: var(--text2); }
+
+        .fg input, .fg select, .fg textarea {
             width: 100%;
-            padding: 14px 16px;
-            border-radius: 14px;
-            border: 1px solid rgba(124, 58, 237, 0.15);
-            background: var(--card-bg);
+            padding: 13px 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--card);
             color: var(--text);
             font-size: 14px;
             outline: none;
             transition: all 0.3s;
+            font-family: inherit;
         }
 
-        .form-group input:focus {
+        .fg input:focus, .fg select:focus, .fg textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 15px var(--glow-primary);
+            box-shadow: 0 0 15px var(--glow1);
         }
 
-        .form-group input::placeholder {
-            color: var(--text-muted);
-        }
+        .fg input::placeholder, .fg textarea::placeholder { color: var(--text3); }
+        .fg textarea { resize: vertical; min-height: 80px; }
 
-        .submit-btn {
+        .btn {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             border: none;
-            border-radius: 14px;
-            font-size: 16px;
+            border-radius: 13px;
+            font-size: 15px;
             font-weight: 800;
             cursor: pointer;
             color: white;
             transition: all 0.3s;
+        }
+
+        .btn:active { transform: scale(0.97); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); }
+        .btn-success { background: linear-gradient(135deg, var(--success), var(--accent)); }
+        .btn-ghost { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+        .btn-danger { background: linear-gradient(135deg, var(--danger), #DC2626); }
+        .btn-bkash { background: var(--bkash); }
+        .btn-nagad { background: var(--nagad); }
+
+        /* ============ STEPS ============ */
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 22px;
             position: relative;
-            overflow: hidden;
         }
 
-        .submit-btn.primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 17px; left: 28%; right: 28%;
+            height: 2px;
+            background: rgba(255,255,255,0.06);
         }
 
-        .submit-btn.success {
-            background: linear-gradient(135deg, var(--success), var(--accent));
+        .step { text-align: center; z-index: 1; }
+
+        .step-dot {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 2px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 6px;
+            font-size: 13px; font-weight: 800;
+            transition: all 0.3s;
         }
 
-        .submit-btn.ghost {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
+        .step.active .step-dot { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-color: transparent; box-shadow: 0 4px 15px var(--glow1); }
+        .step.done .step-dot { background: linear-gradient(135deg, var(--success), var(--accent)); border-color: transparent; }
+        .step-name { font-size: 10px; color: var(--text3); font-weight: 600; }
+        .step.active .step-name { color: var(--primary-light); }
+
+        /* ============ INSTRUCTIONS ============ */
+        .info-box {
+            background: rgba(245,158,11,0.07);
+            border: 1px solid rgba(245,158,11,0.18);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 16px;
         }
 
-        .submit-btn:active {
-            transform: scale(0.97);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+        .info-box h4 { color: var(--warning); font-size: 12px; margin-bottom: 8px; }
+        .info-box ol { padding-left: 18px; }
+        .info-box li { font-size: 11px; color: var(--text2); margin-bottom: 5px; line-height: 1.5; }
 
         /* ============ ORDER CARDS ============ */
         .order-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 14px;
-            border: 1px solid rgba(124, 58, 237, 0.08);
-            transition: all 0.3s;
-        }
-
-        .order-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--card);
+            border-radius: 18px;
+            padding: 16px;
             margin-bottom: 12px;
+            border: 1px solid var(--border);
         }
 
-        .order-id {
-            font-size: 11px;
-            color: var(--text-muted);
-            font-family: monospace;
-        }
+        .order-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .order-id { font-size: 10px; color: var(--text3); font-family: monospace; }
 
-        .order-status {
-            padding: 5px 14px;
-            border-radius: 25px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.3px;
-        }
-
-        .status-pending {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
-            color: var(--warning);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-        }
-
-        .status-approved {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
-            color: var(--success);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .status-rejected {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
-            color: var(--danger);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .order-course-name {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .order-details {
-            font-size: 12px;
-            color: var(--text-secondary);
-            line-height: 2;
-        }
-
-        .download-btn {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 800;
-            cursor: pointer;
-            color: white;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            margin-top: 14px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px var(--glow-primary);
-        }
-
-        .download-btn:active {
-            transform: scale(0.97);
-        }
-
-        /* ============ ADMIN ============ */
-        .admin-login-card {
-            max-width: 350px;
-            margin: 40px auto;
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid rgba(124, 58, 237, 0.1);
-        }
-
-        .admin-login-card .lock-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 18px;
-            text-align: center;
-            border: 1px solid rgba(124, 58, 237, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-        }
-
-        .stat-card:nth-child(1)::before { background: linear-gradient(90deg, var(--warning), var(--secondary)); }
-        .stat-card:nth-child(2)::before { background: linear-gradient(90deg, var(--success), var(--accent)); }
-        .stat-card:nth-child(3)::before { background: linear-gradient(90deg, var(--danger), var(--warning)); }
-        .stat-card:nth-child(4)::before { background: linear-gradient(90deg, var(--primary), var(--secondary)); }
-
-        .stat-number {
-            font-size: 26px;
-            font-weight: 900;
-        }
-
-        .stat-card:nth-child(1) .stat-number { color: var(--warning); }
-        .stat-card:nth-child(2) .stat-number { color: var(--success); }
-        .stat-card:nth-child(3) .stat-number { color: var(--danger); }
-        .stat-card:nth-child(4) .stat-number { color: var(--primary-light); }
-
-        .stat-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 5px;
-            font-weight: 600;
-        }
-
-        .admin-order-card {
-            background: var(--card-bg);
+        .o-status {
+            padding: 4px 12px;
             border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 14px;
-            border: 1px solid rgba(124, 58, 237, 0.08);
+            font-size: 10px;
+            font-weight: 800;
         }
 
-        .admin-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 14px;
-        }
+        .o-status.pending { background: rgba(245,158,11,0.12); color: var(--warning); border: 1px solid rgba(245,158,11,0.18); }
+        .o-status.approved { background: rgba(16,185,129,0.12); color: var(--success); border: 1px solid rgba(16,185,129,0.18); }
+        .o-status.rejected { background: rgba(239,68,68,0.12); color: var(--danger); border: 1px solid rgba(239,68,68,0.18); }
 
-        .approve-btn, .reject-btn {
-            flex: 1;
+        .order-name { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+        .order-meta { font-size: 11px; color: var(--text2); line-height: 1.9; }
+
+        .dl-btn {
+            width: 100%;
             padding: 12px;
             border: none;
             border-radius: 12px;
@@ -1093,1260 +839,1387 @@
             font-weight: 800;
             cursor: pointer;
             color: white;
-            transition: all 0.3s;
-        }
-
-        .approve-btn {
-            background: linear-gradient(135deg, var(--success), #059669);
-        }
-
-        .reject-btn {
-            background: linear-gradient(135deg, var(--danger), #DC2626);
-        }
-
-        .approve-btn:active, .reject-btn:active {
-            transform: scale(0.95);
-        }
-
-        .link-input {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(124, 58, 237, 0.15);
-            background: var(--card-bg3);
-            color: var(--text);
-            font-size: 13px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             margin-top: 12px;
-            outline: none;
+            box-shadow: 0 4px 15px var(--glow1);
         }
 
-        .link-input:focus {
-            border-color: var(--primary);
-        }
+        .dl-btn:active { transform: scale(0.97); }
 
-        /* ============ STEPS ============ */
-        .steps {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 25px;
+        /* ============ PROFILE ============ */
+        .profile-card {
+            text-align: center;
+            padding: 28px 20px;
+            background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(236,72,153,0.06));
+            border-radius: 22px;
+            margin-bottom: 18px;
+            border: 1px solid var(--border);
             position: relative;
+            overflow: hidden;
         }
 
-        .steps::before {
+        .profile-card::before {
             content: '';
             position: absolute;
-            top: 18px;
-            left: 25%;
-            right: 25%;
-            height: 2px;
-            background: rgba(255,255,255,0.08);
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.08) 0%, transparent 50%);
         }
 
-        .step {
-            text-align: center;
-            z-index: 1;
-        }
-
-        .step-circle {
-            width: 38px;
-            height: 38px;
+        .p-avatar {
+            width: 90px; height: 90px;
             border-radius: 50%;
-            background: var(--card-bg);
-            border: 2px solid rgba(255,255,255,0.1);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 8px;
-            font-size: 14px;
-            font-weight: 800;
-            transition: all 0.3s;
+            font-size: 40px;
+            margin: 0 auto 14px;
+            border: 3px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 30px var(--glow1);
+            overflow: hidden;
+            position: relative;
         }
 
-        .step.active .step-circle {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-color: transparent;
-            box-shadow: 0 4px 15px var(--glow-primary);
+        .p-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .p-online {
+            position: absolute;
+            bottom: 4px; right: 4px;
+            width: 14px; height: 14px;
+            background: var(--success);
+            border-radius: 50%;
+            border: 3px solid var(--bg2);
         }
 
-        .step.completed .step-circle {
-            background: linear-gradient(135deg, var(--success), var(--accent));
-            border-color: transparent;
-        }
+        .p-name { font-size: 20px; font-weight: 900; position: relative; }
+        .p-username { font-size: 13px; color: var(--primary-light); position: relative; margin-top: 3px; }
+        .p-id { font-size: 11px; color: var(--text3); position: relative; margin-top: 3px; }
 
-        .step-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .step.active .step-label {
-            color: var(--primary-light);
-        }
-
-        /* ============ INSTRUCTIONS ============ */
-        .instructions {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.03));
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: 16px;
-            padding: 16px;
+        .p-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
             margin-bottom: 18px;
         }
 
-        .instructions h4 {
-            color: var(--warning);
-            font-size: 13px;
-            margin-bottom: 10px;
+        .p-stat {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 14px 8px;
+            text-align: center;
+            border: 1px solid var(--border);
         }
 
-        .instructions ol {
-            padding-left: 20px;
+        .p-stat-num {
+            font-size: 20px; font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .instructions li {
+        .p-stat-label { font-size: 10px; color: var(--text3); margin-top: 3px; }
+
+        .p-menu {
+            background: var(--card);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .p-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .p-menu-item:last-child { border-bottom: none; }
+        .p-menu-item:active { background: rgba(124,58,237,0.06); }
+
+        .pmi-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-right: 12px;
+        }
+
+        .pmi-text { flex: 1; }
+        .pmi-text h4 { font-size: 13px; font-weight: 700; }
+        .pmi-text p { font-size: 10px; color: var(--text3); }
+        .pmi-arrow { color: var(--text3); font-size: 13px; }
+
+        /* ============ ADMIN ============ */
+        .admin-card {
+            max-width: 360px;
+            margin: 35px auto;
+            background: var(--card);
+            border-radius: 22px;
+            padding: 28px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .admin-card .a-icon { font-size: 45px; margin-bottom: 12px; }
+
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            overflow-x: auto;
+        }
+
+        .admin-tabs::-webkit-scrollbar { display: none; }
+
+        .a-tab {
+            padding: 9px 16px;
+            border-radius: 10px;
             font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-            line-height: 1.6;
+            font-weight: 700;
+            cursor: pointer;
+            background: var(--card);
+            color: var(--text3);
+            border: 1px solid var(--border);
+            white-space: nowrap;
+            transition: all 0.3s;
         }
+
+        .a-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+        }
+
+        .admin-order-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .a-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+        .a-actions button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            color: white;
+        }
+
+        .a-actions .a-approve { background: linear-gradient(135deg, var(--success), #059669); }
+        .a-actions .a-reject { background: linear-gradient(135deg, var(--danger), #DC2626); }
+        .a-actions button:active { transform: scale(0.95); }
+
+        .a-link-input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--card3);
+            color: var(--text);
+            font-size: 12px;
+            margin-top: 10px;
+            outline: none;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .s-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .s-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+        }
+
+        .s-card:nth-child(1)::before { background: linear-gradient(90deg, var(--warning), var(--secondary)); }
+        .s-card:nth-child(2)::before { background: linear-gradient(90deg, var(--success), var(--accent)); }
+        .s-card:nth-child(3)::before { background: linear-gradient(90deg, var(--danger), var(--warning)); }
+        .s-card:nth-child(4)::before { background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+
+        .s-num { font-size: 24px; font-weight: 900; }
+        .s-card:nth-child(1) .s-num { color: var(--warning); }
+        .s-card:nth-child(2) .s-num { color: var(--success); }
+        .s-card:nth-child(3) .s-num { color: var(--danger); }
+        .s-card:nth-child(4) .s-num { color: var(--primary-light); }
+        .s-label { font-size: 10px; color: var(--text3); margin-top: 4px; font-weight: 600; }
+
+        /* ============ ADD COURSE FORM ============ */
+        .add-course-form {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            margin-bottom: 14px;
+        }
+
+        .thumb-preview {
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            background: var(--card3);
+            border: 2px dashed var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .thumb-preview:hover { border-color: var(--primary); }
+        .thumb-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+        .ss-preview-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            margin-bottom: 12px;
+        }
+
+        .ss-preview-item {
+            min-width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            background: var(--card3);
+            border: 1px dashed var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--text3);
+            overflow: hidden;
+        }
+
+        .ss-preview-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        .color-picker-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .color-opt {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .color-opt.selected { border-color: white; transform: scale(1.1); box-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
         /* ============ EMPTY STATE ============ */
-        .empty-state {
+        .empty {
             text-align: center;
-            padding: 50px 20px;
+            padding: 45px 20px;
         }
 
-        .empty-state .icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
-
-        .empty-state h3 {
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-        }
-
-        .empty-state p {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
+        .empty .e-icon { font-size: 55px; margin-bottom: 12px; }
+        .empty h3 { font-size: 15px; color: var(--text2); margin-bottom: 6px; }
+        .empty p { font-size: 12px; color: var(--text3); }
 
         /* ============ TOAST ============ */
         .toast {
             position: fixed;
-            bottom: 90px;
+            bottom: 95px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--card-bg2);
+            background: var(--card2);
             color: white;
-            padding: 14px 28px;
-            border-radius: 16px;
+            padding: 12px 24px;
+            border-radius: 14px;
             font-size: 13px;
             font-weight: 600;
             z-index: 2000;
             box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-            animation: toastIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            animation: toastPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border);
             white-space: nowrap;
         }
 
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.9); }
+        @keyframes toastPop {
+            from { opacity: 0; transform: translateX(-50%) translateY(15px) scale(0.9); }
             to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
         }
 
-        /* ============ WELCOME BANNER ============ */
-        .welcome-banner {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(236, 72, 153, 0.08));
-            border: 1px solid rgba(124, 58, 237, 0.15);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        /* ============ RESPONSIVE ============ */
+        @media (min-width: 400px) {
+            .course-grid { grid-template-columns: 1fr; }
         }
 
-        .welcome-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
+        .hidden { display: none !important; }
 
-        .welcome-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .welcome-text h3 {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 3px;
-        }
-
-        .welcome-text p {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 4px;
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 var(--glow-primary); }
-            70% { box-shadow: 0 0 0 10px transparent; }
-            100% { box-shadow: 0 0 0 0 transparent; }
-        }
+        .row-2 { display: flex; gap: 10px; }
+        .row-2 > * { flex: 1; }
     </style>
 </head>
 <body>
 
     <!-- HEADER -->
     <div class="header">
-        <div class="header-decoration"></div>
-        <div class="header-decoration2"></div>
-        <h1>📚 কোর্স স্টোর</h1>
-        <p>✨ প্রিমিয়াম কোর্স সেরা দামে পান</p>
+        <div class="header-orb o1"></div>
+        <div class="header-orb o2"></div>
+        <div class="header-orb o3"></div>
+        <div class="header-content">
+            <h1>📚 কোর্স স্টোর</h1>
+            <p>✨ প্রিমিয়াম কোর্স সেরা দামে</p>
+        </div>
     </div>
 
-    <!-- ============ HOME PAGE ============ -->
+    <!-- ====== HOME ====== -->
     <div class="page active" id="page-home">
         <div class="welcome-banner" id="welcomeBanner">
             <div class="welcome-avatar" id="welcomeAvatar">👋</div>
             <div class="welcome-text">
                 <h3 id="welcomeName">স্বাগতম!</h3>
-                <p>আজকের জন্য কোন কোর্স পছন্দ? 🎯</p>
+                <p>আজকে কোন কোর্স নিবেন? 🎯</p>
             </div>
         </div>
 
+        <div class="section-title">⚡ <span class="grad-text">ফিচার্ড কোর্স</span></div>
+        <div class="featured-slider" id="featuredSlider"></div>
+
         <div class="search-box">
-            <input type="text" placeholder="কোর্স খুঁজুন..." oninput="searchCourses(this.value)">
+            <input type="text" placeholder="কোর্স খুঁজুন..." oninput="searchCourses(this.value)" id="searchInput">
         </div>
 
-        <div class="category-filters" id="categoryFilters">
-            <div class="cat-filter active" onclick="filterCategory('all', this)">🌟 সব</div>
-            <div class="cat-filter" onclick="filterCategory('web', this)">💻 ওয়েব</div>
-            <div class="cat-filter" onclick="filterCategory('app', this)">📱 অ্যাপ</div>
-            <div class="cat-filter" onclick="filterCategory('design', this)">🎨 ডিজাইন</div>
-            <div class="cat-filter" onclick="filterCategory('marketing', this)">📊 মার্কেটিং</div>
-            <div class="cat-filter" onclick="filterCategory('hacking', this)">🔒 হ্যাকিং</div>
-        </div>
+        <div class="category-filters" id="catFilters"></div>
 
-        <div class="section-title">🔥 <span class="highlight">জনপ্রিয় কোর্স</span></div>
-        
+        <div class="section-title">🔥 <span class="grad-text">সকল কোর্স</span></div>
         <div class="course-grid" id="courseGrid"></div>
     </div>
 
-    <!-- ============ ORDERS PAGE ============ -->
+    <!-- ====== ORDERS ====== -->
     <div class="page" id="page-orders">
-        <div class="section-title">📋 <span class="highlight">আমার অর্ডারসমূহ</span></div>
+        <div class="section-title">📦 <span class="grad-text">আমার অর্ডারসমূহ</span></div>
         <div id="ordersList"></div>
     </div>
 
-    <!-- ============ PROFILE PAGE ============ -->
+    <!-- ====== PROFILE ====== -->
     <div class="page" id="page-profile">
-        <div class="profile-header" id="profileHeader">
-            <div class="profile-avatar" id="profileAvatar">
-                👤
-                <div class="profile-online"></div>
-            </div>
-            <div class="profile-name" id="profileName">ইউজার</div>
-            <div class="profile-username" id="profileUsername">@username</div>
-            <div class="profile-id" id="profileId">ID: N/A</div>
+        <div class="profile-card">
+            <div class="p-avatar" id="pAvatar">👤<div class="p-online"></div></div>
+            <div class="p-name" id="pName">ইউজার</div>
+            <div class="p-username" id="pUsername">@username</div>
+            <div class="p-id" id="pId">ID: N/A</div>
         </div>
 
-        <div class="profile-stats" id="profileStats">
-            <div class="profile-stat">
-                <div class="profile-stat-number" id="statTotal">0</div>
-                <div class="profile-stat-label">মোট অর্ডার</div>
+        <div class="p-stats">
+            <div class="p-stat">
+                <div class="p-stat-num" id="ps-total">0</div>
+                <div class="p-stat-label">মোট অর্ডার</div>
             </div>
-            <div class="profile-stat">
-                <div class="profile-stat-number" id="statApproved">0</div>
-                <div class="profile-stat-label">সফল</div>
+            <div class="p-stat">
+                <div class="p-stat-num" id="ps-ok">0</div>
+                <div class="p-stat-label">সফল</div>
             </div>
-            <div class="profile-stat">
-                <div class="profile-stat-number" id="statPending">0</div>
-                <div class="profile-stat-label">অপেক্ষমাণ</div>
+            <div class="p-stat">
+                <div class="p-stat-num" id="ps-wait">0</div>
+                <div class="p-stat-label">অপেক্ষমাণ</div>
             </div>
         </div>
 
-        <div class="profile-menu">
-            <div class="profile-menu-item" onclick="showPage('orders')">
-                <div class="menu-icon" style="background: rgba(124, 58, 237, 0.15);">📦</div>
-                <div class="menu-text">
-                    <h4>আমার অর্ডার</h4>
-                    <p>সকল অর্ডার দেখুন</p>
-                </div>
-                <div class="menu-arrow">›</div>
+        <div class="p-menu">
+            <div class="p-menu-item" onclick="showPage('orders')">
+                <div class="pmi-icon" style="background:rgba(124,58,237,0.12)">📦</div>
+                <div class="pmi-text"><h4>আমার অর্ডার</h4><p>সকল অর্ডার দেখুন</p></div>
+                <div class="pmi-arrow">›</div>
             </div>
-            <div class="profile-menu-item" onclick="showPage('home')">
-                <div class="menu-icon" style="background: rgba(236, 72, 153, 0.15);">🛒</div>
-                <div class="menu-text">
-                    <h4>কোর্স কিনুন</h4>
-                    <p>নতুন কোর্স ব্রাউজ করুন</p>
-                </div>
-                <div class="menu-arrow">›</div>
+            <div class="p-menu-item" onclick="showPage('home')">
+                <div class="pmi-icon" style="background:rgba(236,72,153,0.12)">🛒</div>
+                <div class="pmi-text"><h4>কোর্স কিনুন</h4><p>নতুন কোর্স ব্রাউজ করুন</p></div>
+                <div class="pmi-arrow">›</div>
             </div>
-            <div class="profile-menu-item" onclick="contactAdmin()">
-                <div class="menu-icon" style="background: rgba(6, 182, 212, 0.15);">💬</div>
-                <div class="menu-text">
-                    <h4>সাপোর্ট</h4>
-                    <p>অ্যাডমিনের সাথে যোগাযোগ</p>
-                </div>
-                <div class="menu-arrow">›</div>
-            </div>
-            <div class="profile-menu-item" onclick="showPage('admin')">
-                <div class="menu-icon" style="background: rgba(239, 68, 68, 0.15);">🔐</div>
-                <div class="menu-text">
-                    <h4>অ্যাডমিন প্যানেল</h4>
-                    <p>শুধুমাত্র অ্যাডমিনের জন্য</p>
-                </div>
-                <div class="menu-arrow">›</div>
+            <div class="p-menu-item" onclick="contactSupport()">
+                <div class="pmi-icon" style="background:rgba(6,182,212,0.12)">💬</div>
+                <div class="pmi-text"><h4>সাপোর্ট</h4><p>অ্যাডমিনের সাথে যোগাযোগ</p></div>
+                <div class="pmi-arrow">›</div>
             </div>
         </div>
     </div>
 
-    <!-- ============ ADMIN PAGE ============ -->
+    <!-- ====== ADMIN ====== -->
     <div class="page" id="page-admin">
-        <div id="adminContent">
-            <div class="admin-login-card">
-                <div class="lock-icon">🔐</div>
-                <h2 style="font-size: 18px; margin-bottom: 5px;">অ্যাডমিন প্যানেল</h2>
-                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">লগইন করতে পাসওয়ার্ড দিন</p>
-                <div class="form-group">
-                    <input type="password" id="adminPassword" placeholder="🔑 পাসওয়ার্ড দিন"
-                           onkeypress="if(event.key==='Enter')adminLogin()">
-                </div>
-                <button class="submit-btn primary" onclick="adminLogin()">🔓 লগইন করুন</button>
+        <div id="adminArea">
+            <div class="admin-card">
+                <div class="a-icon">🔐</div>
+                <h2 style="font-size:17px;margin-bottom:4px;">অ্যাডমিন প্যানেল</h2>
+                <p style="font-size:11px;color:var(--text3);margin-bottom:18px;">লগইন করতে পাসওয়ার্ড দিন</p>
+                <div class="fg"><input type="password" id="adminPw" placeholder="🔑 পাসওয়ার্ড" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
+                <button class="btn btn-primary" onclick="doAdminLogin()">🔓 লগইন</button>
             </div>
         </div>
     </div>
 
-    <!-- ============ PAYMENT MODAL ============ -->
-    <div class="modal-overlay" id="paymentModal">
+    <!-- ====== PAYMENT MODAL ====== -->
+    <div class="modal-overlay" id="payModal">
         <div class="modal">
             <div class="modal-handle"></div>
             <div class="modal-header">
-                <h2>💳 পেমেন্ট করুন</h2>
-                <p id="modalCourseName" style="font-size: 13px; color: var(--text-secondary); margin-top: 5px;"></p>
+                <h2>💳 <span class="grad-text">পেমেন্ট</span></h2>
+                <p id="payModalTitle" style="font-size:12px;color:var(--text3);margin-top:4px;"></p>
             </div>
             <div class="modal-body">
                 <div class="steps">
-                    <div class="step active" id="step1">
-                        <div class="step-circle">1</div>
-                        <div class="step-label">পেমেন্ট</div>
-                    </div>
-                    <div class="step" id="step2">
-                        <div class="step-circle">2</div>
-                        <div class="step-label">তথ্য</div>
-                    </div>
-                    <div class="step" id="step3">
-                        <div class="step-circle">3</div>
-                        <div class="step-label">সম্পন্ন</div>
-                    </div>
+                    <div class="step active" id="s1"><div class="step-dot">1</div><div class="step-name">পেমেন্ট</div></div>
+                    <div class="step" id="s2"><div class="step-dot">2</div><div class="step-name">তথ্য</div></div>
+                    <div class="step" id="s3"><div class="step-dot">3</div><div class="step-name">সম্পন্ন</div></div>
                 </div>
 
-                <!-- Step 1 -->
-                <div id="paymentStep1">
-                    <p style="font-size: 15px; font-weight: 800; margin-bottom: 12px; text-align: center;">
-                        পেমেন্ট মেথড বাছাই করুন
-                    </p>
-                    <div class="payment-methods">
-                        <div class="payment-method bkash" onclick="selectPayment('bkash', this)">
-                            <div class="check-mark">✓</div>
-                            <div class="payment-method-icon">💗</div>
-                            <div class="payment-method-name" style="color: var(--bkash);">বিকাশ</div>
+                <div id="pStep1">
+                    <p style="font-size:14px;font-weight:800;text-align:center;margin-bottom:12px;">পেমেন্ট মেথড বাছাই করুন</p>
+                    <div class="pay-methods">
+                        <div class="pay-method bk" onclick="pickPay('bkash',this)">
+                            <div class="pm-check">✓</div>
+                            <div class="pm-icon">💗</div>
+                            <div class="pm-name" style="color:var(--bkash)">বিকাশ</div>
                         </div>
-                        <div class="payment-method nagad" onclick="selectPayment('nagad', this)">
-                            <div class="check-mark">✓</div>
-                            <div class="payment-method-icon">🧡</div>
-                            <div class="payment-method-name" style="color: var(--nagad);">নগদ</div>
+                        <div class="pay-method ng" onclick="pickPay('nagad',this)">
+                            <div class="pm-check">✓</div>
+                            <div class="pm-icon">🧡</div>
+                            <div class="pm-name" style="color:var(--nagad)">নগদ</div>
                         </div>
                     </div>
-                    <div id="paymentDetails" style="display: none;"></div>
-                    <button class="submit-btn primary" id="nextStep1Btn" onclick="goToStep(2)" disabled>
-                        পরবর্তী ধাপ →
-                    </button>
+                    <div id="payInfo" style="display:none"></div>
+                    <button class="btn btn-primary" id="nextBtn1" onclick="goStep(2)" disabled>পরবর্তী ধাপ →</button>
                 </div>
 
-                <!-- Step 2 -->
-                <div id="paymentStep2" style="display: none;">
-                    <div class="form-group">
-                        <label>👤 আপনার নাম *</label>
-                        <input type="text" id="customerName" placeholder="আপনার পুরো নাম">
-                    </div>
-                    <div class="form-group">
-                        <label>📱 যে নম্বর থেকে পাঠিয়েছেন *</label>
-                        <input type="tel" id="senderNumber" placeholder="01XXXXXXXXX">
-                    </div>
-                    <div class="form-group">
-                        <label>🔢 ট্রানজেকশন আইডি (TrxID) *</label>
-                        <input type="text" id="trxId" placeholder="যেমন: ABC123XYZ">
-                    </div>
-                    <div class="form-group">
-                        <label>💰 পরিমাণ (টাকা) *</label>
-                        <input type="number" id="amountPaid" placeholder="কত টাকা পাঠিয়েছেন">
-                    </div>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="submit-btn ghost" onclick="goToStep(1)">← পেছনে</button>
-                        <button class="submit-btn success" onclick="submitOrder()">✅ জমা দিন</button>
+                <div id="pStep2" style="display:none">
+                    <div class="fg"><label>👤 আপনার নাম *</label><input type="text" id="fName" placeholder="পুরো নাম"></div>
+                    <div class="fg"><label>📱 প্রেরকের নম্বর *</label><input type="tel" id="fPhone" placeholder="01XXXXXXXXX"></div>
+                    <div class="fg"><label>🔢 TrxID *</label><input type="text" id="fTrx" placeholder="ট্রানজেকশন আইডি"></div>
+                    <div class="fg"><label>💰 পরিমাণ *</label><input type="number" id="fAmount" placeholder="টাকা"></div>
+                    <div class="row-2">
+                        <button class="btn btn-ghost" onclick="goStep(1)">← পেছনে</button>
+                        <button class="btn btn-success" onclick="placeOrder()">✅ জমা দিন</button>
                     </div>
                 </div>
 
-                <!-- Step 3 -->
-                <div id="paymentStep3" style="display: none; text-align: center; padding: 20px 0;">
-                    <div style="font-size: 70px; margin-bottom: 15px;">🎉</div>
-                    <h3 style="font-size: 20px; margin-bottom: 10px; background: linear-gradient(135deg, var(--success), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        অর্ডার সফল!
-                    </h3>
-                    <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 25px; line-height: 1.7;">
-                        অ্যাডমিন আপনার পেমেন্ট যাচাই করে<br>অনুমোদন দিলে কোর্সের লিংক পাবেন।<br>
-                        টেলিগ্রামেও নোটিফিকেশন যাবে! 🔔
+                <div id="pStep3" style="display:none;text-align:center;padding:20px 0;">
+                    <div style="font-size:65px;margin-bottom:12px;">🎉</div>
+                    <h3 style="font-size:18px;margin-bottom:8px;" class="grad-text">অর্ডার সফল!</h3>
+                    <p style="font-size:12px;color:var(--text3);margin-bottom:22px;line-height:1.7;">
+                        অ্যাডমিন পেমেন্ট যাচাই করে অনুমোদন দিলে<br>কোর্সের লিংক পাবেন। টেলিগ্রামেও নোটিফিকেশন যাবে! 🔔
                     </p>
-                    <button class="submit-btn primary" onclick="closeModal()">👍 ঠিক আছে</button>
+                    <button class="btn btn-primary" onclick="closePayModal()">👍 ঠিক আছে</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ============ BOTTOM NAVIGATION ============ -->
+    <!-- ====== DETAIL MODAL ====== -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal" id="detailModalContent"></div>
+    </div>
+
+    <!-- ====== BOTTOM NAV ====== -->
     <div class="bottom-nav">
         <div class="nav-item active" onclick="showPage('home')" id="nav-home">
-            <div class="nav-icon">🏠</div>
-            <div class="nav-label">হোম</div>
+            <div class="nav-icon">🏠</div><div class="nav-label">হোম</div>
         </div>
         <div class="nav-item" onclick="showPage('orders')" id="nav-orders">
-            <div class="nav-icon">📦</div>
-            <div class="nav-label">অর্ডার</div>
-            <div class="nav-badge" id="orderBadge" style="display: none;">0</div>
+            <div class="nav-icon">📦</div><div class="nav-label">অর্ডার</div>
+            <div class="nav-badge" id="oBadge" style="display:none">0</div>
         </div>
         <div class="nav-item" onclick="showPage('profile')" id="nav-profile">
-            <div class="nav-icon">👤</div>
-            <div class="nav-label">প্রোফাইল</div>
+            <div class="nav-icon">👤</div><div class="nav-label">প্রোফাইল</div>
         </div>
-        <div class="nav-item" onclick="showPage('admin')" id="nav-admin">
-            <div class="nav-icon">🔐</div>
-            <div class="nav-label">অ্যাডমিন</div>
+        <div class="nav-item hidden" onclick="showPage('admin')" id="nav-admin">
+            <div class="nav-icon">🔐</div><div class="nav-label">অ্যাডমিন</div>
         </div>
     </div>
 
-    <script>
-        // ============ CONFIG ============
-        const CONFIG = {
-            adminPassword: 'admin123',
-            bkashNumber: '01812137592',
-            nagadNumber: '01812137592',
-            botToken: '8942961112:AAGD7-oxakkOwnF5zxnKuiGV72daPQtXrvI',
-            adminChatId: '6377295796'
+<script>
+// ===== CONFIG =====
+const CFG = {
+    // Password encoded in base64 then reversed for basic obfuscation
+    _ap: 'OTk1ODc0', // base64 of '478599' reversed
+    bkash: '01812137592',
+    nagad: '01812137592',
+    botToken: '8942961112:AAGD7-oxakkOwnF5zxnKuiGV72daPQtXrvI',
+    adminId: '6377295796',
+    adminTgId: 6377295796
+};
+
+function getAdminPw() {
+    try { return atob(CFG._ap).split('').reverse().join(''); } catch(e) { return ''; }
+}
+
+// ===== DATA =====
+let courses = JSON.parse(localStorage.getItem('cs_courses') || 'null') || [
+    {
+        id: 1, title: 'ফুল স্ট্যাক ওয়েব ডেভেলপমেন্ট',
+        desc: 'HTML, CSS, JavaScript, React, Node.js, MongoDB সহ সম্পূর্ণ ওয়েব ডেভেলপমেন্ট শিখুন। বিগিনার থেকে অ্যাডভান্সড লেভেল পর্যন্ত সব কভার করা হয়েছে।',
+        price: 500, oldPrice: 2000, category: 'web',
+        badge: '🔥 জনপ্রিয়', badgeClass: 'hot',
+        emoji: '💻', gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
+        features: ['৫০+ ঘণ্টা ভিডিও', 'সার্টিফিকেট', 'লাইভ সাপোর্ট'],
+        rating: '4.9', students: '1.2K+',
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 2, title: 'অ্যান্ড্রয়েড অ্যাপ ডেভেলপমেন্ট',
+        desc: 'Java ও Kotlin দিয়ে প্রফেশনাল অ্যান্ড্রয়েড অ্যাপ তৈরি শিখুন। গুগল প্লে স্টোরে পাবলিশ করুন।',
+        price: 600, oldPrice: 2500, category: 'app',
+        badge: '✨ নতুন', badgeClass: 'new',
+        emoji: '📱', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)',
+        features: ['৪০+ ঘণ্টা', '১০+ প্রজেক্ট', 'সোর্স কোড'],
+        rating: '4.8', students: '800+',
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 3, title: 'গ্রাফিক ডিজাইন মাস্টারক্লাস',
+        desc: 'Photoshop, Illustrator, Canva দিয়ে প্রফেশনাল ডিজাইন শিখুন। ফ্রিল্যান্সিং এর জন্য পারফেক্ট।',
+        price: 400, oldPrice: 1800, category: 'design',
+        badge: '💥 78% ছাড়', badgeClass: 'sale',
+        emoji: '🎨', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)',
+        features: ['৩০+ ঘণ্টা', 'রিসোর্স ফাইল', 'সার্টিফিকেট'],
+        rating: '4.7', students: '650+',
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 4, title: 'ডিজিটাল মার্কেটিং A-Z',
+        desc: 'SEO, SEM, Social Media Marketing, Email Marketing সব শিখুন। ব্যবসা বাড়ান অনলাইনে।',
+        price: 350, oldPrice: 1500, category: 'marketing',
+        badge: '🔥 জনপ্রিয়', badgeClass: 'hot',
+        emoji: '📊', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)',
+        features: ['২৫+ ঘণ্টা', 'কেস স্টাডি', 'টুলস গাইড'],
+        rating: '4.8', students: '950+',
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 5, title: 'এথিক্যাল হ্যাকিং কোর্স',
+        desc: 'সাইবার সিকিউরিটি ও এথিক্যাল হ্যাকিং এর সম্পূর্ণ গাইড। বাগ বাউন্টি শিখুন।',
+        price: 700, oldPrice: 3000, category: 'hacking',
+        badge: '✨ নতুন', badgeClass: 'new',
+        emoji: '🔒', gradient: 'linear-gradient(135deg, #fa709a, #fee140)',
+        features: ['৬০+ ঘণ্টা', 'ল্যাব এক্সেস', 'সার্টিফিকেট'],
+        rating: '4.9', students: '500+',
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 6, title: 'React Native মোবাইল অ্যাপ',
+        desc: 'একই কোডে iOS ও Android অ্যাপ তৈরি করুন। ক্রস-প্ল্যাটফর্ম ডেভেলপমেন্ট।',
+        price: 550, oldPrice: 2200, category: 'app',
+        badge: '💥 75% ছাড়', badgeClass: 'sale',
+        emoji: '⚛️', gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)',
+        features: ['৪৫+ ঘণ্টা', 'রিয়েল প্রজেক্ট', 'সোর্স কোড'],
+        rating: '4.7', students: '700+',
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 7, title: 'Python প্রোগ্রামিং',
+        desc: 'বেসিক থেকে অ্যাডভান্সড Python। ডেটা সায়েন্স, AI, অটোমেশন শিখুন।',
+        price: 400, oldPrice: 1600, category: 'web',
+        badge: '🔥 জনপ্রিয়', badgeClass: 'hot',
+        emoji: '🐍', gradient: 'linear-gradient(135deg, #96fbc4, #f9f586)',
+        features: ['৫০+ ঘণ্টা', 'প্র্যাক্টিস', '১৫+ প্রজেক্ট'],
+        rating: '4.8', students: '1.5K+',
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 8, title: 'UI/UX ডিজাইন',
+        desc: 'Figma, Adobe XD দিয়ে মডার্ন UI/UX ডিজাইন। পোর্টফোলিও তৈরি করুন।',
+        price: 450, oldPrice: 1800, category: 'design',
+        badge: '✨ নতুন', badgeClass: 'new',
+        emoji: '✏️', gradient: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
+        features: ['৩৫+ ঘণ্টা', 'ফাইল', 'পোর্টফোলিও'],
+        rating: '4.6', students: '400+',
+        screenshots: [], thumbnail: ''
+    }
+];
+
+let categories = JSON.parse(localStorage.getItem('cs_categories') || 'null') || [
+    { id: 'all', name: '🌟 সব' },
+    { id: 'web', name: '💻 ওয়েব' },
+    { id: 'app', name: '📱 অ্যাপ' },
+    { id: 'design', name: '🎨 ডিজাইন' },
+    { id: 'marketing', name: '📊 মার্কেটিং' },
+    { id: 'hacking', name: '🔒 হ্যাকিং' }
+];
+
+let orders = JSON.parse(localStorage.getItem('cs_orders') || '[]');
+let selCourse = null;
+let selPay = null;
+let adminLogged = false;
+let adminTab = 'orders';
+
+const gradients = [
+    'linear-gradient(135deg, #667eea, #764ba2)',
+    'linear-gradient(135deg, #f093fb, #f5576c)',
+    'linear-gradient(135deg, #4facfe, #00f2fe)',
+    'linear-gradient(135deg, #43e97b, #38f9d7)',
+    'linear-gradient(135deg, #fa709a, #fee140)',
+    'linear-gradient(135deg, #a18cd1, #fbc2eb)',
+    'linear-gradient(135deg, #96fbc4, #f9f586)',
+    'linear-gradient(135deg, #ff9a9e, #fecfef)',
+    'linear-gradient(135deg, #ffecd2, #fcb69f)',
+    'linear-gradient(135deg, #89f7fe, #66a6ff)',
+    'linear-gradient(135deg, #c3cfe2, #f5f7fa)',
+    'linear-gradient(135deg, #e0c3fc, #8ec5fc)'
+];
+
+// ===== TELEGRAM =====
+let tg = window.Telegram?.WebApp;
+if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor('#050510'); tg.setBackgroundColor('#050510'); } catch(e){} }
+
+function getTgUser() {
+    if (tg?.initDataUnsafe?.user) return tg.initDataUnsafe.user;
+    return null;
+}
+
+function isAdmin() {
+    const u = getTgUser();
+    if (u && u.id === CFG.adminTgId) return true;
+    return false;
+}
+
+// ===== INIT =====
+function init() {
+    initUser();
+    renderCategories();
+    renderCourses();
+    renderFeatured();
+    updateBadge();
+
+    // Show admin nav only for admin user
+    if (isAdmin()) {
+        document.getElementById('nav-admin').classList.remove('hidden');
+    }
+}
+
+function initUser() {
+    const u = getTgUser();
+    if (u) {
+        const fn = u.first_name || '';
+        const ln = u.last_name || '';
+        const un = u.username || '';
+        const full = `${fn} ${ln}`.trim();
+
+        document.getElementById('welcomeName').textContent = `স্বাগতম, ${fn}! 👋`;
+        document.getElementById('pName').textContent = full || 'ইউজার';
+        document.getElementById('pUsername').textContent = un ? `@${un}` : '';
+        document.getElementById('pId').textContent = `🆔 ID: ${u.id}`;
+
+        if (u.photo_url) {
+            document.getElementById('pAvatar').innerHTML = `<img src="${u.photo_url}"><div class="p-online"></div>`;
+            document.getElementById('welcomeAvatar').innerHTML = `<img src="${u.photo_url}">`;
+        } else {
+            const ini = fn.charAt(0) || '👤';
+            document.getElementById('pAvatar').innerHTML = `${ini}<div class="p-online"></div>`;
+            document.getElementById('welcomeAvatar').textContent = ini;
+        }
+    }
+    updateStats();
+}
+
+function updateStats() {
+    const u = getTgUser();
+    let uo = orders;
+    if (u) uo = orders.filter(o => o.tgUser?.id === u.id);
+    document.getElementById('ps-total').textContent = uo.length;
+    document.getElementById('ps-ok').textContent = uo.filter(o => o.status === 'approved').length;
+    document.getElementById('ps-wait').textContent = uo.filter(o => o.status === 'pending').length;
+}
+
+function updateBadge() {
+    const u = getTgUser();
+    let uo = orders;
+    if (u) uo = orders.filter(o => o.tgUser?.id === u.id);
+    const pc = uo.filter(o => o.status === 'pending').length;
+    const b = document.getElementById('oBadge');
+    if (pc > 0) { b.style.display = 'block'; b.textContent = pc; } else { b.style.display = 'none'; }
+}
+
+// ===== RENDER =====
+function renderCategories() {
+    const el = document.getElementById('catFilters');
+    el.innerHTML = categories.map((c, i) =>
+        `<div class="cat-btn ${i === 0 ? 'active' : ''}" onclick="filterCat('${c.id}',this)">${c.name}</div>`
+    ).join('');
+}
+
+function renderFeatured() {
+    const el = document.getElementById('featuredSlider');
+    const featured = courses.slice(0, 4);
+    el.innerHTML = featured.map(c => `
+        <div class="featured-card" style="background:${c.gradient}" onclick="showDetail(${c.id})">
+            <div class="fc-emoji">${c.emoji}</div>
+            <div class="fc-title">${c.title}</div>
+            <div class="fc-desc">${c.features.join(' • ')}</div>
+            <div class="fc-price">৳${c.price} <span class="fc-old">৳${c.oldPrice}</span></div>
+            <button class="fc-btn" onclick="event.stopPropagation();openPay(${c.id})">🛒 কিনুন</button>
+        </div>
+    `).join('');
+}
+
+function renderCourses(list = courses) {
+    const el = document.getElementById('courseGrid');
+    if (list.length === 0) {
+        el.innerHTML = `<div class="empty"><div class="e-icon">🔍</div><h3>কোনো কোর্স পাওয়া যায়নি</h3><p>অন্য কিওয়ার্ড দিয়ে খুঁজুন</p></div>`;
+        return;
+    }
+    el.innerHTML = list.map(c => `
+        <div class="course-card" onclick="showDetail(${c.id})">
+            <div class="course-banner" style="background:${c.gradient}">
+                ${c.thumbnail ? `<img src="${c.thumbnail}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">` : ''}
+                ${c.emoji}
+                <span class="c-badge ${c.badgeClass}">${c.badge}</span>
+            </div>
+            <div class="course-info">
+                <div class="course-title">${c.title}</div>
+                <div class="course-desc">${c.desc}</div>
+                <div class="course-tags">${c.features.map(f => `<span class="c-tag">${f}</span>`).join('')}</div>
+                <div class="course-bottom">
+                    <div class="c-price-wrap"><span class="c-price">৳${c.price}</span><span class="c-price-old">৳${c.oldPrice}</span></div>
+                    <div class="c-rating">⭐ ${c.rating}</div>
+                </div>
+                <button class="buy-btn" onclick="event.stopPropagation();openPay(${c.id})">🛒 এখনই কিনুন</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function searchCourses(q) {
+    const f = courses.filter(c => c.title.toLowerCase().includes(q.toLowerCase()) || c.desc.toLowerCase().includes(q.toLowerCase()));
+    renderCourses(f);
+}
+
+function filterCat(cat, el) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    renderCourses(cat === 'all' ? courses : courses.filter(c => c.category === cat));
+}
+
+// ===== COURSE DETAIL =====
+function showDetail(id) {
+    const c = courses.find(x => x.id === id);
+    if (!c) return;
+    const discount = Math.round((1 - c.price / c.oldPrice) * 100);
+
+    document.getElementById('detailModalContent').innerHTML = `
+        <div class="modal-handle"></div>
+        <div class="detail-banner" style="background:${c.gradient}">
+            ${c.thumbnail ? `<img src="${c.thumbnail}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">` : ''}
+            ${c.emoji}
+        </div>
+        <div style="padding:18px 20px 30px;">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
+                <div>
+                    <h2 style="font-size:18px;font-weight:900;line-height:1.4;margin-bottom:6px;">${c.title}</h2>
+                    <span class="c-badge ${c.badgeClass}" style="position:static;display:inline-block;">${c.badge}</span>
+                </div>
+            </div>
+
+            <div class="detail-info-row">
+                <div class="detail-info-item"><div class="dii-val">⭐ ${c.rating}</div><div class="dii-label">রেটিং</div></div>
+                <div class="detail-info-item"><div class="dii-val">${c.students || 'N/A'}</div><div class="dii-label">শিক্ষার্থী</div></div>
+                <div class="detail-info-item"><div class="dii-val">${discount}%</div><div class="dii-label">ডিসকাউন্ট</div></div>
+            </div>
+
+            ${c.screenshots && c.screenshots.length > 0 ? `
+                <div class="section-title" style="font-size:14px;">📸 <span class="grad-text">স্ক্রিনশট</span></div>
+                <div class="detail-screenshots">
+                    ${c.screenshots.map(s => `<div class="detail-ss"><img src="${s}" onerror="this.parentElement.innerHTML='📷 ছবি লোড হয়নি'"></div>`).join('')}
+                </div>
+            ` : ''}
+
+            <div class="section-title" style="font-size:14px;">📝 <span class="grad-text">বিস্তারিত</span></div>
+            <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px;">${c.desc}</p>
+
+            <div class="section-title" style="font-size:14px;">✨ <span class="grad-text">ফিচারস</span></div>
+            <div class="course-tags" style="margin-bottom:18px;">${c.features.map(f => `<span class="c-tag">${f}</span>`).join('')}</div>
+
+            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:16px;">
+                <span style="font-size:28px;font-weight:900;" class="grad-text">৳${c.price}</span>
+                <span style="font-size:16px;color:var(--text3);text-decoration:line-through;">৳${c.oldPrice}</span>
+                <span style="font-size:12px;color:var(--success);font-weight:700;">${discount}% ছাড়!</span>
+            </div>
+
+            <button class="btn btn-primary" onclick="closeDetailModal();openPay(${c.id})">🛒 এখনই কিনুন — ৳${c.price}</button>
+            <button class="btn btn-ghost" style="margin-top:8px;" onclick="closeDetailModal()">← ফিরে যান</button>
+        </div>
+    `;
+    document.getElementById('detailModal').classList.add('active');
+}
+
+function closeDetailModal() { document.getElementById('detailModal').classList.remove('active'); }
+
+// ===== PAYMENT =====
+function openPay(id) {
+    selCourse = courses.find(c => c.id === id);
+    selPay = null;
+    if (!selCourse) return;
+
+    document.getElementById('payModalTitle').textContent = `${selCourse.title} — ৳${selCourse.price}`;
+    document.getElementById('payModal').classList.add('active');
+    goStep(1);
+
+    document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('selected'));
+    document.getElementById('payInfo').style.display = 'none';
+    document.getElementById('nextBtn1').disabled = true;
+    document.getElementById('fName').value = '';
+    document.getElementById('fPhone').value = '';
+    document.getElementById('fTrx').value = '';
+    document.getElementById('fAmount').value = selCourse.price;
+
+    const u = getTgUser();
+    if (u) document.getElementById('fName').value = `${u.first_name || ''} ${u.last_name || ''}`.trim();
+}
+
+function closePayModal() { document.getElementById('payModal').classList.remove('active'); }
+
+function pickPay(method, el) {
+    selPay = method;
+    document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('selected'));
+    el.classList.add('selected');
+
+    const num = method === 'bkash' ? CFG.bkash : CFG.nagad;
+    const name = method === 'bkash' ? 'বিকাশ' : 'নগদ';
+    const cls = method === 'bkash' ? 'bk-box' : 'ng-box';
+    const col = method === 'bkash' ? 'var(--bkash)' : 'var(--nagad)';
+    const btnCls = method === 'bkash' ? 'btn-bkash' : 'btn-nagad';
+
+    document.getElementById('payInfo').style.display = 'block';
+    document.getElementById('payInfo').innerHTML = `
+        <div class="pay-box ${cls}">
+            <h3 style="font-size:14px;color:${col};margin-bottom:6px;">📲 ${name} সেন্ড মানি</h3>
+            <p style="font-size:11px;color:var(--text2)">নিচের নম্বরে সেন্ড মানি করুন:</p>
+            <div class="pay-number">${num}</div>
+            <button class="copy-btn ${btnCls}" onclick="copyNum('${num}')">📋 কপি</button>
+            <p style="margin-top:10px;font-size:13px;">পরিমাণ: <strong style="color:${col};font-size:18px;">৳${selCourse.price}</strong></p>
+        </div>
+        <div class="info-box">
+            <h4>⚠️ নির্দেশনা:</h4>
+            <ol>
+                <li>${name} সেন্ড মানি করুন — ৳${selCourse.price}</li>
+                <li>TrxID সংরক্ষণ করুন</li>
+                <li>পরবর্তী ধাপে তথ্য দিন</li>
+                <li>অ্যাডমিন যাচাই করে লিংক দিবে</li>
+            </ol>
+        </div>
+    `;
+    document.getElementById('nextBtn1').disabled = false;
+}
+
+function copyNum(n) {
+    navigator.clipboard.writeText(n).then(() => toast('✅ নম্বর কপি হয়েছে!')).catch(() => {
+        const i = document.createElement('input'); i.value = n; document.body.appendChild(i); i.select(); document.execCommand('copy'); document.body.removeChild(i); toast('✅ কপি হয়েছে!');
+    });
+}
+
+function goStep(s) {
+    document.getElementById('pStep1').style.display = s === 1 ? 'block' : 'none';
+    document.getElementById('pStep2').style.display = s === 2 ? 'block' : 'none';
+    document.getElementById('pStep3').style.display = s === 3 ? 'block' : 'none';
+    for (let i = 1; i <= 3; i++) {
+        const el = document.getElementById('s' + i);
+        el.className = 'step';
+        if (i < s) el.classList.add('done');
+        if (i === s) el.classList.add('active');
+    }
+}
+
+function placeOrder() {
+    const name = document.getElementById('fName').value.trim();
+    const phone = document.getElementById('fPhone').value.trim();
+    const trx = document.getElementById('fTrx').value.trim();
+    const amt = document.getElementById('fAmount').value.trim();
+
+    if (!name || !phone || !trx || !amt) { toast('⚠️ সব তথ্য পূরণ করুন!'); return; }
+    if (phone.length < 11) { toast('⚠️ সঠিক নম্বর দিন!'); return; }
+
+    const u = getTgUser();
+    const order = {
+        id: 'ORD-' + Date.now(),
+        courseId: selCourse.id,
+        courseName: selCourse.title,
+        coursePrice: selCourse.price,
+        customerName: name,
+        senderNumber: phone,
+        trxId: trx,
+        amountPaid: amt,
+        payMethod: selPay,
+        status: 'pending',
+        driveLink: '',
+        date: new Date().toLocaleString('bn-BD'),
+        tgUser: u ? { id: u.id, firstName: u.first_name, lastName: u.last_name || '', username: u.username || '' } : null
+    };
+
+    orders.push(order);
+    saveOrders();
+    sendAdminNotif(order);
+    updateBadge();
+    updateStats();
+    goStep(3);
+    toast('✅ অর্ডার সফল!');
+}
+
+// ===== TELEGRAM BOT =====
+async function sendAdminNotif(o) {
+    const msg = `🆕 *নতুন অর্ডার!*\n━━━━━━━━━━━━━\n📦 \`${o.id}\`\n📚 ${o.courseName}\n💰 ৳${o.coursePrice}\n━━━━━━━━━━━━━\n👤 ${o.customerName}\n📱 \`${o.senderNumber}\`\n💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'}\n🔢 TrxID: \`${o.trxId}\`\n💵 ৳${o.amountPaid}\n📅 ${o.date}${o.tgUser ? `\n👤 ${o.tgUser.firstName} @${o.tgUser.username}\n🆔 \`${o.tgUser.id}\`` : ''}\n━━━━━━━━━━━━━`;
+    try {
+        await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CFG.adminId, text: msg, parse_mode: 'Markdown' })
+        });
+    } catch(e) { console.log(e); }
+}
+
+async function sendUserLink(o) {
+    if (!o.tgUser) return;
+    const msg = `🎉 *অভিনন্দন!*\n━━━━━━━━━━━━━\n✅ অর্ডার অনুমোদিত!\n📚 ${o.courseName}\n💰 ৳${o.coursePrice}\n🔗 *লিংক:* ${o.driveLink}\n━━━━━━━━━━━━━\nধন্যবাদ! 🙏`;
+    try {
+        await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: o.tgUser.id, text: msg, parse_mode: 'Markdown' })
+        });
+        toast('✅ ইউজারকে লিংক পাঠানো হয়েছে!');
+    } catch(e) { toast('⚠️ পাঠাতে সমস্যা'); }
+}
+
+async function sendUserReject(o) {
+    if (!o.tgUser) return;
+    const msg = `❌ *অর্ডার প্রত্যাখ্যাত*\n📚 ${o.courseName}\n🔢 TrxID: \`${o.trxId}\`\nসঠিক তথ্য দিয়ে আবার চেষ্টা করুন।`;
+    try {
+        await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: o.tgUser.id, text: msg, parse_mode: 'Markdown' })
+        });
+    } catch(e) {}
+}
+
+// ===== ORDERS =====
+function renderOrders() {
+    const el = document.getElementById('ordersList');
+    const u = getTgUser();
+    let uo = orders;
+    if (u) uo = orders.filter(o => o.tgUser?.id === u.id);
+
+    if (uo.length === 0) {
+        el.innerHTML = `<div class="empty"><div class="e-icon">📭</div><h3>কোনো অর্ডার নেই</h3><p>কোর্স কিনলে এখানে দেখাবে</p><button class="btn btn-primary" style="max-width:180px;margin:18px auto 0;font-size:13px;" onclick="showPage('home')">🛒 কোর্স দেখুন</button></div>`;
+        return;
+    }
+
+    el.innerHTML = uo.slice().reverse().map(o => `
+        <div class="order-card">
+            <div class="order-top">
+                <span class="order-id">${o.id}</span>
+                <span class="o-status ${o.status}">${o.status === 'pending' ? '⏳ অপেক্ষমাণ' : o.status === 'approved' ? '✅ অনুমোদিত' : '❌ প্রত্যাখ্যাত'}</span>
+            </div>
+            <div class="order-name">${o.courseName}</div>
+            <div class="order-meta">
+                💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'} | 🔢 ${o.trxId}<br>
+                💵 ৳${o.amountPaid} | 📅 ${o.date}
+            </div>
+            ${o.status === 'approved' && o.driveLink ? `<button class="dl-btn" onclick="window.open('${o.driveLink}','_blank')">📥 ডাউনলোড করুন</button>` : ''}
+            ${o.status === 'pending' ? `<p style="color:var(--warning);font-size:11px;margin-top:10px;text-align:center;">⏳ অ্যাডমিন শীঘ্রই যাচাই করবে...</p>` : ''}
+            ${o.status === 'rejected' ? `<p style="color:var(--danger);font-size:11px;margin-top:10px;">⚠️ পেমেন্ট যাচাই হয়নি। আবার চেষ্টা করুন।</p>` : ''}
+        </div>
+    `).join('');
+}
+
+// ===== ADMIN =====
+function doAdminLogin() {
+    const pw = document.getElementById('adminPw').value;
+    if (pw === getAdminPw()) {
+        // Also check if Telegram user is admin
+        const u = getTgUser();
+        if (u && u.id !== CFG.adminTgId) {
+            toast('❌ আপনি অ্যাডমিন নন!');
+            return;
+        }
+        adminLogged = true;
+        renderAdmin();
+        toast('✅ লগইন সফল!');
+    } else {
+        toast('❌ ভুল পাসওয়ার্ড!');
+    }
+}
+
+function renderAdmin() {
+    const area = document.getElementById('adminArea');
+    const pc = orders.filter(o => o.status === 'pending').length;
+    const ac = orders.filter(o => o.status === 'approved').length;
+    const rc = orders.filter(o => o.status === 'rejected').length;
+    const rev = orders.filter(o => o.status === 'approved').reduce((s, o) => s + parseInt(o.amountPaid || 0), 0);
+
+    area.innerHTML = `
+        <div class="section-title">🔐 <span class="grad-text">অ্যাডমিন ড্যাশবোর্ড</span></div>
+
+        <div class="stats-row">
+            <div class="s-card"><div class="s-num">${pc}</div><div class="s-label">⏳ অপেক্ষমাণ</div></div>
+            <div class="s-card"><div class="s-num">${ac}</div><div class="s-label">✅ সফল</div></div>
+            <div class="s-card"><div class="s-num">${rc}</div><div class="s-label">❌ প্রত্যাখ্যাত</div></div>
+            <div class="s-card"><div class="s-num">৳${rev}</div><div class="s-label">💰 আয়</div></div>
+        </div>
+
+        <div class="admin-tabs">
+            <div class="a-tab ${adminTab === 'orders' ? 'active' : ''}" onclick="adminTab='orders';renderAdmin()">📋 অর্ডার</div>
+            <div class="a-tab ${adminTab === 'courses' ? 'active' : ''}" onclick="adminTab='courses';renderAdmin()">📚 কোর্স</div>
+            <div class="a-tab ${adminTab === 'addcourse' ? 'active' : ''}" onclick="adminTab='addcourse';renderAdmin()">➕ কোর্স যোগ</div>
+            <div class="a-tab ${adminTab === 'categories' ? 'active' : ''}" onclick="adminTab='categories';renderAdmin()">📂 ক্যাটাগরি</div>
+        </div>
+
+        <div id="adminTabContent"></div>
+
+        <button class="btn btn-ghost" style="margin-top:18px;" onclick="adminLogout()">🚪 লগআউট</button>
+    `;
+
+    const tc = document.getElementById('adminTabContent');
+
+    if (adminTab === 'orders') {
+        tc.innerHTML = orders.length === 0 ? `<div class="empty"><div class="e-icon">📭</div><h3>কোনো অর্ডার নেই</h3></div>` :
+            orders.slice().reverse().map(o => `
+                <div class="admin-order-card" style="border-left:3px solid ${o.status === 'pending' ? 'var(--warning)' : o.status === 'approved' ? 'var(--success)' : 'var(--danger)'}">
+                    <div class="order-top"><span class="order-id">${o.id}</span><span class="o-status ${o.status}">${o.status === 'pending' ? '⏳' : o.status === 'approved' ? '✅' : '❌'} ${o.status}</span></div>
+                    <div class="order-name">${o.courseName}</div>
+                    <div class="order-meta">
+                        👤 <strong>${o.customerName}</strong><br>
+                        📱 ${o.senderNumber} | 💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'}<br>
+                        🔢 TrxID: <strong style="color:var(--primary-light)">${o.trxId}</strong><br>
+                        💵 ৳${o.amountPaid} | 📅 ${o.date}
+                        ${o.tgUser ? `<br>🔗 ${o.tgUser.firstName} @${o.tgUser.username} (${o.tgUser.id})` : ''}
+                    </div>
+                    ${o.status === 'pending' ? `
+                        <input type="text" class="a-link-input" id="lnk-${o.id}" placeholder="🔗 ড্রাইভ লিংক..." value="${o.driveLink || ''}">
+                        <div class="a-actions">
+                            <button class="a-approve" onclick="approveO('${o.id}')">✅ অনুমোদন</button>
+                            <button class="a-reject" onclick="rejectO('${o.id}')">❌ প্রত্যাখ্যান</button>
+                        </div>
+                    ` : ''}
+                    ${o.status === 'approved' ? `<p style="color:var(--success);font-size:11px;margin-top:10px;">🔗 ${o.driveLink}</p>` : ''}
+                </div>
+            `).join('');
+    }
+
+    else if (adminTab === 'courses') {
+        tc.innerHTML = `
+            <div class="section-title" style="font-size:14px;">📚 <span class="grad-text">সকল কোর্স (${courses.length})</span></div>
+            ${courses.map(c => `
+                <div class="admin-order-card">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+                        <div style="width:45px;height:45px;border-radius:12px;background:${c.gradient};display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">${c.emoji}</div>
+                        <div style="flex:1;">
+                            <div style="font-size:14px;font-weight:800;">${c.title}</div>
+                            <div style="font-size:11px;color:var(--text3);">${c.category} | ৳${c.price} (আগে ৳${c.oldPrice})</div>
+                        </div>
+                    </div>
+                    <div class="row-2">
+                        <button class="btn btn-ghost" style="font-size:11px;padding:8px;" onclick="editCourse(${c.id})">✏️ এডিট</button>
+                        <button class="btn btn-danger" style="font-size:11px;padding:8px;" onclick="deleteCourse(${c.id})">🗑️ মুছুন</button>
+                    </div>
+                </div>
+            `).join('')}
+        `;
+    }
+
+    else if (adminTab === 'addcourse') {
+        tc.innerHTML = `
+            <div class="add-course-form">
+                <div class="section-title" style="font-size:14px;">➕ <span class="grad-text">নতুন কোর্স যোগ</span></div>
+
+                <div class="fg"><label>📛 কোর্সের নাম *</label><input type="text" id="ac-title" placeholder="কোর্সের নাম"></div>
+                <div class="fg"><label>📝 বিস্তারিত *</label><textarea id="ac-desc" placeholder="কোর্সের বিস্তারিত বর্ণনা..."></textarea></div>
+
+                <div class="row-2">
+                    <div class="fg"><label>💰 মূল্য (৳) *</label><input type="number" id="ac-price" placeholder="500"></div>
+                    <div class="fg"><label>💸 আগের মূল্য (৳)</label><input type="number" id="ac-oldprice" placeholder="2000"></div>
+                </div>
+
+                <div class="fg">
+                    <label>📂 ক্যাটাগরি *</label>
+                    <select id="ac-cat">
+                        ${categories.filter(c => c.id !== 'all').map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
+                    </select>
+                </div>
+
+                <div class="fg"><label>🏷️ ব্যাজ</label><input type="text" id="ac-badge" placeholder="🔥 জনপ্রিয়"></div>
+
+                <div class="fg">
+                    <label>🎨 ব্যাজ স্টাইল</label>
+                    <select id="ac-badgeclass">
+                        <option value="hot">🔥 হট</option>
+                        <option value="new">✨ নতুন</option>
+                        <option value="sale">💥 সেল</option>
+                    </select>
+                </div>
+
+                <div class="fg"><label>😀 ইমোজি</label><input type="text" id="ac-emoji" placeholder="💻"></div>
+
+                <div class="fg">
+                    <label>🎨 গ্র্যাডিয়েন্ট কালার</label>
+                    <div class="color-picker-row" id="gradientPicker">
+                        ${gradients.map((g, i) => `<div class="color-opt ${i === 0 ? 'selected' : ''}" style="background:${g}" onclick="pickGradient(${i},this)" data-grad="${g}"></div>`).join('')}
+                    </div>
+                </div>
+
+                <div class="fg"><label>🖼️ থাম্বনেইল URL</label><input type="text" id="ac-thumb" placeholder="https://..."></div>
+
+                <div class="fg">
+                    <label>📸 স্ক্রিনশট URLs (কমা দিয়ে আলাদা)</label>
+                    <textarea id="ac-ss" placeholder="https://url1.jpg, https://url2.jpg" style="min-height:50px;"></textarea>
+                </div>
+
+                <div class="fg"><label>✨ ফিচারস (কমা দিয়ে)</label><input type="text" id="ac-features" placeholder="৫০+ ঘণ্টা, সার্টিফিকেট, সাপোর্ট"></div>
+
+                <div class="row-2">
+                    <div class="fg"><label>⭐ রেটিং</label><input type="text" id="ac-rating" placeholder="4.9"></div>
+                    <div class="fg"><label>👥 শিক্ষার্থী</label><input type="text" id="ac-students" placeholder="1K+"></div>
+                </div>
+
+                <button class="btn btn-success" onclick="addCourse()">✅ কোর্স যোগ করুন</button>
+            </div>
+        `;
+    }
+
+    else if (adminTab === 'categories') {
+        tc.innerHTML = `
+            <div class="section-title" style="font-size:14px;">📂 <span class="grad-text">ক্যাটাগরি ম্যানেজ</span></div>
+
+            ${categories.map(c => `
+                <div class="admin-order-card" style="display:flex;align-items:center;justify-content:space-between;">
+                    <span style="font-size:14px;font-weight:700;">${c.name}</span>
+                    ${c.id !== 'all' ? `<button class="btn btn-danger" style="width:auto;padding:6px 14px;font-size:11px;" onclick="deleteCat('${c.id}')">🗑️</button>` : '<span style="font-size:10px;color:var(--text3);">ডিফল্ট</span>'}
+                </div>
+            `).join('')}
+
+            <div class="add-course-form" style="margin-top:14px;">
+                <div class="section-title" style="font-size:14px;">➕ <span class="grad-text">নতুন ক্যাটাগরি</span></div>
+                <div class="fg"><label>📛 ক্যাটাগরি নাম</label><input type="text" id="newCatName" placeholder="🎵 মিউজিক"></div>
+                <div class="fg"><label>🆔 আইডি (ইংরেজিতে)</label><input type="text" id="newCatId" placeholder="music"></div>
+                <button class="btn btn-success" onclick="addCategory()">➕ যোগ করুন</button>
+            </div>
+        `;
+    }
+}
+
+let selGradientIdx = 0;
+
+function pickGradient(idx, el) {
+    selGradientIdx = idx;
+    document.querySelectorAll('.color-opt').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function addCourse() {
+    const title = document.getElementById('ac-title').value.trim();
+    const desc = document.getElementById('ac-desc').value.trim();
+    const price = parseInt(document.getElementById('ac-price').value);
+    const oldPrice = parseInt(document.getElementById('ac-oldprice').value) || price * 3;
+    const cat = document.getElementById('ac-cat').value;
+    const badge = document.getElementById('ac-badge').value.trim() || '✨ নতুন';
+    const badgeClass = document.getElementById('ac-badgeclass').value;
+    const emoji = document.getElementById('ac-emoji').value.trim() || '📚';
+    const thumb = document.getElementById('ac-thumb').value.trim();
+    const ssRaw = document.getElementById('ac-ss').value.trim();
+    const featRaw = document.getElementById('ac-features').value.trim();
+    const rating = document.getElementById('ac-rating').value.trim() || '4.5';
+    const students = document.getElementById('ac-students').value.trim() || 'N/A';
+
+    if (!title || !desc || !price) { toast('⚠️ নাম, বিস্তারিত ও মূল্য দিন!'); return; }
+
+    const newCourse = {
+        id: Date.now(),
+        title, desc, price, oldPrice, category: cat,
+        badge, badgeClass,
+        emoji,
+        gradient: gradients[selGradientIdx] || gradients[0],
+        features: featRaw ? featRaw.split(',').map(f => f.trim()) : [],
+        rating, students,
+        thumbnail: thumb,
+        screenshots: ssRaw ? ssRaw.split(',').map(s => s.trim()).filter(s => s) : []
+    };
+
+    courses.push(newCourse);
+    saveCourses();
+    renderCourses();
+    renderFeatured();
+    renderCategories();
+    adminTab = 'courses';
+    renderAdmin();
+    toast('✅ কোর্স যোগ হয়েছে!');
+}
+
+function editCourse(id) {
+    const c = courses.find(x => x.id === id);
+    if (!c) return;
+
+    adminTab = 'addcourse';
+    renderAdmin();
+
+    // Fill form with existing data
+    setTimeout(() => {
+        document.getElementById('ac-title').value = c.title;
+        document.getElementById('ac-desc').value = c.desc;
+        document.getElementById('ac-price').value = c.price;
+        document.getElementById('ac-oldprice').value = c.oldPrice;
+        document.getElementById('ac-cat').value = c.category;
+        document.getElementById('ac-badge').value = c.badge;
+        document.getElementById('ac-badgeclass').value = c.badgeClass;
+        document.getElementById('ac-emoji').value = c.emoji;
+        document.getElementById('ac-thumb').value = c.thumbnail || '';
+        document.getElementById('ac-ss').value = (c.screenshots || []).join(', ');
+        document.getElementById('ac-features').value = c.features.join(', ');
+        document.getElementById('ac-rating').value = c.rating;
+        document.getElementById('ac-students').value = c.students || '';
+
+        // Change button to update
+        const btn = document.querySelector('.add-course-form .btn-success');
+        btn.textContent = '✏️ আপডেট করুন';
+        btn.onclick = function() {
+            // Remove old
+            courses = courses.filter(x => x.id !== id);
+            // Add updated
+            addCourse();
         };
-
-        // ============ COURSES DATA ============
-        const courses = [
-            {
-                id: 1,
-                title: 'ফুল স্ট্যাক ওয়েব ডেভেলপমেন্ট',
-                desc: 'HTML, CSS, JavaScript, React, Node.js, MongoDB সহ সম্পূর্ণ ওয়েব ডেভেলপমেন্ট।',
-                price: 500,
-                oldPrice: 2000,
-                category: 'web',
-                badge: '🔥 জনপ্রিয়',
-                badgeClass: 'badge-popular',
-                emoji: '💻',
-                gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
-                features: ['৫০+ ঘণ্টা ভিডিও', 'সার্টিফিকেট', 'লাইভ সাপোর্ট'],
-                rating: '4.9'
-            },
-            {
-                id: 2,
-                title: 'অ্যান্ড্রয়েড অ্যাপ ডেভেলপমেন্ট',
-                desc: 'Java ও Kotlin দিয়ে প্রফেশনাল অ্যান্ড্রয়েড অ্যাপ তৈরি শিখুন।',
-                price: 600,
-                oldPrice: 2500,
-                category: 'app',
-                badge: '✨ নতুন',
-                badgeClass: 'badge-new',
-                emoji: '📱',
-                gradient: 'linear-gradient(135deg, #f093fb, #f5576c)',
-                features: ['৪০+ ঘণ্টা', '১০+ প্রজেক্ট', 'সোর্স কোড'],
-                rating: '4.8'
-            },
-            {
-                id: 3,
-                title: 'গ্রাফিক ডিজাইন মাস্টারক্লাস',
-                desc: 'Photoshop, Illustrator, Canva দিয়ে প্রফেশনাল ডিজাইন শিখুন।',
-                price: 400,
-                oldPrice: 1800,
-                category: 'design',
-                badge: '💥 78% ছাড়',
-                badgeClass: 'badge-discount',
-                emoji: '🎨',
-                gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)',
-                features: ['৩০+ ঘণ্টা', 'রিসোর্স ফাইল', 'সার্টিফিকেট'],
-                rating: '4.7'
-            },
-            {
-                id: 4,
-                title: 'ডিজিটাল মার্কেটিং A-Z',
-                desc: 'SEO, SEM, Social Media Marketing, Email Marketing সব কিছু।',
-                price: 350,
-                oldPrice: 1500,
-                category: 'marketing',
-                badge: '🔥 জনপ্রিয়',
-                badgeClass: 'badge-popular',
-                emoji: '📊',
-                gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)',
-                features: ['২৫+ ঘণ্টা', 'কেস স্টাডি', 'টুলস গাইড'],
-                rating: '4.8'
-            },
-            {
-                id: 5,
-                title: 'এথিক্যাল হ্যাকিং কোর্স',
-                desc: 'সাইবার সিকিউরিটি ও এথিক্যাল হ্যাকিং এর সম্পূর্ণ গাইড।',
-                price: 700,
-                oldPrice: 3000,
-                category: 'hacking',
-                badge: '✨ নতুন',
-                badgeClass: 'badge-new',
-                emoji: '🔒',
-                gradient: 'linear-gradient(135deg, #fa709a, #fee140)',
-                features: ['৬০+ ঘণ্টা', 'ল্যাব এক্সেস', 'সার্টিফিকেট'],
-                rating: '4.9'
-            },
-            {
-                id: 6,
-                title: 'React Native মোবাইল অ্যাপ',
-                desc: 'একই কোডে iOS ও Android অ্যাপ তৈরি করুন React Native দিয়ে।',
-                price: 550,
-                oldPrice: 2200,
-                category: 'app',
-                badge: '💥 75% ছাড়',
-                badgeClass: 'badge-discount',
-                emoji: '⚛️',
-                gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)',
-                features: ['৪৫+ ঘণ্টা', 'রিয়েল প্রজেক্ট', 'সোর্স কোড'],
-                rating: '4.7'
-            },
-            {
-                id: 7,
-                title: 'UI/UX ডিজাইন কোর্স',
-                desc: 'Figma, Adobe XD দিয়ে মডার্ন UI/UX ডিজাইন শিখুন।',
-                price: 450,
-                oldPrice: 1800,
-                category: 'design',
-                badge: '🔥 জনপ্রিয়',
-                badgeClass: 'badge-popular',
-                emoji: '✏️',
-                gradient: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
-                features: ['৩৫+ ঘণ্টা', 'প্রজেক্ট ফাইল', 'পোর্টফোলিও'],
-                rating: '4.6'
-            },
-            {
-                id: 8,
-                title: 'Python প্রোগ্রামিং',
-                desc: 'বেসিক থেকে অ্যাডভান্সড Python প্রোগ্রামিং শিখুন।',
-                price: 400,
-                oldPrice: 1600,
-                category: 'web',
-                badge: '✨ নতুন',
-                badgeClass: 'badge-new',
-                emoji: '🐍',
-                gradient: 'linear-gradient(135deg, #96fbc4, #f9f586)',
-                features: ['৫০+ ঘণ্টা', 'প্র্যাক্টিস', 'প্রজেক্ট'],
-                rating: '4.8'
-            }
-        ];
-
-        // ============ STATE ============
-        let selectedCourse = null;
-        let selectedPaymentMethod = null;
-        let isAdminLoggedIn = false;
-        let orders = JSON.parse(localStorage.getItem('courseOrders') || '[]');
-        let currentPage = 'home';
-
-        // ============ TELEGRAM WEB APP ============
-        let tg = window.Telegram?.WebApp;
-        if (tg) {
-            tg.ready();
-            tg.expand();
-            tg.setHeaderColor('#0A0A1A');
-            tg.setBackgroundColor('#0A0A1A');
-        }
-
-        function getTelegramUser() {
-            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                return tg.initDataUnsafe.user;
-            }
-            return null;
-        }
-
-        function getTelegramPhotoUrl(user) {
-            if (user && user.photo_url) {
-                return user.photo_url;
-            }
-            return null;
-        }
-
-        // ============ INIT USER INFO ============
-        function initUserInfo() {
-            const user = getTelegramUser();
-            if (user) {
-                const firstName = user.first_name || '';
-                const lastName = user.last_name || '';
-                const username = user.username || 'N/A';
-                const fullName = `${firstName} ${lastName}`.trim();
-
-                // Welcome banner
-                document.getElementById('welcomeName').textContent = `স্বাগতম, ${firstName}! 👋`;
-                
-                // Profile page
-                document.getElementById('profileName').textContent = fullName || 'ইউজার';
-                document.getElementById('profileUsername').textContent = `@${username}`;
-                document.getElementById('profileId').textContent = `🆔 ID: ${user.id}`;
-
-                // Profile photo
-                const photoUrl = getTelegramPhotoUrl(user);
-                if (photoUrl) {
-                    document.getElementById('profileAvatar').innerHTML = `
-                        <img src="${photoUrl}" alt="Profile">
-                        <div class="profile-online"></div>
-                    `;
-                    document.getElementById('welcomeAvatar').innerHTML = `
-                        <img src="${photoUrl}" alt="Avatar">
-                    `;
-                } else {
-                    const initial = firstName.charAt(0) || '👤';
-                    document.getElementById('profileAvatar').innerHTML = `
-                        ${initial}
-                        <div class="profile-online"></div>
-                    `;
-                    document.getElementById('welcomeAvatar').textContent = initial;
-                }
-            }
-            updateProfileStats();
-        }
-
-        function updateProfileStats() {
-            const user = getTelegramUser();
-            let userOrders = orders;
-            if (user) {
-                userOrders = orders.filter(o => o.telegramUser && o.telegramUser.id === user.id);
-            }
-            document.getElementById('statTotal').textContent = userOrders.length;
-            document.getElementById('statApproved').textContent = userOrders.filter(o => o.status === 'approved').length;
-            document.getElementById('statPending').textContent = userOrders.filter(o => o.status === 'pending').length;
-
-            // Update badge
-            const pendingCount = userOrders.filter(o => o.status === 'pending').length;
-            const badge = document.getElementById('orderBadge');
-            if (pendingCount > 0) {
-                badge.style.display = 'block';
-                badge.textContent = pendingCount;
-            } else {
-                badge.style.display = 'none';
-            }
-        }
-
-        // ============ RENDER COURSES ============
-        function renderCourses(filteredCourses = courses) {
-            const grid = document.getElementById('courseGrid');
-
-            if (filteredCourses.length === 0) {
-                grid.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">🔍</div>
-                        <h3>কোনো কোর্স পাওয়া যায়নি</h3>
-                        <p>অন্য কিওয়ার্ড দিয়ে খুঁজুন</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filteredCourses.map(course => `
-                <div class="course-card">
-                    <div class="course-banner" style="background: ${course.gradient};">
-                        ${course.emoji}
-                        <span class="course-badge ${course.badgeClass}">${course.badge}</span>
-                    </div>
-                    <div class="course-info">
-                        <div class="course-title">${course.title}</div>
-                        <div class="course-desc">${course.desc}</div>
-                        <div class="course-features">
-                            ${course.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
-                        </div>
-                        <div class="course-meta">
-                            <div class="course-price">
-                                <span class="price-current">৳${course.price}</span>
-                                <span class="price-old">৳${course.oldPrice}</span>
-                            </div>
-                            <div class="course-rating">⭐ ${course.rating}</div>
-                        </div>
-                        <button class="buy-btn" onclick="openPaymentModal(${course.id})">
-                            🛒 এখনই কিনুন
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // ============ SEARCH & FILTER ============
-        function searchCourses(query) {
-            const filtered = courses.filter(c =>
-                c.title.toLowerCase().includes(query.toLowerCase()) ||
-                c.desc.toLowerCase().includes(query.toLowerCase())
-            );
-            renderCourses(filtered);
-        }
-
-        function filterCategory(category, el) {
-            document.querySelectorAll('.cat-filter').forEach(f => f.classList.remove('active'));
-            el.classList.add('active');
-            if (category === 'all') {
-                renderCourses(courses);
-            } else {
-                renderCourses(courses.filter(c => c.category === category));
-            }
-        }
-
-        // ============ NAVIGATION ============
-        function showPage(page) {
-            currentPage = page;
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(t => t.classList.remove('active'));
-
-            document.getElementById('page-' + page).classList.add('active');
-            document.getElementById('nav-' + page).classList.add('active');
-
-            if (page === 'orders') renderOrders();
-            if (page === 'profile') { initUserInfo(); }
-            if (page === 'admin' && isAdminLoggedIn) renderAdminPanel();
-        }
-
-        // ============ PAYMENT MODAL ============
-        function openPaymentModal(courseId) {
-            selectedCourse = courses.find(c => c.id === courseId);
-            selectedPaymentMethod = null;
-
-            document.getElementById('modalCourseName').textContent =
-                `${selectedCourse.title} — ৳${selectedCourse.price}`;
-
-            document.getElementById('paymentModal').classList.add('active');
-            goToStep(1);
-
-            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
-            document.getElementById('paymentDetails').style.display = 'none';
-            document.getElementById('nextStep1Btn').disabled = true;
-
-            document.getElementById('customerName').value = '';
-            document.getElementById('senderNumber').value = '';
-            document.getElementById('trxId').value = '';
-            document.getElementById('amountPaid').value = selectedCourse.price;
-
-            // Auto-fill name from Telegram
-            const user = getTelegramUser();
-            if (user) {
-                document.getElementById('customerName').value = 
-                    `${user.first_name || ''} ${user.last_name || ''}`.trim();
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('paymentModal').classList.remove('active');
-        }
-
-        function selectPayment(method, el) {
-            selectedPaymentMethod = method;
-            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
-            el.classList.add('selected');
-
-            const number = CONFIG.bkashNumber; // same number for both
-            const methodName = method === 'bkash' ? 'বিকাশ' : 'নগদ';
-            const color = method === 'bkash' ? 'var(--bkash)' : 'var(--nagad)';
-            const boxClass = method === 'bkash' ? 'bkash-box' : 'nagad-box';
-            const btnColor = method === 'bkash' ? 'background: var(--bkash)' : 'background: var(--nagad)';
-
-            document.getElementById('paymentDetails').style.display = 'block';
-            document.getElementById('paymentDetails').innerHTML = `
-                <div class="payment-info-box ${boxClass}">
-                    <h3 style="color: ${color};">📲 ${methodName} সেন্ড মানি করুন</h3>
-                    <p style="font-size: 12px; color: var(--text-secondary);">নিচের নম্বরে <strong>সেন্ড মানি</strong> করুন:</p>
-                    <div class="payment-number">${number}</div>
-                    <button class="copy-btn" onclick="copyNumber('${number}')" style="${btnColor};">
-                        📋 নম্বর কপি করুন
-                    </button>
-                    <p style="margin-top: 12px; font-size: 13px;">
-                        পরিমাণ: <strong style="color: ${color}; font-size: 18px;">৳${selectedCourse.price}</strong>
-                    </p>
-                </div>
-
-                <div class="instructions">
-                    <h4>⚠️ গুরুত্বপূর্ণ নির্দেশনা:</h4>
-                    <ol>
-                        <li>উপরের নম্বরে <strong>${methodName} সেন্ড মানি</strong> করুন</li>
-                        <li>পরিমাণ: <strong>৳${selectedCourse.price}</strong></li>
-                        <li><strong>ট্রানজেকশন আইডি (TrxID)</strong> সংরক্ষণ করুন</li>
-                        <li>পরবর্তী ধাপে তথ্য পূরণ করুন</li>
-                        <li>অ্যাডমিন যাচাই করে লিংক পাঠাবে 🔗</li>
-                    </ol>
-                </div>
-            `;
-
-            document.getElementById('nextStep1Btn').disabled = false;
-        }
-
-        function copyNumber(number) {
-            navigator.clipboard.writeText(number).then(() => {
-                showToast('✅ নম্বর কপি হয়েছে!');
-            }).catch(() => {
-                const input = document.createElement('input');
-                input.value = number;
-                document.body.appendChild(input);
-                input.select();
-                document.execCommand('copy');
-                document.body.removeChild(input);
-                showToast('✅ নম্বর কপি হয়েছে!');
-            });
-        }
-
-        function goToStep(step) {
-            document.getElementById('paymentStep1').style.display = step === 1 ? 'block' : 'none';
-            document.getElementById('paymentStep2').style.display = step === 2 ? 'block' : 'none';
-            document.getElementById('paymentStep3').style.display = step === 3 ? 'block' : 'none';
-
-            for (let i = 1; i <= 3; i++) {
-                const stepEl = document.getElementById('step' + i);
-                stepEl.className = 'step';
-                if (i < step) stepEl.classList.add('completed');
-                if (i === step) stepEl.classList.add('active');
-            }
-        }
-
-        // ============ SUBMIT ORDER ============
-        function submitOrder() {
-            const name = document.getElementById('customerName').value.trim();
-            const senderNumber = document.getElementById('senderNumber').value.trim();
-            const trxId = document.getElementById('trxId').value.trim();
-            const amount = document.getElementById('amountPaid').value.trim();
-
-            if (!name || !senderNumber || !trxId || !amount) {
-                showToast('⚠️ সব তথ্য পূরণ করুন!');
-                return;
-            }
-
-            if (senderNumber.length < 11) {
-                showToast('⚠️ সঠিক ফোন নম্বর দিন!');
-                return;
-            }
-
-            const tgUser = getTelegramUser();
-
-            const order = {
-                id: 'ORD-' + Date.now(),
-                courseId: selectedCourse.id,
-                courseName: selectedCourse.title,
-                coursePrice: selectedCourse.price,
-                customerName: name,
-                senderNumber: senderNumber,
-                trxId: trxId,
-                amountPaid: amount,
-                paymentMethod: selectedPaymentMethod,
-                status: 'pending',
-                driveLink: '',
-                date: new Date().toLocaleString('bn-BD'),
-                telegramUser: tgUser ? {
-                    id: tgUser.id,
-                    firstName: tgUser.first_name,
-                    lastName: tgUser.last_name || '',
-                    username: tgUser.username || ''
-                } : null
-            };
-
-            orders.push(order);
-            saveOrders();
-            sendTelegramNotification(order);
-            updateProfileStats();
-            goToStep(3);
-            showToast('✅ অর্ডার সফলভাবে জমা হয়েছে!');
-        }
-
-        // ============ TELEGRAM NOTIFICATIONS ============
-        async function sendTelegramNotification(order) {
-            const message = `
-🆕 *নতুন অর্ডার এসেছে!*
-━━━━━━━━━━━━━━━
-
-📦 *অর্ডার:* \`${order.id}\`
-📚 *কোর্স:* ${order.courseName}
-💰 *মূল্য:* ৳${order.coursePrice}
-
-━━━━━━━━━━━━━━━
-👤 *ক্রেতা:* ${order.customerName}
-📱 *নম্বর:* \`${order.senderNumber}\`
-💳 *মেথড:* ${order.paymentMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'}
-🔢 *TrxID:* \`${order.trxId}\`
-💵 *প্রদত্ত:* ৳${order.amountPaid}
-📅 *তারিখ:* ${order.date}
-${order.telegramUser ? `\n👤 *টেলিগ্রাম:* ${order.telegramUser.firstName} ${order.telegramUser.lastName}\n🔗 *ইউজারনেম:* @${order.telegramUser.username}\n🆔 *Chat ID:* \`${order.telegramUser.id}\`` : ''}
-━━━━━━━━━━━━━━━
-⚡ অ্যাডমিন প্যানেলে গিয়ে অনুমোদন করুন।
-            `;
-
-            try {
-                await fetch(`https://api.telegram.org/bot${CONFIG.botToken}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: CONFIG.adminChatId,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-            } catch (err) {
-                console.log('Notification failed:', err);
-            }
-        }
-
-        async function sendDriveLinkToUser(order) {
-            if (!order.telegramUser) return;
-
-            const message = `
-🎉 *অভিনন্দন!*
-━━━━━━━━━━━━━━━
-
-✅ আপনার অর্ডার *অনুমোদিত* হয়েছে!
-
-📚 *কোর্স:* ${order.courseName}
-💰 *মূল্য:* ৳${order.coursePrice}
-
-🔗 *ডাউনলোড লিংক:*
-${order.driveLink}
-
-━━━━━━━━━━━━━━━
-ধন্যবাদ আমাদের থেকে কোর্স কেনার জন্য! 🙏
-আবারও আমাদের স্টোর ভিজিট করুন। ✨
-            `;
-
-            try {
-                await fetch(`https://api.telegram.org/bot${CONFIG.botToken}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: order.telegramUser.id,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-                showToast('✅ ইউজারকে টেলিগ্রামে লিংক পাঠানো হয়েছে!');
-            } catch (err) {
-                console.log('Send link failed:', err);
-                showToast('⚠️ টেলিগ্রামে পাঠাতে সমস্যা');
-            }
-        }
-
-        async function sendRejectionToUser(order) {
-            if (!order.telegramUser) return;
-
-            const message = `
-❌ *অর্ডার প্রত্যাখ্যাত*
-━━━━━━━━━━━━━━━
-
-📚 *কোর্স:* ${order.courseName}
-🔢 *TrxID:* \`${order.trxId}\`
-
-পেমেন্ট যাচাই করা যায়নি।
-সঠিক তথ্য দিয়ে আবার চেষ্টা করুন। 🙏
-            `;
-
-            try {
-                await fetch(`https://api.telegram.org/bot${CONFIG.botToken}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: order.telegramUser.id,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-            } catch (err) {
-                console.log('Rejection msg failed:', err);
-            }
-        }
-
-        // ============ ORDERS PAGE ============
-        function renderOrders() {
-            const list = document.getElementById('ordersList');
-            const tgUser = getTelegramUser();
-
-            let userOrders = orders;
-            if (tgUser) {
-                userOrders = orders.filter(o =>
-                    o.telegramUser && o.telegramUser.id === tgUser.id
-                );
-            }
-
-            if (userOrders.length === 0) {
-                list.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">📭</div>
-                        <h3>কোনো অর্ডার নেই</h3>
-                        <p>কোর্স কিনলে এখানে দেখাবে</p>
-                        <button class="submit-btn primary" style="max-width: 200px; margin: 20px auto 0;" onclick="showPage('home')">
-                            🛒 কোর্স দেখুন
-                        </button>
-                    </div>
-                `;
-                return;
-            }
-
-            list.innerHTML = userOrders.slice().reverse().map(order => `
-                <div class="order-card">
-                    <div class="order-header">
-                        <span class="order-id">${order.id}</span>
-                        <span class="order-status status-${order.status}">
-                            ${order.status === 'pending' ? '⏳ অপেক্ষমাণ' :
-                              order.status === 'approved' ? '✅ অনুমোদিত' : '❌ প্রত্যাখ্যাত'}
-                        </span>
-                    </div>
-                    <div class="order-course-name">${order.courseName}</div>
-                    <div class="order-details">
-                        💳 ${order.paymentMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'} &nbsp;|&nbsp;
-                        🔢 TrxID: <strong>${order.trxId}</strong><br>
-                        💵 ৳${order.amountPaid} &nbsp;|&nbsp; 📅 ${order.date}
-                    </div>
-                    ${order.status === 'approved' && order.driveLink ? `
-                        <button class="download-btn" onclick="window.open('${order.driveLink}', '_blank')">
-                            📥 কোর্স ডাউনলোড করুন
-                        </button>
-                    ` : ''}
-                    ${order.status === 'pending' ? `
-                        <p style="color: var(--warning); font-size: 12px; margin-top: 12px; text-align: center;">
-                            ⏳ অ্যাডমিন শীঘ্রই যাচাই করবে। অনুগ্রহ করে অপেক্ষা করুন...
-                        </p>
-                    ` : ''}
-                    ${order.status === 'rejected' ? `
-                        <p style="color: var(--danger); font-size: 12px; margin-top: 12px;">
-                            ⚠️ পেমেন্ট যাচাই করা যায়নি। সঠিক তথ্য দিয়ে আবার চেষ্টা করুন।
-                        </p>
-                    ` : ''}
-                </div>
-            `).join('');
-        }
-
-        // ============ ADMIN PANEL ============
-        function adminLogin() {
-            const pass = document.getElementById('adminPassword').value;
-            if (pass === CONFIG.adminPassword) {
-                isAdminLoggedIn = true;
-                renderAdminPanel();
-                showToast('✅ অ্যাডমিন লগইন সফল!');
-            } else {
-                showToast('❌ ভুল পাসওয়ার্ড!');
-            }
-        }
-
-        function renderAdminPanel() {
-            const content = document.getElementById('adminContent');
-
-            const pendingCount = orders.filter(o => o.status === 'pending').length;
-            const approvedCount = orders.filter(o => o.status === 'approved').length;
-            const rejectedCount = orders.filter(o => o.status === 'rejected').length;
-            const totalRevenue = orders.filter(o => o.status === 'approved')
-                .reduce((sum, o) => sum + parseInt(o.amountPaid || 0), 0);
-
-            content.innerHTML = `
-                <div class="section-title">🔐 <span class="highlight">অ্যাডমিন ড্যাশবোর্ড</span></div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">${pendingCount}</div>
-                        <div class="stat-label">⏳ অপেক্ষমাণ</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${approvedCount}</div>
-                        <div class="stat-label">✅ অনুমোদিত</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${rejectedCount}</div>
-                        <div class="stat-label">❌ প্রত্যাখ্যাত</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">৳${totalRevenue}</div>
-                        <div class="stat-label">💰 মোট আয়</div>
-                    </div>
-                </div>
-
-                <div class="section-title" style="font-size: 15px;">📋 সকল অর্ডার (${orders.length})</div>
-
-                ${orders.length === 0 ? `
-                    <div class="empty-state">
-                        <div class="icon">📭</div>
-                        <h3>কোনো অর্ডার নেই</h3>
-                    </div>
-                ` : orders.slice().reverse().map(order => `
-                    <div class="admin-order-card" style="border-left: 3px solid ${
-                        order.status === 'pending' ? 'var(--warning)' :
-                        order.status === 'approved' ? 'var(--success)' : 'var(--danger)'};">
-                        <div class="order-header">
-                            <span class="order-id">${order.id}</span>
-                            <span class="order-status status-${order.status}">
-                                ${order.status === 'pending' ? '⏳ অপেক্ষমাণ' :
-                                  order.status === 'approved' ? '✅ অনুমোদিত' : '❌ প্রত্যাখ্যাত'}
-                            </span>
-                        </div>
-                        <div class="order-course-name">${order.courseName}</div>
-                        <div class="order-details">
-                            👤 <strong>${order.customerName}</strong><br>
-                            📱 ${order.senderNumber}<br>
-                            💳 ${order.paymentMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'} &nbsp;|&nbsp;
-                            🔢 TrxID: <strong style="color: var(--primary-light);">${order.trxId}</strong><br>
-                            💵 ৳${order.amountPaid} &nbsp;|&nbsp; 📅 ${order.date}
-                            ${order.telegramUser ? `<br>🔗 TG: ${order.telegramUser.firstName} @${order.telegramUser.username} (ID: ${order.telegramUser.id})` : ''}
-                        </div>
-
-                        ${order.status === 'pending' ? `
-                            <input type="text" class="link-input"
-                                   id="link-${order.id}"
-                                   placeholder="🔗 গুগল ড্রাইভ লিংক পেস্ট করুন..."
-                                   value="${order.driveLink || ''}">
-                            <div class="admin-actions">
-                                <button class="approve-btn" onclick="approveOrder('${order.id}')">
-                                    ✅ অনুমোদন
-                                </button>
-                                <button class="reject-btn" onclick="rejectOrder('${order.id}')">
-                                    ❌ প্রত্যাখ্যান
-                                </button>
-                            </div>
-                        ` : ''}
-
-                        ${order.status === 'approved' ? `
-                            <p style="color: var(--success); font-size: 12px; margin-top: 12px;">
-                                🔗 ${order.driveLink || 'N/A'}
-                            </p>
-                        ` : ''}
-                    </div>
-                `).join('')}
-
-                <button class="submit-btn ghost" style="margin-top: 20px;" onclick="adminLogout()">
-                    🚪 লগআউট
-                </button>
-            `;
-        }
-
-        function approveOrder(orderId) {
-            const linkInput = document.getElementById('link-' + orderId);
-            const driveLink = linkInput ? linkInput.value.trim() : '';
-
-            if (!driveLink) {
-                showToast('⚠️ ড্রাইভ লিংক দিন!');
-                return;
-            }
-
-            const order = orders.find(o => o.id === orderId);
-            if (order) {
-                order.status = 'approved';
-                order.driveLink = driveLink;
-                saveOrders();
-                renderAdminPanel();
-                sendDriveLinkToUser(order);
-                updateProfileStats();
-                showToast('✅ অর্ডার অনুমোদিত!');
-            }
-        }
-
-        function rejectOrder(orderId) {
-            const order = orders.find(o => o.id === orderId);
-            if (order) {
-                order.status = 'rejected';
-                saveOrders();
-                renderAdminPanel();
-                sendRejectionToUser(order);
-                updateProfileStats();
-                showToast('❌ অর্ডার প্রত্যাখ্যাত!');
-            }
-        }
-
-        function adminLogout() {
-            isAdminLoggedIn = false;
-            document.getElementById('adminContent').innerHTML = `
-                <div class="admin-login-card">
-                    <div class="lock-icon">🔐</div>
-                    <h2 style="font-size: 18px; margin-bottom: 5px;">অ্যাডমিন প্যানেল</h2>
-                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">লগইন করতে পাসওয়ার্ড দিন</p>
-                    <div class="form-group">
-                        <input type="password" id="adminPassword" placeholder="🔑 পাসওয়ার্ড দিন"
-                               onkeypress="if(event.key==='Enter')adminLogin()">
-                    </div>
-                    <button class="submit-btn primary" onclick="adminLogin()">🔓 লগইন করুন</button>
-                </div>
-            `;
-            showToast('🚪 লগআউট সফল');
-        }
-
-        function contactAdmin() {
-            showToast('💬 টেলিগ্রামে যোগাযোগ করুন');
-            window.open('https://t.me/', '_blank');
-        }
-
-        // ============ UTILITY ============
-        function saveOrders() {
-            localStorage.setItem('courseOrders', JSON.stringify(orders));
-        }
-
-        function showToast(msg) {
-            const existing = document.querySelector('.toast');
-            if (existing) existing.remove();
-
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = msg;
-            document.body.appendChild(toast);
-            setTimeout(() => {
-                if (toast.parentNode) toast.remove();
-            }, 3000);
-        }
-
-        // ============ INIT ============
-        renderCourses();
-        initUserInfo();
-
-        // Close modal on overlay click
-        document.getElementById('paymentModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        // Haptic feedback for Telegram
-        document.addEventListener('click', function(e) {
-            if (tg && tg.HapticFeedback) {
-                if (e.target.classList.contains('buy-btn') || 
-                    e.target.classList.contains('submit-btn') ||
-                    e.target.classList.contains('nav-item')) {
-                    tg.HapticFeedback.impactOccurred('light');
-                }
-            }
-        });
-    </script>
+    }, 50);
+}
+
+function deleteCourse(id) {
+    if (!confirm('এই কোর্সটি মুছে ফেলতে চান?')) return;
+    courses = courses.filter(c => c.id !== id);
+    saveCourses();
+    renderCourses();
+    renderFeatured();
+    renderAdmin();
+    toast('🗑️ কোর্স মুছে ফেলা হয়েছে!');
+}
+
+function addCategory() {
+    const name = document.getElementById('newCatName').value.trim();
+    const id = document.getElementById('newCatId').value.trim().toLowerCase();
+    if (!name || !id) { toast('⚠️ নাম ও আইডি দিন!'); return; }
+    if (categories.find(c => c.id === id)) { toast('⚠️ এই আইডি আছে!'); return; }
+    categories.push({ id, name });
+    saveCategories();
+    renderCategories();
+    renderAdmin();
+    toast('✅ ক্যাটাগরি যোগ হয়েছে!');
+}
+
+function deleteCat(id) {
+    if (!confirm('এই ক্যাটাগরি মুছবেন?')) return;
+    categories = categories.filter(c => c.id !== id);
+    saveCategories();
+    renderCategories();
+    renderAdmin();
+    toast('🗑️ ক্যাটাগরি মুছে ফেলা হয়েছে!');
+}
+
+function approveO(id) {
+    const inp = document.getElementById('lnk-' + id);
+    const link = inp ? inp.value.trim() : '';
+    if (!link) { toast('⚠️ ড্রাইভ লিংক দিন!'); return; }
+    const o = orders.find(x => x.id === id);
+    if (o) {
+        o.status = 'approved';
+        o.driveLink = link;
+        saveOrders();
+        renderAdmin();
+        sendUserLink(o);
+        updateBadge(); updateStats();
+        toast('✅ অনুমোদিত!');
+    }
+}
+
+function rejectO(id) {
+    const o = orders.find(x => x.id === id);
+    if (o) {
+        o.status = 'rejected';
+        saveOrders();
+        renderAdmin();
+        sendUserReject(o);
+        updateBadge(); updateStats();
+        toast('❌ প্রত্যাখ্যাত!');
+    }
+}
+
+function adminLogout() {
+    adminLogged = false;
+    document.getElementById('adminArea').innerHTML = `
+        <div class="admin-card">
+            <div class="a-icon">🔐</div>
+            <h2 style="font-size:17px;margin-bottom:4px;">অ্যাডমিন প্যানেল</h2>
+            <p style="font-size:11px;color:var(--text3);margin-bottom:18px;">লগইন করতে পাসওয়ার্ড দিন</p>
+            <div class="fg"><input type="password" id="adminPw" placeholder="🔑 পাসওয়ার্ড" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
+            <button class="btn btn-primary" onclick="doAdminLogin()">🔓 লগইন</button>
+        </div>
+    `;
+    toast('🚪 লগআউট!');
+}
+
+// ===== NAVIGATION =====
+function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    document.getElementById('nav-' + page).classList.add('active');
+
+    if (page === 'orders') renderOrders();
+    if (page === 'profile') { initUser(); updateStats(); }
+    if (page === 'admin' && adminLogged) renderAdmin();
+}
+
+function contactSupport() {
+    toast('💬 টেলিগ্রামে যোগাযোগ করুন');
+}
+
+// ===== SAVE =====
+function saveOrders() { localStorage.setItem('cs_orders', JSON.stringify(orders)); }
+function saveCourses() { localStorage.setItem('cs_courses', JSON.stringify(courses)); }
+function saveCategories() { localStorage.setItem('cs_categories', JSON.stringify(categories)); }
+
+// ===== TOAST =====
+function toast(msg) {
+    const old = document.querySelector('.toast');
+    if (old) old.remove();
+    const t = document.createElement('div');
+    t.className = 'toast'; t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => { if (t.parentNode) t.remove(); }, 3000);
+}
+
+// ===== EVENTS =====
+document.getElementById('payModal').addEventListener('click', function(e) { if (e.target === this) closePayModal(); });
+document.getElementById('detailModal').addEventListener('click', function(e) { if (e.target === this) closeDetailModal(); });
+
+// Haptic
+document.addEventListener('click', function(e) {
+    if (tg?.HapticFeedback && (e.target.classList.contains('btn') || e.target.classList.contains('buy-btn') || e.target.classList.contains('nav-item'))) {
+        tg.HapticFeedback.impactOccurred('light');
+    }
+});
+
+// ===== START =====
+init();
+</script>
 </body>
 </html>
