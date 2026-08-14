@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>📚 কোর্স স্টোর</title>
+    <title>💎 প্রিমিয়াম গ্রুপ স্টোর</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -14,32 +14,34 @@
         }
 
         :root {
-            --primary: #7C3AED;
-            --primary-light: #A78BFA;
-            --primary-dark: #5B21B6;
-            --secondary: #EC4899;
-            --secondary-light: #F472B6;
+            --primary: #8B5CF6;
+            --primary-light: #C4B5FD;
+            --primary-dark: #6D28D9;
+            --secondary: #F43F5E;
+            --secondary-light: #FB7185;
             --accent: #06B6D4;
             --accent2: #10B981;
-            --bg: #050510;
-            --bg2: #0C0C20;
-            --bg3: #111130;
-            --card: #12122A;
-            --card2: #1A1A3E;
-            --card3: #0F0F28;
+            --gold: #FFD700;
+            --gold-dark: #FFA500;
+            --bg: #0A0118;
+            --bg2: #14082B;
+            --bg3: #1A0F35;
+            --card: #1E1240;
+            --card2: #241650;
+            --card3: #180B30;
             --text: #FFFFFF;
-            --text2: #C4C4DC;
-            --text3: #7A7A9E;
+            --text2: #D1D1E9;
+            --text3: #8B8BA7;
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
             --bkash: #E2136E;
             --nagad: #F6921E;
             --glass: rgba(255,255,255,0.03);
-            --border: rgba(124, 58, 237, 0.12);
-            --glow1: rgba(124, 58, 237, 0.25);
-            --glow2: rgba(236, 72, 153, 0.2);
-            --glow3: rgba(6, 182, 212, 0.2);
+            --border: rgba(139, 92, 246, 0.15);
+            --glow1: rgba(139, 92, 246, 0.3);
+            --glow2: rgba(244, 63, 94, 0.25);
+            --glow3: rgba(255, 215, 0, 0.3);
         }
 
         body {
@@ -55,15 +57,14 @@
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background:
-                radial-gradient(ellipse at 15% 15%, rgba(124,58,237,0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 85% 20%, rgba(236,72,153,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(6,182,212,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 20% 80%, rgba(16,185,129,0.05) 0%, transparent 40%);
+                radial-gradient(ellipse at 15% 10%, rgba(139,92,246,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 15%, rgba(244,63,94,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(255,215,0,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 90%, rgba(6,182,212,0.06) 0%, transparent 40%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* ============ SCROLLBAR ============ */
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
@@ -83,8 +84,8 @@
             position: absolute;
             top: -50%; left: -50%;
             width: 200%; height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(124,58,237,0.1), transparent, rgba(236,72,153,0.08), transparent);
-            animation: headerSpin 15s linear infinite;
+            background: conic-gradient(from 0deg, transparent, rgba(139,92,246,0.12), transparent, rgba(244,63,94,0.1), transparent, rgba(255,215,0,0.08), transparent);
+            animation: headerSpin 20s linear infinite;
         }
 
         @keyframes headerSpin {
@@ -99,16 +100,21 @@
         .header h1 {
             font-size: 24px;
             font-weight: 900;
-            background: linear-gradient(135deg, #fff, var(--primary-light), var(--secondary-light));
+            background: linear-gradient(135deg, #fff, var(--gold), var(--primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 4px;
+            letter-spacing: 0.5px;
         }
 
         .header p {
             font-size: 12px;
             color: var(--text2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
 
         .header-orb {
@@ -120,13 +126,25 @@
 
         .header-orb.o1 { width: 100px; height: 100px; background: var(--primary); top: -30px; right: -20px; }
         .header-orb.o2 { width: 70px; height: 70px; background: var(--secondary); bottom: -20px; left: 10px; }
-        .header-orb.o3 { width: 50px; height: 50px; background: var(--accent); top: 10px; left: 30%; }
+        .header-orb.o3 { width: 50px; height: 50px; background: var(--gold); top: 10px; left: 30%; }
+
+        .premium-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 5px;
+            box-shadow: 0 2px 10px var(--glow3);
+        }
 
         /* ============ BOTTOM NAV ============ */
         .bottom-nav {
             position: fixed;
             bottom: 0; left: 0; right: 0;
-            background: linear-gradient(180deg, rgba(12,12,32,0.95), rgba(5,5,16,0.98));
+            background: linear-gradient(180deg, rgba(20,8,43,0.95), rgba(10,1,24,0.98));
             border-top: 1px solid var(--border);
             display: flex;
             z-index: 500;
@@ -150,7 +168,7 @@
         }
 
         .nav-item.active {
-            background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(236,72,153,0.08));
+            background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(244,63,94,0.1));
         }
 
         .nav-item.active::after {
@@ -222,9 +240,16 @@
             background-clip: text;
         }
 
+        .grad-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         /* ============ WELCOME BANNER ============ */
         .welcome-banner {
-            background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(236,72,153,0.06), rgba(6,182,212,0.04));
+            background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(244,63,94,0.08), rgba(255,215,0,0.05));
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 18px;
@@ -241,7 +266,7 @@
             position: absolute;
             top: -50%; right: -50%;
             width: 100%; height: 200%;
-            background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
         }
 
         .welcome-avatar {
@@ -254,7 +279,7 @@
             font-size: 20px;
             flex-shrink: 0;
             overflow: hidden;
-            border: 2px solid rgba(124,58,237,0.3);
+            border: 2px solid rgba(139,92,246,0.4);
             position: relative;
         }
 
@@ -263,6 +288,45 @@
         .welcome-text { position: relative; }
         .welcome-text h3 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
         .welcome-text p { font-size: 11px; color: var(--text3); }
+
+        /* ============ VIP BANNER ============ */
+        .vip-banner {
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF6B6B);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 18px;
+            position: relative;
+            overflow: hidden;
+            color: #000;
+        }
+
+        .vip-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translate(-25%, -25%) rotate(0deg); }
+            100% { transform: translate(-25%, -25%) rotate(360deg); }
+        }
+
+        .vip-content { position: relative; z-index: 2; }
+        .vip-content h2 { font-size: 18px; font-weight: 900; margin-bottom: 4px; }
+        .vip-content p { font-size: 12px; opacity: 0.85; }
+
+        .vip-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 45px;
+            z-index: 2;
+            opacity: 0.9;
+        }
 
         /* ============ FEATURED SLIDER ============ */
         .featured-slider {
@@ -287,26 +351,36 @@
             scroll-snap-align: start;
             cursor: pointer;
             transition: transform 0.3s;
+            color: white;
         }
 
         .featured-card:active { transform: scale(0.97); }
 
         .featured-card .fc-emoji { font-size: 40px; margin-bottom: 10px; }
         .featured-card .fc-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
-        .featured-card .fc-desc { font-size: 11px; opacity: 0.8; margin-bottom: 10px; }
+        .featured-card .fc-desc { font-size: 11px; opacity: 0.9; margin-bottom: 10px; }
+
+        .featured-card .fc-members {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
 
         .featured-card .fc-price {
             font-size: 20px; font-weight: 900;
             display: flex; align-items: baseline; gap: 8px;
         }
 
-        .featured-card .fc-old { font-size: 13px; opacity: 0.6; text-decoration: line-through; }
+        .featured-card .fc-old { font-size: 13px; opacity: 0.7; text-decoration: line-through; }
 
         .featured-card .fc-btn {
             margin-top: 12px;
             padding: 8px 18px;
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.4);
             border-radius: 10px;
             color: white;
             font-size: 12px;
@@ -374,14 +448,14 @@
             box-shadow: 0 4px 15px var(--glow1);
         }
 
-        /* ============ COURSE CARDS ============ */
-        .course-grid {
+        /* ============ GROUP CARDS ============ */
+        .group-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 14px;
         }
 
-        .course-card {
+        .group-card {
             background: var(--card);
             border-radius: 18px;
             overflow: hidden;
@@ -390,19 +464,19 @@
             position: relative;
         }
 
-        .course-card::after {
+        .group-card::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--gold));
             opacity: 0;
             transition: opacity 0.3s;
         }
 
-        .course-card:active::after { opacity: 1; }
-        .course-card:active { transform: scale(0.985); }
+        .group-card:active::after { opacity: 1; }
+        .group-card:active { transform: scale(0.985); }
 
-        .course-banner {
+        .group-banner {
             height: 140px;
             display: flex;
             align-items: center;
@@ -412,7 +486,7 @@
             overflow: hidden;
         }
 
-        .course-banner::after {
+        .group-banner::after {
             content: '';
             position: absolute;
             bottom: 0; left: 0; right: 0; height: 50px;
@@ -431,20 +505,58 @@
             letter-spacing: 0.3px;
         }
 
+        .c-badge.vip {
+            background: linear-gradient(135deg, rgba(255,215,0,0.95), rgba(255,165,0,0.95));
+            color: #000;
+        }
         .c-badge.hot { background: linear-gradient(135deg, rgba(245,158,11,0.9), rgba(249,115,22,0.9)); }
         .c-badge.new { background: linear-gradient(135deg, rgba(16,185,129,0.9), rgba(6,182,212,0.9)); }
-        .c-badge.sale { background: linear-gradient(135deg, rgba(239,68,68,0.9), rgba(236,72,153,0.9)); }
+        .c-badge.exclusive {
+            background: linear-gradient(135deg, rgba(244,63,94,0.9), rgba(139,92,246,0.9));
+        }
 
-        .course-info { padding: 14px 16px 16px; }
+        .members-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            padding: 5px 12px;
+            border-radius: 22px;
+            font-size: 10px;
+            font-weight: 700;
+            z-index: 2;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
-        .course-title {
+        .group-info { padding: 14px 16px 16px; }
+
+        .group-title {
             font-size: 16px;
             font-weight: 800;
             margin-bottom: 6px;
             line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .course-desc {
+        .verified-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            border-radius: 50%;
+            font-size: 10px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .group-desc {
             font-size: 12px;
             color: var(--text2);
             margin-bottom: 10px;
@@ -455,7 +567,7 @@
             overflow: hidden;
         }
 
-        .course-tags {
+        .group-tags {
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
@@ -463,16 +575,30 @@
         }
 
         .c-tag {
-            background: rgba(124,58,237,0.1);
+            background: rgba(139,92,246,0.12);
             color: var(--primary-light);
             padding: 4px 10px;
             border-radius: 18px;
             font-size: 10px;
             font-weight: 600;
-            border: 1px solid rgba(124,58,237,0.12);
+            border: 1px solid rgba(139,92,246,0.15);
         }
 
-        .course-bottom {
+        .group-stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 11px;
+            color: var(--text3);
+        }
+
+        .g-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .group-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -483,7 +609,7 @@
         .c-price {
             font-size: 22px;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--success), var(--accent));
+            background: linear-gradient(135deg, var(--gold), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -495,7 +621,14 @@
             text-decoration: line-through;
         }
 
-        .c-rating { font-size: 12px; color: var(--warning); }
+        .c-lifetime {
+            font-size: 10px;
+            color: var(--success);
+            font-weight: 700;
+            background: rgba(16,185,129,0.1);
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
 
         .buy-btn {
             width: 100%;
@@ -525,7 +658,7 @@
         .buy-btn:hover::before { left: 100%; }
         .buy-btn:active { transform: scale(0.97); }
 
-        /* ============ COURSE DETAIL MODAL ============ */
+        /* ============ GROUP DETAIL MODAL ============ */
         .detail-banner {
             height: 180px;
             display: flex;
@@ -753,6 +886,7 @@
         .btn-danger { background: linear-gradient(135deg, var(--danger), #DC2626); }
         .btn-bkash { background: var(--bkash); }
         .btn-nagad { background: var(--nagad); }
+        .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #000; }
 
         /* ============ STEPS ============ */
         .steps {
@@ -830,7 +964,7 @@
         .order-name { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
         .order-meta { font-size: 11px; color: var(--text2); line-height: 1.9; }
 
-        .dl-btn {
+        .join-btn {
             width: 100%;
             padding: 12px;
             border: none;
@@ -839,18 +973,22 @@
             font-weight: 800;
             cursor: pointer;
             color: white;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #229ED9, #2AABEE);
             margin-top: 12px;
-            box-shadow: 0 4px 15px var(--glow1);
+            box-shadow: 0 4px 15px rgba(34,158,217,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
-        .dl-btn:active { transform: scale(0.97); }
+        .join-btn:active { transform: scale(0.97); }
 
         /* ============ PROFILE ============ */
         .profile-card {
             text-align: center;
             padding: 28px 20px;
-            background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(236,72,153,0.06));
+            background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(244,63,94,0.08));
             border-radius: 22px;
             margin-bottom: 18px;
             border: 1px solid var(--border);
@@ -863,7 +1001,7 @@
             position: absolute;
             top: -50%; left: -50%;
             width: 200%; height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.08) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 30%, rgba(139,92,246,0.1) 0%, transparent 50%);
         }
 
         .p-avatar {
@@ -895,6 +1033,18 @@
         .p-name { font-size: 20px; font-weight: 900; position: relative; }
         .p-username { font-size: 13px; color: var(--primary-light); position: relative; margin-top: 3px; }
         .p-id { font-size: 11px; color: var(--text3); position: relative; margin-top: 3px; }
+
+        .p-vip {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 8px;
+            position: relative;
+        }
 
         .p-stats {
             display: grid;
@@ -938,7 +1088,7 @@
         }
 
         .p-menu-item:last-child { border-bottom: none; }
-        .p-menu-item:active { background: rgba(124,58,237,0.06); }
+        .p-menu-item:active { background: rgba(139,92,246,0.06); }
 
         .pmi-icon {
             width: 36px; height: 36px;
@@ -1059,64 +1209,23 @@
         .s-card:nth-child(1)::before { background: linear-gradient(90deg, var(--warning), var(--secondary)); }
         .s-card:nth-child(2)::before { background: linear-gradient(90deg, var(--success), var(--accent)); }
         .s-card:nth-child(3)::before { background: linear-gradient(90deg, var(--danger), var(--warning)); }
-        .s-card:nth-child(4)::before { background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+        .s-card:nth-child(4)::before { background: linear-gradient(90deg, var(--gold), var(--secondary)); }
 
         .s-num { font-size: 24px; font-weight: 900; }
         .s-card:nth-child(1) .s-num { color: var(--warning); }
         .s-card:nth-child(2) .s-num { color: var(--success); }
         .s-card:nth-child(3) .s-num { color: var(--danger); }
-        .s-card:nth-child(4) .s-num { color: var(--primary-light); }
+        .s-card:nth-child(4) .s-num { color: var(--gold); }
         .s-label { font-size: 10px; color: var(--text3); margin-top: 4px; font-weight: 600; }
 
-        /* ============ ADD COURSE FORM ============ */
-        .add-course-form {
+        /* ============ ADD FORM ============ */
+        .add-form {
             background: var(--card);
             border-radius: 18px;
             padding: 18px;
             border: 1px solid var(--border);
             margin-bottom: 14px;
         }
-
-        .thumb-preview {
-            width: 100%;
-            height: 120px;
-            border-radius: 12px;
-            background: var(--card3);
-            border: 2px dashed var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: border-color 0.3s;
-        }
-
-        .thumb-preview:hover { border-color: var(--primary); }
-        .thumb-preview img { width: 100%; height: 100%; object-fit: cover; }
-
-        .ss-preview-row {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            margin-bottom: 12px;
-        }
-
-        .ss-preview-item {
-            min-width: 80px;
-            height: 60px;
-            border-radius: 8px;
-            background: var(--card3);
-            border: 1px dashed var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: var(--text3);
-            overflow: hidden;
-        }
-
-        .ss-preview-item img { width: 100%; height: 100%; object-fit: cover; }
 
         .color-picker-row {
             display: flex;
@@ -1169,15 +1278,23 @@
             to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
         }
 
-        /* ============ RESPONSIVE ============ */
-        @media (min-width: 400px) {
-            .course-grid { grid-template-columns: 1fr; }
-        }
-
         .hidden { display: none !important; }
-
         .row-2 { display: flex; gap: 10px; }
         .row-2 > * { flex: 1; }
+
+        .pulse-dot {
+            display: inline-block;
+            width: 6px; height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            margin-right: 4px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.7); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+        }
     </style>
 </head>
 <body>
@@ -1188,8 +1305,8 @@
         <div class="header-orb o2"></div>
         <div class="header-orb o3"></div>
         <div class="header-content">
-            <h1>📚 কোর্স স্টোর</h1>
-            <p>✨ প্রিমিয়াম কোর্স সেরা দামে</p>
+            <h1>💎 প্রিমিয়াম গ্রুপ</h1>
+            <p>🔒 এক্সক্লুসিভ টেলিগ্রাম গ্রুপ কালেকশন</p>
         </div>
     </div>
 
@@ -1199,21 +1316,29 @@
             <div class="welcome-avatar" id="welcomeAvatar">👋</div>
             <div class="welcome-text">
                 <h3 id="welcomeName">স্বাগতম!</h3>
-                <p>আজকে কোন কোর্স নিবেন? 🎯</p>
+                <p><span class="pulse-dot"></span>প্রিমিয়াম গ্রুপ ব্রাউজ করুন 🎯</p>
             </div>
         </div>
 
-        <div class="section-title">⚡ <span class="grad-text">ফিচার্ড কোর্স</span></div>
+        <div class="vip-banner" onclick="scrollToGroups()">
+            <div class="vip-content">
+                <h2>👑 VIP মেম্বারশিপ</h2>
+                <p>এক্সক্লুসিভ কন্টেন্ট, লাইফটাইম এক্সেস</p>
+            </div>
+            <div class="vip-icon">💎</div>
+        </div>
+
+        <div class="section-title">⚡ <span class="grad-gold">ফিচার্ড গ্রুপ</span></div>
         <div class="featured-slider" id="featuredSlider"></div>
 
         <div class="search-box">
-            <input type="text" placeholder="কোর্স খুঁজুন..." oninput="searchCourses(this.value)" id="searchInput">
+            <input type="text" placeholder="গ্রুপ খুঁজুন..." oninput="searchGroups(this.value)" id="searchInput">
         </div>
 
         <div class="category-filters" id="catFilters"></div>
 
-        <div class="section-title">🔥 <span class="grad-text">সকল কোর্স</span></div>
-        <div class="course-grid" id="courseGrid"></div>
+        <div class="section-title" id="groupsSection">🔥 <span class="grad-text">সকল গ্রুপ</span></div>
+        <div class="group-grid" id="groupGrid"></div>
     </div>
 
     <!-- ====== ORDERS ====== -->
@@ -1229,6 +1354,7 @@
             <div class="p-name" id="pName">ইউজার</div>
             <div class="p-username" id="pUsername">@username</div>
             <div class="p-id" id="pId">ID: N/A</div>
+            <div class="p-vip" id="pVip" style="display:none;">💎 VIP MEMBER</div>
         </div>
 
         <div class="p-stats">
@@ -1238,7 +1364,7 @@
             </div>
             <div class="p-stat">
                 <div class="p-stat-num" id="ps-ok">0</div>
-                <div class="p-stat-label">সফল</div>
+                <div class="p-stat-label">জয়েন করা</div>
             </div>
             <div class="p-stat">
                 <div class="p-stat-num" id="ps-wait">0</div>
@@ -1248,18 +1374,23 @@
 
         <div class="p-menu">
             <div class="p-menu-item" onclick="showPage('orders')">
-                <div class="pmi-icon" style="background:rgba(124,58,237,0.12)">📦</div>
-                <div class="pmi-text"><h4>আমার অর্ডার</h4><p>সকল অর্ডার দেখুন</p></div>
+                <div class="pmi-icon" style="background:rgba(139,92,246,0.12)">📦</div>
+                <div class="pmi-text"><h4>আমার গ্রুপসমূহ</h4><p>জয়েন করা গ্রুপ দেখুন</p></div>
                 <div class="pmi-arrow">›</div>
             </div>
             <div class="p-menu-item" onclick="showPage('home')">
-                <div class="pmi-icon" style="background:rgba(236,72,153,0.12)">🛒</div>
-                <div class="pmi-text"><h4>কোর্স কিনুন</h4><p>নতুন কোর্স ব্রাউজ করুন</p></div>
+                <div class="pmi-icon" style="background:rgba(244,63,94,0.12)">🛒</div>
+                <div class="pmi-text"><h4>গ্রুপ কিনুন</h4><p>নতুন গ্রুপ ব্রাউজ করুন</p></div>
                 <div class="pmi-arrow">›</div>
             </div>
             <div class="p-menu-item" onclick="contactSupport()">
                 <div class="pmi-icon" style="background:rgba(6,182,212,0.12)">💬</div>
                 <div class="pmi-text"><h4>সাপোর্ট</h4><p>অ্যাডমিনের সাথে যোগাযোগ</p></div>
+                <div class="pmi-arrow">›</div>
+            </div>
+            <div class="p-menu-item" onclick="shareApp()">
+                <div class="pmi-icon" style="background:rgba(255,215,0,0.12)">🎁</div>
+                <div class="pmi-text"><h4>শেয়ার করুন</h4><p>বন্ধুদের সাথে শেয়ার করুন</p></div>
                 <div class="pmi-arrow">›</div>
             </div>
         </div>
@@ -1326,7 +1457,7 @@
                     <div style="font-size:65px;margin-bottom:12px;">🎉</div>
                     <h3 style="font-size:18px;margin-bottom:8px;" class="grad-text">অর্ডার সফল!</h3>
                     <p style="font-size:12px;color:var(--text3);margin-bottom:22px;line-height:1.7;">
-                        অ্যাডমিন পেমেন্ট যাচাই করে অনুমোদন দিলে<br>কোর্সের লিংক পাবেন। টেলিগ্রামেও নোটিফিকেশন যাবে! 🔔
+                        অ্যাডমিন পেমেন্ট যাচাই করে অনুমোদন দিলে<br>গ্রুপের ইনভাইট লিংক পাবেন। টেলিগ্রামেও নোটিফিকেশন যাবে! 🔔
                     </p>
                     <button class="btn btn-primary" onclick="closePayModal()">👍 ঠিক আছে</button>
                 </div>
@@ -1359,114 +1490,125 @@
 <script>
 // ===== CONFIG =====
 const CFG = {
-    // Password encoded in base64 then reversed for basic obfuscation
-    _ap: 'OTk1ODc0', // base64 of '478599' reversed
+    _ap: 'OTk1ODc0', // password '478599' encoded
     bkash: '01812137592',
     nagad: '01812137592',
     botToken: '8942961112:AAGD7-oxakkOwnF5zxnKuiGV72daPQtXrvI',
     adminId: '6377295796',
-    adminTgId: 6377295796
+    adminTgId: 6377295796,
+    supportUsername: 'YourSupportUsername'
 };
 
 function getAdminPw() {
     try { return atob(CFG._ap).split('').reverse().join(''); } catch(e) { return ''; }
 }
 
-// ===== DATA =====
-let courses = JSON.parse(localStorage.getItem('cs_courses') || 'null') || [
+// ===== DATA - PREMIUM GROUPS =====
+let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
     {
-        id: 1, title: 'ফুল স্ট্যাক ওয়েব ডেভেলপমেন্ট',
-        desc: 'HTML, CSS, JavaScript, React, Node.js, MongoDB সহ সম্পূর্ণ ওয়েব ডেভেলপমেন্ট শিখুন। বিগিনার থেকে অ্যাডভান্সড লেভেল পর্যন্ত সব কভার করা হয়েছে।',
-        price: 500, oldPrice: 2000, category: 'web',
-        badge: '🔥 জনপ্রিয়', badgeClass: 'hot',
-        emoji: '💻', gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
-        features: ['৫০+ ঘণ্টা ভিডিও', 'সার্টিফিকেট', 'লাইভ সাপোর্ট'],
-        rating: '4.9', students: '1.2K+',
+        id: 1, title: 'VIP মুভি জোন 🎬',
+        desc: 'সর্বশেষ বাংলা, হিন্দি, ইংরেজি মুভি ও ওয়েব সিরিজ। প্রতিদিন আপডেট। বাংলা সাবটাইটেল সহ প্রিমিয়াম কোয়ালিটি।',
+        price: 199, oldPrice: 999, category: 'movie',
+        badge: '👑 VIP', badgeClass: 'vip',
+        emoji: '🎬', gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
+        features: ['4K কোয়ালিটি', 'দৈনিক আপডেট', 'বাংলা সাবটাইটেল'],
+        members: '15K+', rating: '4.9',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 2, title: 'অ্যান্ড্রয়েড অ্যাপ ডেভেলপমেন্ট',
-        desc: 'Java ও Kotlin দিয়ে প্রফেশনাল অ্যান্ড্রয়েড অ্যাপ তৈরি শিখুন। গুগল প্লে স্টোরে পাবলিশ করুন।',
-        price: 600, oldPrice: 2500, category: 'app',
+        id: 2, title: 'প্রিমিয়াম কোর্স হাব 📚',
+        desc: 'সকল প্রিমিয়াম কোর্স - Udemy, Coursera, Skillshare এর কোর্স। ফ্রিতে অ্যাক্সেস।',
+        price: 299, oldPrice: 1500, category: 'course',
+        badge: '🔥 হট', badgeClass: 'hot',
+        emoji: '📚', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)',
+        features: ['১০০০+ কোর্স', 'সব ক্যাটাগরি', 'HD ভিডিও'],
+        members: '25K+', rating: '4.8',
+        access: 'লাইফটাইম', verified: true,
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 3, title: 'ট্রেডিং সিগন্যাল গ্রুপ 📈',
+        desc: 'ফরেক্স, ক্রিপ্টো, স্টক মার্কেট সিগন্যাল। প্রো ট্রেডারদের পরামর্শ। প্রতিদিন সিগন্যাল।',
+        price: 500, oldPrice: 2500, category: 'trading',
+        badge: '💎 এক্সক্লুসিভ', badgeClass: 'exclusive',
+        emoji: '📈', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)',
+        features: ['লাইভ সিগন্যাল', '90% অ্যাকুরেসি', 'বিশেষজ্ঞ সাপোর্ট'],
+        members: '5K+', rating: '4.9',
+        access: '১ বছর', verified: true,
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 4, title: 'গেমিং প্যারাডাইস 🎮',
+        desc: 'সব প্রিমিয়াম গেম, মড, চিট কোড। PUBG, FreeFire, GTA সব গেমের রিসোর্স।',
+        price: 149, oldPrice: 799, category: 'gaming',
         badge: '✨ নতুন', badgeClass: 'new',
-        emoji: '📱', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)',
-        features: ['৪০+ ঘণ্টা', '১০+ প্রজেক্ট', 'সোর্স কোড'],
-        rating: '4.8', students: '800+',
+        emoji: '🎮', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)',
+        features: ['প্রিমিয়াম গেম', 'মড ও চিট', 'দৈনিক আপডেট'],
+        members: '30K+', rating: '4.7',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 3, title: 'গ্রাফিক ডিজাইন মাস্টারক্লাস',
-        desc: 'Photoshop, Illustrator, Canva দিয়ে প্রফেশনাল ডিজাইন শিখুন। ফ্রিল্যান্সিং এর জন্য পারফেক্ট।',
-        price: 400, oldPrice: 1800, category: 'design',
-        badge: '💥 78% ছাড়', badgeClass: 'sale',
-        emoji: '🎨', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)',
-        features: ['৩০+ ঘণ্টা', 'রিসোর্স ফাইল', 'সার্টিফিকেট'],
-        rating: '4.7', students: '650+',
+        id: 5, title: 'সফটওয়্যার ভল্ট 💻',
+        desc: 'সকল প্রিমিয়াম সফটওয়্যার, অ্যাপ, ক্র্যাক। Adobe, Microsoft সব লাইসেন্স।',
+        price: 250, oldPrice: 1200, category: 'software',
+        badge: '👑 VIP', badgeClass: 'vip',
+        emoji: '💻', gradient: 'linear-gradient(135deg, #fa709a, #fee140)',
+        features: ['১০০০+ সফটওয়্যার', 'দৈনিক আপডেট', 'সাপোর্ট'],
+        members: '20K+', rating: '4.8',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 4, title: 'ডিজিটাল মার্কেটিং A-Z',
-        desc: 'SEO, SEM, Social Media Marketing, Email Marketing সব শিখুন। ব্যবসা বাড়ান অনলাইনে।',
-        price: 350, oldPrice: 1500, category: 'marketing',
-        badge: '🔥 জনপ্রিয়', badgeClass: 'hot',
-        emoji: '📊', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)',
-        features: ['২৫+ ঘণ্টা', 'কেস স্টাডি', 'টুলস গাইড'],
-        rating: '4.8', students: '950+',
+        id: 6, title: 'নেটফ্লিক্স প্রিমিয়াম 🎥',
+        desc: 'সকল OTT প্ল্যাটফর্মের অ্যাকাউন্ট। Netflix, Amazon Prime, Disney+ Hotstar।',
+        price: 350, oldPrice: 1500, category: 'ott',
+        badge: '💥 সেল', badgeClass: 'exclusive',
+        emoji: '🎥', gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)',
+        features: ['একাধিক অ্যাকাউন্ট', '4K কোয়ালিটি', 'গ্যারান্টি'],
+        members: '12K+', rating: '4.6',
+        access: '১ বছর', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 5, title: 'এথিক্যাল হ্যাকিং কোর্স',
-        desc: 'সাইবার সিকিউরিটি ও এথিক্যাল হ্যাকিং এর সম্পূর্ণ গাইড। বাগ বাউন্টি শিখুন।',
-        price: 700, oldPrice: 3000, category: 'hacking',
+        id: 7, title: 'ফ্রিল্যান্সিং টিপস 💼',
+        desc: 'Upwork, Fiverr এ কাজ পাওয়ার টিপস, বায়ার গাইড, প্রফাইল অপটিমাইজেশন।',
+        price: 199, oldPrice: 899, category: 'business',
+        badge: '🔥 হট', badgeClass: 'hot',
+        emoji: '💼', gradient: 'linear-gradient(135deg, #96fbc4, #f9f586)',
+        features: ['প্রো টিপস', 'কেস স্টাডি', 'লাইভ ক্লাস'],
+        members: '8K+', rating: '4.9',
+        access: 'লাইফটাইম', verified: true,
+        screenshots: [], thumbnail: ''
+    },
+    {
+        id: 8, title: 'ইসলামিক লেকচার 🕌',
+        desc: 'বিখ্যাত আলেমদের ওয়াজ, বয়ান, ইসলামিক বই ও অডিও। সাপ্তাহিক নতুন কন্টেন্ট।',
+        price: 99, oldPrice: 500, category: 'islamic',
         badge: '✨ নতুন', badgeClass: 'new',
-        emoji: '🔒', gradient: 'linear-gradient(135deg, #fa709a, #fee140)',
-        features: ['৬০+ ঘণ্টা', 'ল্যাব এক্সেস', 'সার্টিফিকেট'],
-        rating: '4.9', students: '500+',
-        screenshots: [], thumbnail: ''
-    },
-    {
-        id: 6, title: 'React Native মোবাইল অ্যাপ',
-        desc: 'একই কোডে iOS ও Android অ্যাপ তৈরি করুন। ক্রস-প্ল্যাটফর্ম ডেভেলপমেন্ট।',
-        price: 550, oldPrice: 2200, category: 'app',
-        badge: '💥 75% ছাড়', badgeClass: 'sale',
-        emoji: '⚛️', gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)',
-        features: ['৪৫+ ঘণ্টা', 'রিয়েল প্রজেক্ট', 'সোর্স কোড'],
-        rating: '4.7', students: '700+',
-        screenshots: [], thumbnail: ''
-    },
-    {
-        id: 7, title: 'Python প্রোগ্রামিং',
-        desc: 'বেসিক থেকে অ্যাডভান্সড Python। ডেটা সায়েন্স, AI, অটোমেশন শিখুন।',
-        price: 400, oldPrice: 1600, category: 'web',
-        badge: '🔥 জনপ্রিয়', badgeClass: 'hot',
-        emoji: '🐍', gradient: 'linear-gradient(135deg, #96fbc4, #f9f586)',
-        features: ['৫০+ ঘণ্টা', 'প্র্যাক্টিস', '১৫+ প্রজেক্ট'],
-        rating: '4.8', students: '1.5K+',
-        screenshots: [], thumbnail: ''
-    },
-    {
-        id: 8, title: 'UI/UX ডিজাইন',
-        desc: 'Figma, Adobe XD দিয়ে মডার্ন UI/UX ডিজাইন। পোর্টফোলিও তৈরি করুন।',
-        price: 450, oldPrice: 1800, category: 'design',
-        badge: '✨ নতুন', badgeClass: 'new',
-        emoji: '✏️', gradient: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
-        features: ['৩৫+ ঘণ্টা', 'ফাইল', 'পোর্টফোলিও'],
-        rating: '4.6', students: '400+',
+        emoji: '🕌', gradient: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
+        features: ['১০০+ আলেম', 'অডিও/ভিডিও', 'বই'],
+        members: '40K+', rating: '5.0',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     }
 ];
 
-let categories = JSON.parse(localStorage.getItem('cs_categories') || 'null') || [
+let categories = JSON.parse(localStorage.getItem('pg_categories') || 'null') || [
     { id: 'all', name: '🌟 সব' },
-    { id: 'web', name: '💻 ওয়েব' },
-    { id: 'app', name: '📱 অ্যাপ' },
-    { id: 'design', name: '🎨 ডিজাইন' },
-    { id: 'marketing', name: '📊 মার্কেটিং' },
-    { id: 'hacking', name: '🔒 হ্যাকিং' }
+    { id: 'movie', name: '🎬 মুভি' },
+    { id: 'course', name: '📚 কোর্স' },
+    { id: 'trading', name: '📈 ট্রেডিং' },
+    { id: 'gaming', name: '🎮 গেমিং' },
+    { id: 'software', name: '💻 সফটওয়্যার' },
+    { id: 'ott', name: '🎥 OTT' },
+    { id: 'business', name: '💼 বিজনেস' },
+    { id: 'islamic', name: '🕌 ইসলামিক' }
 ];
 
-let orders = JSON.parse(localStorage.getItem('cs_orders') || '[]');
-let selCourse = null;
+let orders = JSON.parse(localStorage.getItem('pg_orders') || '[]');
+let selGroup = null;
 let selPay = null;
 let adminLogged = false;
 let adminTab = 'orders';
@@ -1482,13 +1624,19 @@ const gradients = [
     'linear-gradient(135deg, #ff9a9e, #fecfef)',
     'linear-gradient(135deg, #ffecd2, #fcb69f)',
     'linear-gradient(135deg, #89f7fe, #66a6ff)',
-    'linear-gradient(135deg, #c3cfe2, #f5f7fa)',
-    'linear-gradient(135deg, #e0c3fc, #8ec5fc)'
+    'linear-gradient(135deg, #FFD700, #FFA500)',
+    'linear-gradient(135deg, #E2136E, #F6921E)',
+    'linear-gradient(135deg, #8B5CF6, #EC4899)',
+    'linear-gradient(135deg, #06B6D4, #3B82F6)',
+    'linear-gradient(135deg, #10B981, #059669)'
 ];
 
 // ===== TELEGRAM =====
 let tg = window.Telegram?.WebApp;
-if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor('#050510'); tg.setBackgroundColor('#050510'); } catch(e){} }
+if (tg) { 
+    tg.ready(); tg.expand(); 
+    try { tg.setHeaderColor('#0A0118'); tg.setBackgroundColor('#0A0118'); } catch(e){} 
+}
 
 function getTgUser() {
     if (tg?.initDataUnsafe?.user) return tg.initDataUnsafe.user;
@@ -1505,11 +1653,9 @@ function isAdmin() {
 function init() {
     initUser();
     renderCategories();
-    renderCourses();
+    renderGroups();
     renderFeatured();
     updateBadge();
-
-    // Show admin nav only for admin user
     if (isAdmin()) {
         document.getElementById('nav-admin').classList.remove('hidden');
     }
@@ -1535,6 +1681,12 @@ function initUser() {
             const ini = fn.charAt(0) || '👤';
             document.getElementById('pAvatar').innerHTML = `${ini}<div class="p-online"></div>`;
             document.getElementById('welcomeAvatar').textContent = ini;
+        }
+
+        // Show VIP badge if user has approved orders
+        let uo = orders.filter(o => o.tgUser?.id === u.id && o.status === 'approved');
+        if (uo.length > 0) {
+            document.getElementById('pVip').style.display = 'inline-block';
         }
     }
     updateStats();
@@ -1568,102 +1720,128 @@ function renderCategories() {
 
 function renderFeatured() {
     const el = document.getElementById('featuredSlider');
-    const featured = courses.slice(0, 4);
-    el.innerHTML = featured.map(c => `
-        <div class="featured-card" style="background:${c.gradient}" onclick="showDetail(${c.id})">
-            <div class="fc-emoji">${c.emoji}</div>
-            <div class="fc-title">${c.title}</div>
-            <div class="fc-desc">${c.features.join(' • ')}</div>
-            <div class="fc-price">৳${c.price} <span class="fc-old">৳${c.oldPrice}</span></div>
-            <button class="fc-btn" onclick="event.stopPropagation();openPay(${c.id})">🛒 কিনুন</button>
+    const featured = groups.slice(0, 4);
+    el.innerHTML = featured.map(g => `
+        <div class="featured-card" style="background:${g.gradient}" onclick="showDetail(${g.id})">
+            <div class="fc-emoji">${g.emoji}</div>
+            <div class="fc-title">${g.title}</div>
+            <div class="fc-desc">${g.features.slice(0,2).join(' • ')}</div>
+            <div class="fc-members">👥 ${g.members} মেম্বার</div>
+            <div class="fc-price">৳${g.price} <span class="fc-old">৳${g.oldPrice}</span></div>
+            <button class="fc-btn" onclick="event.stopPropagation();openPay(${g.id})">🛒 জয়েন করুন</button>
         </div>
     `).join('');
 }
 
-function renderCourses(list = courses) {
-    const el = document.getElementById('courseGrid');
+function renderGroups(list = groups) {
+    const el = document.getElementById('groupGrid');
     if (list.length === 0) {
-        el.innerHTML = `<div class="empty"><div class="e-icon">🔍</div><h3>কোনো কোর্স পাওয়া যায়নি</h3><p>অন্য কিওয়ার্ড দিয়ে খুঁজুন</p></div>`;
+        el.innerHTML = `<div class="empty"><div class="e-icon">🔍</div><h3>কোনো গ্রুপ পাওয়া যায়নি</h3><p>অন্য কিওয়ার্ড দিয়ে খুঁজুন</p></div>`;
         return;
     }
-    el.innerHTML = list.map(c => `
-        <div class="course-card" onclick="showDetail(${c.id})">
-            <div class="course-banner" style="background:${c.gradient}">
-                ${c.thumbnail ? `<img src="${c.thumbnail}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">` : ''}
-                ${c.emoji}
-                <span class="c-badge ${c.badgeClass}">${c.badge}</span>
+    el.innerHTML = list.map(g => `
+        <div class="group-card" onclick="showDetail(${g.id})">
+            <div class="group-banner" style="background:${g.gradient}">
+                ${g.thumbnail ? `<img src="${g.thumbnail}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">` : ''}
+                ${g.emoji}
+                <span class="c-badge ${g.badgeClass}">${g.badge}</span>
+                <span class="members-badge">👥 ${g.members}</span>
             </div>
-            <div class="course-info">
-                <div class="course-title">${c.title}</div>
-                <div class="course-desc">${c.desc}</div>
-                <div class="course-tags">${c.features.map(f => `<span class="c-tag">${f}</span>`).join('')}</div>
-                <div class="course-bottom">
-                    <div class="c-price-wrap"><span class="c-price">৳${c.price}</span><span class="c-price-old">৳${c.oldPrice}</span></div>
-                    <div class="c-rating">⭐ ${c.rating}</div>
+            <div class="group-info">
+                <div class="group-title">
+                    ${g.title}
+                    ${g.verified ? '<span class="verified-icon">✓</span>' : ''}
                 </div>
-                <button class="buy-btn" onclick="event.stopPropagation();openPay(${c.id})">🛒 এখনই কিনুন</button>
+                <div class="group-desc">${g.desc}</div>
+                <div class="group-tags">${g.features.map(f => `<span class="c-tag">${f}</span>`).join('')}</div>
+                <div class="group-stats">
+                    <div class="g-stat">⭐ ${g.rating}</div>
+                    <div class="g-stat">👥 ${g.members}</div>
+                    <div class="g-stat">🔓 ${g.access}</div>
+                </div>
+                <div class="group-bottom">
+                    <div class="c-price-wrap"><span class="c-price">৳${g.price}</span><span class="c-price-old">৳${g.oldPrice}</span></div>
+                    <span class="c-lifetime">${g.access}</span>
+                </div>
+                <button class="buy-btn" onclick="event.stopPropagation();openPay(${g.id})">🚀 এখনই জয়েন করুন</button>
             </div>
         </div>
     `).join('');
 }
 
-function searchCourses(q) {
-    const f = courses.filter(c => c.title.toLowerCase().includes(q.toLowerCase()) || c.desc.toLowerCase().includes(q.toLowerCase()));
-    renderCourses(f);
+function searchGroups(q) {
+    const f = groups.filter(g => g.title.toLowerCase().includes(q.toLowerCase()) || g.desc.toLowerCase().includes(q.toLowerCase()));
+    renderGroups(f);
 }
 
 function filterCat(cat, el) {
     document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
     el.classList.add('active');
-    renderCourses(cat === 'all' ? courses : courses.filter(c => c.category === cat));
+    renderGroups(cat === 'all' ? groups : groups.filter(g => g.category === cat));
 }
 
-// ===== COURSE DETAIL =====
+function scrollToGroups() {
+    document.getElementById('groupsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ===== DETAIL =====
 function showDetail(id) {
-    const c = courses.find(x => x.id === id);
-    if (!c) return;
-    const discount = Math.round((1 - c.price / c.oldPrice) * 100);
+    const g = groups.find(x => x.id === id);
+    if (!g) return;
+    const discount = Math.round((1 - g.price / g.oldPrice) * 100);
 
     document.getElementById('detailModalContent').innerHTML = `
         <div class="modal-handle"></div>
-        <div class="detail-banner" style="background:${c.gradient}">
-            ${c.thumbnail ? `<img src="${c.thumbnail}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">` : ''}
-            ${c.emoji}
+        <div class="detail-banner" style="background:${g.gradient}">
+            ${g.thumbnail ? `<img src="${g.thumbnail}" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">` : ''}
+            ${g.emoji}
         </div>
         <div style="padding:18px 20px 30px;">
             <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
-                <div>
-                    <h2 style="font-size:18px;font-weight:900;line-height:1.4;margin-bottom:6px;">${c.title}</h2>
-                    <span class="c-badge ${c.badgeClass}" style="position:static;display:inline-block;">${c.badge}</span>
+                <div style="flex:1;">
+                    <h2 style="font-size:18px;font-weight:900;line-height:1.4;margin-bottom:6px;display:flex;align-items:center;gap:6px;">
+                        ${g.title}
+                        ${g.verified ? '<span class="verified-icon">✓</span>' : ''}
+                    </h2>
+                    <span class="c-badge ${g.badgeClass}" style="position:static;display:inline-block;">${g.badge}</span>
                 </div>
             </div>
 
             <div class="detail-info-row">
-                <div class="detail-info-item"><div class="dii-val">⭐ ${c.rating}</div><div class="dii-label">রেটিং</div></div>
-                <div class="detail-info-item"><div class="dii-val">${c.students || 'N/A'}</div><div class="dii-label">শিক্ষার্থী</div></div>
+                <div class="detail-info-item"><div class="dii-val">👥 ${g.members}</div><div class="dii-label">মেম্বার</div></div>
+                <div class="detail-info-item"><div class="dii-val">⭐ ${g.rating}</div><div class="dii-label">রেটিং</div></div>
                 <div class="detail-info-item"><div class="dii-val">${discount}%</div><div class="dii-label">ডিসকাউন্ট</div></div>
             </div>
 
-            ${c.screenshots && c.screenshots.length > 0 ? `
+            <div class="detail-info-row">
+                <div class="detail-info-item" style="border-color:var(--gold);"><div class="dii-val" style="color:var(--gold);">🔓 ${g.access}</div><div class="dii-label">অ্যাক্সেস</div></div>
+            </div>
+
+            ${g.screenshots && g.screenshots.length > 0 ? `
                 <div class="section-title" style="font-size:14px;">📸 <span class="grad-text">স্ক্রিনশট</span></div>
                 <div class="detail-screenshots">
-                    ${c.screenshots.map(s => `<div class="detail-ss"><img src="${s}" onerror="this.parentElement.innerHTML='📷 ছবি লোড হয়নি'"></div>`).join('')}
+                    ${g.screenshots.map(s => `<div class="detail-ss"><img src="${s}" onerror="this.parentElement.innerHTML='📷 ছবি লোড হয়নি'"></div>`).join('')}
                 </div>
             ` : ''}
 
-            <div class="section-title" style="font-size:14px;">📝 <span class="grad-text">বিস্তারিত</span></div>
-            <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px;">${c.desc}</p>
+            <div class="section-title" style="font-size:14px;">📝 <span class="grad-text">গ্রুপ সম্পর্কে</span></div>
+            <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px;">${g.desc}</p>
 
-            <div class="section-title" style="font-size:14px;">✨ <span class="grad-text">ফিচারস</span></div>
-            <div class="course-tags" style="margin-bottom:18px;">${c.features.map(f => `<span class="c-tag">${f}</span>`).join('')}</div>
+            <div class="section-title" style="font-size:14px;">✨ <span class="grad-text">যা যা পাবেন</span></div>
+            <div class="group-tags" style="margin-bottom:18px;">${g.features.map(f => `<span class="c-tag">✓ ${f}</span>`).join('')}</div>
 
-            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:16px;">
-                <span style="font-size:28px;font-weight:900;" class="grad-text">৳${c.price}</span>
-                <span style="font-size:16px;color:var(--text3);text-decoration:line-through;">৳${c.oldPrice}</span>
-                <span style="font-size:12px;color:var(--success);font-weight:700;">${discount}% ছাড়!</span>
+            <div style="background:var(--card);border-radius:14px;padding:16px;margin-bottom:16px;border:1px solid var(--border);">
+                <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;">
+                    <span style="font-size:28px;font-weight:900;" class="grad-gold">৳${g.price}</span>
+                    <span style="font-size:16px;color:var(--text3);text-decoration:line-through;">৳${g.oldPrice}</span>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <span style="font-size:12px;color:var(--success);font-weight:700;background:rgba(16,185,129,0.1);padding:3px 10px;border-radius:10px;">💥 ${discount}% ছাড়!</span>
+                    <span style="font-size:12px;color:var(--gold);font-weight:700;">🔓 ${g.access} অ্যাক্সেস</span>
+                </div>
             </div>
 
-            <button class="btn btn-primary" onclick="closeDetailModal();openPay(${c.id})">🛒 এখনই কিনুন — ৳${c.price}</button>
+            <button class="btn btn-primary" onclick="closeDetailModal();openPay(${g.id})">🚀 জয়েন করুন — ৳${g.price}</button>
             <button class="btn btn-ghost" style="margin-top:8px;" onclick="closeDetailModal()">← ফিরে যান</button>
         </div>
     `;
@@ -1674,11 +1852,11 @@ function closeDetailModal() { document.getElementById('detailModal').classList.r
 
 // ===== PAYMENT =====
 function openPay(id) {
-    selCourse = courses.find(c => c.id === id);
+    selGroup = groups.find(g => g.id === id);
     selPay = null;
-    if (!selCourse) return;
+    if (!selGroup) return;
 
-    document.getElementById('payModalTitle').textContent = `${selCourse.title} — ৳${selCourse.price}`;
+    document.getElementById('payModalTitle').textContent = `${selGroup.title} — ৳${selGroup.price}`;
     document.getElementById('payModal').classList.add('active');
     goStep(1);
 
@@ -1688,7 +1866,7 @@ function openPay(id) {
     document.getElementById('fName').value = '';
     document.getElementById('fPhone').value = '';
     document.getElementById('fTrx').value = '';
-    document.getElementById('fAmount').value = selCourse.price;
+    document.getElementById('fAmount').value = selGroup.price;
 
     const u = getTgUser();
     if (u) document.getElementById('fName').value = `${u.first_name || ''} ${u.last_name || ''}`.trim();
@@ -1714,15 +1892,16 @@ function pickPay(method, el) {
             <p style="font-size:11px;color:var(--text2)">নিচের নম্বরে সেন্ড মানি করুন:</p>
             <div class="pay-number">${num}</div>
             <button class="copy-btn ${btnCls}" onclick="copyNum('${num}')">📋 কপি</button>
-            <p style="margin-top:10px;font-size:13px;">পরিমাণ: <strong style="color:${col};font-size:18px;">৳${selCourse.price}</strong></p>
+            <p style="margin-top:10px;font-size:13px;">পরিমাণ: <strong style="color:${col};font-size:18px;">৳${selGroup.price}</strong></p>
         </div>
         <div class="info-box">
             <h4>⚠️ নির্দেশনা:</h4>
             <ol>
-                <li>${name} সেন্ড মানি করুন — ৳${selCourse.price}</li>
+                <li>${name} সেন্ড মানি করুন — ৳${selGroup.price}</li>
                 <li>TrxID সংরক্ষণ করুন</li>
                 <li>পরবর্তী ধাপে তথ্য দিন</li>
-                <li>অ্যাডমিন যাচাই করে লিংক দিবে</li>
+                <li>অ্যাডমিন যাচাই করে গ্রুপ ইনভাইট লিংক দিবে</li>
+                <li>টেলিগ্রামে নোটিফিকেশন পাবেন 🔔</li>
             </ol>
         </div>
     `;
@@ -1759,16 +1938,16 @@ function placeOrder() {
     const u = getTgUser();
     const order = {
         id: 'ORD-' + Date.now(),
-        courseId: selCourse.id,
-        courseName: selCourse.title,
-        coursePrice: selCourse.price,
+        groupId: selGroup.id,
+        groupName: selGroup.title,
+        groupPrice: selGroup.price,
         customerName: name,
         senderNumber: phone,
         trxId: trx,
         amountPaid: amt,
         payMethod: selPay,
         status: 'pending',
-        driveLink: '',
+        inviteLink: '',
         date: new Date().toLocaleString('bn-BD'),
         tgUser: u ? { id: u.id, firstName: u.first_name, lastName: u.last_name || '', username: u.username || '' } : null
     };
@@ -1784,7 +1963,7 @@ function placeOrder() {
 
 // ===== TELEGRAM BOT =====
 async function sendAdminNotif(o) {
-    const msg = `🆕 *নতুন অর্ডার!*\n━━━━━━━━━━━━━\n📦 \`${o.id}\`\n📚 ${o.courseName}\n💰 ৳${o.coursePrice}\n━━━━━━━━━━━━━\n👤 ${o.customerName}\n📱 \`${o.senderNumber}\`\n💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'}\n🔢 TrxID: \`${o.trxId}\`\n💵 ৳${o.amountPaid}\n📅 ${o.date}${o.tgUser ? `\n👤 ${o.tgUser.firstName} @${o.tgUser.username}\n🆔 \`${o.tgUser.id}\`` : ''}\n━━━━━━━━━━━━━`;
+    const msg = `🆕 *নতুন গ্রুপ অর্ডার!*\n━━━━━━━━━━━━━\n📦 \`${o.id}\`\n💎 ${o.groupName}\n💰 ৳${o.groupPrice}\n━━━━━━━━━━━━━\n👤 ${o.customerName}\n📱 \`${o.senderNumber}\`\n💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'}\n🔢 TrxID: \`${o.trxId}\`\n💵 ৳${o.amountPaid}\n📅 ${o.date}${o.tgUser ? `\n👤 ${o.tgUser.firstName} @${o.tgUser.username}\n🆔 \`${o.tgUser.id}\`` : ''}\n━━━━━━━━━━━━━\n⚡ অ্যাডমিন প্যানেলে গিয়ে অনুমোদন করুন`;
     try {
         await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -1795,19 +1974,19 @@ async function sendAdminNotif(o) {
 
 async function sendUserLink(o) {
     if (!o.tgUser) return;
-    const msg = `🎉 *অভিনন্দন!*\n━━━━━━━━━━━━━\n✅ অর্ডার অনুমোদিত!\n📚 ${o.courseName}\n💰 ৳${o.coursePrice}\n🔗 *লিংক:* ${o.driveLink}\n━━━━━━━━━━━━━\nধন্যবাদ! 🙏`;
+    const msg = `🎉 *অভিনন্দন!*\n━━━━━━━━━━━━━\n✅ আপনার অর্ডার অনুমোদিত!\n\n💎 *গ্রুপ:* ${o.groupName}\n💰 *মূল্য:* ৳${o.groupPrice}\n\n🔗 *গ্রুপে জয়েন করুন:*\n${o.inviteLink}\n\n━━━━━━━━━━━━━\n⚠️ *গুরুত্বপূর্ণ:*\n• লিংকটি অন্য কারো সাথে শেয়ার করবেন না\n• লিংকটি লিমিটেড টাইমের জন্য\n• সমস্যা হলে সাপোর্টে যোগাযোগ করুন\n\nধন্যবাদ! 🙏`;
     try {
         await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ chat_id: o.tgUser.id, text: msg, parse_mode: 'Markdown' })
         });
-        toast('✅ ইউজারকে লিংক পাঠানো হয়েছে!');
+        toast('✅ ইউজারকে ইনভাইট লিংক পাঠানো হয়েছে!');
     } catch(e) { toast('⚠️ পাঠাতে সমস্যা'); }
 }
 
 async function sendUserReject(o) {
     if (!o.tgUser) return;
-    const msg = `❌ *অর্ডার প্রত্যাখ্যাত*\n📚 ${o.courseName}\n🔢 TrxID: \`${o.trxId}\`\nসঠিক তথ্য দিয়ে আবার চেষ্টা করুন।`;
+    const msg = `❌ *অর্ডার প্রত্যাখ্যাত*\n\n💎 গ্রুপ: ${o.groupName}\n🔢 TrxID: \`${o.trxId}\`\n\nপেমেন্ট যাচাই করা যায়নি।\nসঠিক তথ্য দিয়ে আবার চেষ্টা করুন। 🙏`;
     try {
         await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -1824,7 +2003,7 @@ function renderOrders() {
     if (u) uo = orders.filter(o => o.tgUser?.id === u.id);
 
     if (uo.length === 0) {
-        el.innerHTML = `<div class="empty"><div class="e-icon">📭</div><h3>কোনো অর্ডার নেই</h3><p>কোর্স কিনলে এখানে দেখাবে</p><button class="btn btn-primary" style="max-width:180px;margin:18px auto 0;font-size:13px;" onclick="showPage('home')">🛒 কোর্স দেখুন</button></div>`;
+        el.innerHTML = `<div class="empty"><div class="e-icon">📭</div><h3>কোনো অর্ডার নেই</h3><p>গ্রুপ কিনলে এখানে দেখাবে</p><button class="btn btn-primary" style="max-width:180px;margin:18px auto 0;font-size:13px;" onclick="showPage('home')">🛒 গ্রুপ দেখুন</button></div>`;
         return;
     }
 
@@ -1834,12 +2013,12 @@ function renderOrders() {
                 <span class="order-id">${o.id}</span>
                 <span class="o-status ${o.status}">${o.status === 'pending' ? '⏳ অপেক্ষমাণ' : o.status === 'approved' ? '✅ অনুমোদিত' : '❌ প্রত্যাখ্যাত'}</span>
             </div>
-            <div class="order-name">${o.courseName}</div>
+            <div class="order-name">${o.groupName}</div>
             <div class="order-meta">
                 💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'} | 🔢 ${o.trxId}<br>
                 💵 ৳${o.amountPaid} | 📅 ${o.date}
             </div>
-            ${o.status === 'approved' && o.driveLink ? `<button class="dl-btn" onclick="window.open('${o.driveLink}','_blank')">📥 ডাউনলোড করুন</button>` : ''}
+            ${o.status === 'approved' && o.inviteLink ? `<button class="join-btn" onclick="window.open('${o.inviteLink}','_blank')">📲 গ্রুপে জয়েন করুন</button>` : ''}
             ${o.status === 'pending' ? `<p style="color:var(--warning);font-size:11px;margin-top:10px;text-align:center;">⏳ অ্যাডমিন শীঘ্রই যাচাই করবে...</p>` : ''}
             ${o.status === 'rejected' ? `<p style="color:var(--danger);font-size:11px;margin-top:10px;">⚠️ পেমেন্ট যাচাই হয়নি। আবার চেষ্টা করুন।</p>` : ''}
         </div>
@@ -1850,7 +2029,6 @@ function renderOrders() {
 function doAdminLogin() {
     const pw = document.getElementById('adminPw').value;
     if (pw === getAdminPw()) {
-        // Also check if Telegram user is admin
         const u = getTgUser();
         if (u && u.id !== CFG.adminTgId) {
             toast('❌ আপনি অ্যাডমিন নন!');
@@ -1883,8 +2061,8 @@ function renderAdmin() {
 
         <div class="admin-tabs">
             <div class="a-tab ${adminTab === 'orders' ? 'active' : ''}" onclick="adminTab='orders';renderAdmin()">📋 অর্ডার</div>
-            <div class="a-tab ${adminTab === 'courses' ? 'active' : ''}" onclick="adminTab='courses';renderAdmin()">📚 কোর্স</div>
-            <div class="a-tab ${adminTab === 'addcourse' ? 'active' : ''}" onclick="adminTab='addcourse';renderAdmin()">➕ কোর্স যোগ</div>
+            <div class="a-tab ${adminTab === 'groups' ? 'active' : ''}" onclick="adminTab='groups';renderAdmin()">💎 গ্রুপ</div>
+            <div class="a-tab ${adminTab === 'addgroup' ? 'active' : ''}" onclick="adminTab='addgroup';renderAdmin()">➕ গ্রুপ যোগ</div>
             <div class="a-tab ${adminTab === 'categories' ? 'active' : ''}" onclick="adminTab='categories';renderAdmin()">📂 ক্যাটাগরি</div>
         </div>
 
@@ -1900,7 +2078,7 @@ function renderAdmin() {
             orders.slice().reverse().map(o => `
                 <div class="admin-order-card" style="border-left:3px solid ${o.status === 'pending' ? 'var(--warning)' : o.status === 'approved' ? 'var(--success)' : 'var(--danger)'}">
                     <div class="order-top"><span class="order-id">${o.id}</span><span class="o-status ${o.status}">${o.status === 'pending' ? '⏳' : o.status === 'approved' ? '✅' : '❌'} ${o.status}</span></div>
-                    <div class="order-name">${o.courseName}</div>
+                    <div class="order-name">${o.groupName}</div>
                     <div class="order-meta">
                         👤 <strong>${o.customerName}</strong><br>
                         📱 ${o.senderNumber} | 💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'}<br>
@@ -1909,49 +2087,49 @@ function renderAdmin() {
                         ${o.tgUser ? `<br>🔗 ${o.tgUser.firstName} @${o.tgUser.username} (${o.tgUser.id})` : ''}
                     </div>
                     ${o.status === 'pending' ? `
-                        <input type="text" class="a-link-input" id="lnk-${o.id}" placeholder="🔗 ড্রাইভ লিংক..." value="${o.driveLink || ''}">
+                        <input type="text" class="a-link-input" id="lnk-${o.id}" placeholder="🔗 টেলিগ্রাম গ্রুপ ইনভাইট লিংক..." value="${o.inviteLink || ''}">
                         <div class="a-actions">
                             <button class="a-approve" onclick="approveO('${o.id}')">✅ অনুমোদন</button>
                             <button class="a-reject" onclick="rejectO('${o.id}')">❌ প্রত্যাখ্যান</button>
                         </div>
                     ` : ''}
-                    ${o.status === 'approved' ? `<p style="color:var(--success);font-size:11px;margin-top:10px;">🔗 ${o.driveLink}</p>` : ''}
+                    ${o.status === 'approved' ? `<p style="color:var(--success);font-size:11px;margin-top:10px;word-break:break-all;">🔗 ${o.inviteLink}</p>` : ''}
                 </div>
             `).join('');
     }
 
-    else if (adminTab === 'courses') {
+    else if (adminTab === 'groups') {
         tc.innerHTML = `
-            <div class="section-title" style="font-size:14px;">📚 <span class="grad-text">সকল কোর্স (${courses.length})</span></div>
-            ${courses.map(c => `
+            <div class="section-title" style="font-size:14px;">💎 <span class="grad-text">সকল গ্রুপ (${groups.length})</span></div>
+            ${groups.map(g => `
                 <div class="admin-order-card">
                     <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-                        <div style="width:45px;height:45px;border-radius:12px;background:${c.gradient};display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">${c.emoji}</div>
+                        <div style="width:45px;height:45px;border-radius:12px;background:${g.gradient};display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">${g.emoji}</div>
                         <div style="flex:1;">
-                            <div style="font-size:14px;font-weight:800;">${c.title}</div>
-                            <div style="font-size:11px;color:var(--text3);">${c.category} | ৳${c.price} (আগে ৳${c.oldPrice})</div>
+                            <div style="font-size:14px;font-weight:800;">${g.title}</div>
+                            <div style="font-size:11px;color:var(--text3);">${g.category} | ৳${g.price} | 👥 ${g.members}</div>
                         </div>
                     </div>
                     <div class="row-2">
-                        <button class="btn btn-ghost" style="font-size:11px;padding:8px;" onclick="editCourse(${c.id})">✏️ এডিট</button>
-                        <button class="btn btn-danger" style="font-size:11px;padding:8px;" onclick="deleteCourse(${c.id})">🗑️ মুছুন</button>
+                        <button class="btn btn-ghost" style="font-size:11px;padding:8px;" onclick="editGroup(${g.id})">✏️ এডিট</button>
+                        <button class="btn btn-danger" style="font-size:11px;padding:8px;" onclick="deleteGroup(${g.id})">🗑️ মুছুন</button>
                     </div>
                 </div>
             `).join('')}
         `;
     }
 
-    else if (adminTab === 'addcourse') {
+    else if (adminTab === 'addgroup') {
         tc.innerHTML = `
-            <div class="add-course-form">
-                <div class="section-title" style="font-size:14px;">➕ <span class="grad-text">নতুন কোর্স যোগ</span></div>
+            <div class="add-form">
+                <div class="section-title" style="font-size:14px;">➕ <span class="grad-text">নতুন গ্রুপ যোগ</span></div>
 
-                <div class="fg"><label>📛 কোর্সের নাম *</label><input type="text" id="ac-title" placeholder="কোর্সের নাম"></div>
-                <div class="fg"><label>📝 বিস্তারিত *</label><textarea id="ac-desc" placeholder="কোর্সের বিস্তারিত বর্ণনা..."></textarea></div>
+                <div class="fg"><label>💎 গ্রুপের নাম *</label><input type="text" id="ac-title" placeholder="গ্রুপের নাম"></div>
+                <div class="fg"><label>📝 বিস্তারিত *</label><textarea id="ac-desc" placeholder="গ্রুপের বিস্তারিত বর্ণনা..."></textarea></div>
 
                 <div class="row-2">
-                    <div class="fg"><label>💰 মূল্য (৳) *</label><input type="number" id="ac-price" placeholder="500"></div>
-                    <div class="fg"><label>💸 আগের মূল্য (৳)</label><input type="number" id="ac-oldprice" placeholder="2000"></div>
+                    <div class="fg"><label>💰 মূল্য (৳) *</label><input type="number" id="ac-price" placeholder="199"></div>
+                    <div class="fg"><label>💸 আগের মূল্য (৳)</label><input type="number" id="ac-oldprice" placeholder="999"></div>
                 </div>
 
                 <div class="fg">
@@ -1961,18 +2139,24 @@ function renderAdmin() {
                     </select>
                 </div>
 
-                <div class="fg"><label>🏷️ ব্যাজ</label><input type="text" id="ac-badge" placeholder="🔥 জনপ্রিয়"></div>
+                <div class="row-2">
+                    <div class="fg"><label>👥 মেম্বার সংখ্যা</label><input type="text" id="ac-members" placeholder="15K+"></div>
+                    <div class="fg"><label>🔓 অ্যাক্সেস টাইপ</label><input type="text" id="ac-access" placeholder="লাইফটাইম"></div>
+                </div>
+
+                <div class="fg"><label>🏷️ ব্যাজ</label><input type="text" id="ac-badge" placeholder="👑 VIP"></div>
 
                 <div class="fg">
                     <label>🎨 ব্যাজ স্টাইল</label>
                     <select id="ac-badgeclass">
-                        <option value="hot">🔥 হট</option>
-                        <option value="new">✨ নতুন</option>
-                        <option value="sale">💥 সেল</option>
+                        <option value="vip">👑 VIP (সোনালি)</option>
+                        <option value="hot">🔥 হট (কমলা)</option>
+                        <option value="new">✨ নতুন (সবুজ)</option>
+                        <option value="exclusive">💎 এক্সক্লুসিভ</option>
                     </select>
                 </div>
 
-                <div class="fg"><label>😀 ইমোজি</label><input type="text" id="ac-emoji" placeholder="💻"></div>
+                <div class="fg"><label>😀 ইমোজি</label><input type="text" id="ac-emoji" placeholder="💎"></div>
 
                 <div class="fg">
                     <label>🎨 গ্র্যাডিয়েন্ট কালার</label>
@@ -1981,21 +2165,26 @@ function renderAdmin() {
                     </div>
                 </div>
 
-                <div class="fg"><label>🖼️ থাম্বনেইল URL</label><input type="text" id="ac-thumb" placeholder="https://..."></div>
+                <div class="fg"><label>🖼️ থাম্বনেইল URL</label><input type="text" id="ac-thumb" placeholder="https://i.postimg.cc/..."></div>
 
                 <div class="fg">
                     <label>📸 স্ক্রিনশট URLs (কমা দিয়ে আলাদা)</label>
                     <textarea id="ac-ss" placeholder="https://url1.jpg, https://url2.jpg" style="min-height:50px;"></textarea>
                 </div>
 
-                <div class="fg"><label>✨ ফিচারস (কমা দিয়ে)</label><input type="text" id="ac-features" placeholder="৫০+ ঘণ্টা, সার্টিফিকেট, সাপোর্ট"></div>
+                <div class="fg"><label>✨ ফিচারস (কমা দিয়ে)</label><input type="text" id="ac-features" placeholder="4K কোয়ালিটি, দৈনিক আপডেট, সাপোর্ট"></div>
 
-                <div class="row-2">
-                    <div class="fg"><label>⭐ রেটিং</label><input type="text" id="ac-rating" placeholder="4.9"></div>
-                    <div class="fg"><label>👥 শিক্ষার্থী</label><input type="text" id="ac-students" placeholder="1K+"></div>
+                <div class="fg"><label>⭐ রেটিং</label><input type="text" id="ac-rating" placeholder="4.9"></div>
+
+                <div class="fg">
+                    <label>✓ ভেরিফাইড গ্রুপ</label>
+                    <select id="ac-verified">
+                        <option value="true">✅ হ্যাঁ (ভেরিফাইড)</option>
+                        <option value="false">❌ না</option>
+                    </select>
                 </div>
 
-                <button class="btn btn-success" onclick="addCourse()">✅ কোর্স যোগ করুন</button>
+                <button class="btn btn-success" onclick="addGroup()">✅ গ্রুপ যোগ করুন</button>
             </div>
         `;
     }
@@ -2011,7 +2200,7 @@ function renderAdmin() {
                 </div>
             `).join('')}
 
-            <div class="add-course-form" style="margin-top:14px;">
+            <div class="add-form" style="margin-top:14px;">
                 <div class="section-title" style="font-size:14px;">➕ <span class="grad-text">নতুন ক্যাটাগরি</span></div>
                 <div class="fg"><label>📛 ক্যাটাগরি নাম</label><input type="text" id="newCatName" placeholder="🎵 মিউজিক"></div>
                 <div class="fg"><label>🆔 আইডি (ইংরেজিতে)</label><input type="text" id="newCatId" placeholder="music"></div>
@@ -2029,88 +2218,88 @@ function pickGradient(idx, el) {
     el.classList.add('selected');
 }
 
-function addCourse() {
+function addGroup() {
     const title = document.getElementById('ac-title').value.trim();
     const desc = document.getElementById('ac-desc').value.trim();
     const price = parseInt(document.getElementById('ac-price').value);
     const oldPrice = parseInt(document.getElementById('ac-oldprice').value) || price * 3;
     const cat = document.getElementById('ac-cat').value;
+    const members = document.getElementById('ac-members').value.trim() || '1K+';
+    const access = document.getElementById('ac-access').value.trim() || 'লাইফটাইম';
     const badge = document.getElementById('ac-badge').value.trim() || '✨ নতুন';
     const badgeClass = document.getElementById('ac-badgeclass').value;
-    const emoji = document.getElementById('ac-emoji').value.trim() || '📚';
+    const emoji = document.getElementById('ac-emoji').value.trim() || '💎';
     const thumb = document.getElementById('ac-thumb').value.trim();
     const ssRaw = document.getElementById('ac-ss').value.trim();
     const featRaw = document.getElementById('ac-features').value.trim();
     const rating = document.getElementById('ac-rating').value.trim() || '4.5';
-    const students = document.getElementById('ac-students').value.trim() || 'N/A';
+    const verified = document.getElementById('ac-verified').value === 'true';
 
     if (!title || !desc || !price) { toast('⚠️ নাম, বিস্তারিত ও মূল্য দিন!'); return; }
 
-    const newCourse = {
+    const newGroup = {
         id: Date.now(),
         title, desc, price, oldPrice, category: cat,
         badge, badgeClass,
         emoji,
         gradient: gradients[selGradientIdx] || gradients[0],
         features: featRaw ? featRaw.split(',').map(f => f.trim()) : [],
-        rating, students,
+        rating, members, access, verified,
         thumbnail: thumb,
         screenshots: ssRaw ? ssRaw.split(',').map(s => s.trim()).filter(s => s) : []
     };
 
-    courses.push(newCourse);
-    saveCourses();
-    renderCourses();
+    groups.push(newGroup);
+    saveGroups();
+    renderGroups();
     renderFeatured();
     renderCategories();
-    adminTab = 'courses';
+    adminTab = 'groups';
     renderAdmin();
-    toast('✅ কোর্স যোগ হয়েছে!');
+    toast('✅ গ্রুপ যোগ হয়েছে!');
 }
 
-function editCourse(id) {
-    const c = courses.find(x => x.id === id);
-    if (!c) return;
+function editGroup(id) {
+    const g = groups.find(x => x.id === id);
+    if (!g) return;
 
-    adminTab = 'addcourse';
+    adminTab = 'addgroup';
     renderAdmin();
 
-    // Fill form with existing data
     setTimeout(() => {
-        document.getElementById('ac-title').value = c.title;
-        document.getElementById('ac-desc').value = c.desc;
-        document.getElementById('ac-price').value = c.price;
-        document.getElementById('ac-oldprice').value = c.oldPrice;
-        document.getElementById('ac-cat').value = c.category;
-        document.getElementById('ac-badge').value = c.badge;
-        document.getElementById('ac-badgeclass').value = c.badgeClass;
-        document.getElementById('ac-emoji').value = c.emoji;
-        document.getElementById('ac-thumb').value = c.thumbnail || '';
-        document.getElementById('ac-ss').value = (c.screenshots || []).join(', ');
-        document.getElementById('ac-features').value = c.features.join(', ');
-        document.getElementById('ac-rating').value = c.rating;
-        document.getElementById('ac-students').value = c.students || '';
+        document.getElementById('ac-title').value = g.title;
+        document.getElementById('ac-desc').value = g.desc;
+        document.getElementById('ac-price').value = g.price;
+        document.getElementById('ac-oldprice').value = g.oldPrice;
+        document.getElementById('ac-cat').value = g.category;
+        document.getElementById('ac-members').value = g.members;
+        document.getElementById('ac-access').value = g.access;
+        document.getElementById('ac-badge').value = g.badge;
+        document.getElementById('ac-badgeclass').value = g.badgeClass;
+        document.getElementById('ac-emoji').value = g.emoji;
+        document.getElementById('ac-thumb').value = g.thumbnail || '';
+        document.getElementById('ac-ss').value = (g.screenshots || []).join(', ');
+        document.getElementById('ac-features').value = g.features.join(', ');
+        document.getElementById('ac-rating').value = g.rating;
+        document.getElementById('ac-verified').value = g.verified ? 'true' : 'false';
 
-        // Change button to update
-        const btn = document.querySelector('.add-course-form .btn-success');
+        const btn = document.querySelector('.add-form .btn-success');
         btn.textContent = '✏️ আপডেট করুন';
         btn.onclick = function() {
-            // Remove old
-            courses = courses.filter(x => x.id !== id);
-            // Add updated
-            addCourse();
+            groups = groups.filter(x => x.id !== id);
+            addGroup();
         };
     }, 50);
 }
 
-function deleteCourse(id) {
-    if (!confirm('এই কোর্সটি মুছে ফেলতে চান?')) return;
-    courses = courses.filter(c => c.id !== id);
-    saveCourses();
-    renderCourses();
+function deleteGroup(id) {
+    if (!confirm('এই গ্রুপটি মুছে ফেলতে চান?')) return;
+    groups = groups.filter(g => g.id !== id);
+    saveGroups();
+    renderGroups();
     renderFeatured();
     renderAdmin();
-    toast('🗑️ কোর্স মুছে ফেলা হয়েছে!');
+    toast('🗑️ গ্রুপ মুছে ফেলা হয়েছে!');
 }
 
 function addCategory() {
@@ -2137,11 +2326,15 @@ function deleteCat(id) {
 function approveO(id) {
     const inp = document.getElementById('lnk-' + id);
     const link = inp ? inp.value.trim() : '';
-    if (!link) { toast('⚠️ ড্রাইভ লিংক দিন!'); return; }
+    if (!link) { toast('⚠️ গ্রুপ ইনভাইট লিংক দিন!'); return; }
+    if (!link.includes('t.me/') && !link.includes('telegram.me/')) { 
+        toast('⚠️ সঠিক টেলিগ্রাম লিংক দিন!'); 
+        return; 
+    }
     const o = orders.find(x => x.id === id);
     if (o) {
         o.status = 'approved';
-        o.driveLink = link;
+        o.inviteLink = link;
         saveOrders();
         renderAdmin();
         sendUserLink(o);
@@ -2189,13 +2382,29 @@ function showPage(page) {
 }
 
 function contactSupport() {
-    toast('💬 টেলিগ্রামে যোগাযোগ করুন');
+    if (tg && tg.openTelegramLink) {
+        tg.openTelegramLink(`https://t.me/${CFG.supportUsername}`);
+    } else {
+        window.open(`https://t.me/${CFG.supportUsername}`, '_blank');
+    }
+    toast('💬 সাপোর্টে নিয়ে যাচ্ছি...');
+}
+
+function shareApp() {
+    const shareText = '💎 প্রিমিয়াম টেলিগ্রাম গ্রুপ পেতে এই অ্যাপ ট্রাই করুন!';
+    if (tg && tg.openTelegramLink) {
+        tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(shareText)}`);
+    } else if (navigator.share) {
+        navigator.share({ title: 'প্রিমিয়াম গ্রুপ স্টোর', text: shareText, url: window.location.href });
+    } else {
+        toast('📋 লিংক কপি করুন এবং শেয়ার করুন');
+    }
 }
 
 // ===== SAVE =====
-function saveOrders() { localStorage.setItem('cs_orders', JSON.stringify(orders)); }
-function saveCourses() { localStorage.setItem('cs_courses', JSON.stringify(courses)); }
-function saveCategories() { localStorage.setItem('cs_categories', JSON.stringify(categories)); }
+function saveOrders() { localStorage.setItem('pg_orders', JSON.stringify(orders)); }
+function saveGroups() { localStorage.setItem('pg_groups', JSON.stringify(groups)); }
+function saveCategories() { localStorage.setItem('pg_categories', JSON.stringify(categories)); }
 
 // ===== TOAST =====
 function toast(msg) {
@@ -2211,9 +2420,8 @@ function toast(msg) {
 document.getElementById('payModal').addEventListener('click', function(e) { if (e.target === this) closePayModal(); });
 document.getElementById('detailModal').addEventListener('click', function(e) { if (e.target === this) closeDetailModal(); });
 
-// Haptic
 document.addEventListener('click', function(e) {
-    if (tg?.HapticFeedback && (e.target.classList.contains('btn') || e.target.classList.contains('buy-btn') || e.target.classList.contains('nav-item'))) {
+    if (tg?.HapticFeedback && (e.target.classList.contains('btn') || e.target.classList.contains('buy-btn') || e.target.classList.contains('nav-item') || e.target.classList.contains('join-btn'))) {
         tg.HapticFeedback.impactOccurred('light');
     }
 });
