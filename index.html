@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>&#x1F48E; &#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9B8;&#x9CD;&#x99F;&#x9CB;&#x9B0;</title>
+    <title>💎 প্রিমিয়াম গ্রুপ স্টোর</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Noto Sans Bengali', 'Noto Sans', 'SolaimanLipi', 'Vrinda', Arial, sans-serif;
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -25,7 +26,6 @@
             --gold: #FCD34D;
             --gold-dark: #F59E0B;
             --rose: #FB7185;
-            
             --bg: #0A0118;
             --bg2: #14082B;
             --bg3: #1A0F35;
@@ -35,28 +35,19 @@
             --card3: #180B30;
             --glass: rgba(255,255,255,0.05);
             --glass-border: rgba(255,255,255,0.08);
-            
             --text: #FFFFFF;
             --text2: #E5E7EB;
             --text3: #9CA3AF;
             --text-muted: #6B7280;
-            
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
             --bkash: #E2136E;
             --nagad: #F6921E;
-            
             --border: rgba(168, 85, 247, 0.15);
-            --border-hover: rgba(168, 85, 247, 0.4);
             --glow1: rgba(168, 85, 247, 0.35);
             --glow2: rgba(236, 72, 153, 0.3);
             --glow3: rgba(252, 211, 77, 0.3);
-            
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-            --shadow-md: 0 8px 25px rgba(0,0,0,0.4);
-            --shadow-lg: 0 15px 40px rgba(0,0,0,0.5);
-            --shadow-glow: 0 8px 30px var(--glow1);
         }
 
         body {
@@ -68,7 +59,6 @@
             position: relative;
         }
 
-        /* ============ ANIMATED BACKGROUND ============ */
         body::before {
             content: '';
             position: fixed;
@@ -76,21 +66,8 @@
             background:
                 radial-gradient(circle at 15% 10%, rgba(168,85,247,0.18) 0%, transparent 50%),
                 radial-gradient(circle at 85% 15%, rgba(236,72,153,0.12) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(252,211,77,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 20% 90%, rgba(6,182,212,0.08) 0%, transparent 40%);
+                radial-gradient(circle at 50% 80%, rgba(252,211,77,0.08) 0%, transparent 50%);
             z-index: -2;
-            pointer-events: none;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02) 1px, transparent 1px),
-                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 40px 40px, 60px 60px;
-            z-index: -1;
             pointer-events: none;
         }
 
@@ -98,14 +75,190 @@
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary), var(--secondary)); border-radius: 4px; }
 
+        /* ============ SPLASH SCREEN ============ */
+        .splash {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #0A0118, #1a0533, #0A0118);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .splash.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .splash::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(168,85,247,0.2), transparent, rgba(236,72,153,0.15), transparent);
+            animation: splashRotate 3s linear infinite;
+        }
+
+        @keyframes splashRotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .splash-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            box-shadow: 0 20px 60px var(--glow1), inset 0 3px 10px rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 2;
+            animation: splashLogoPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes splashLogoPop {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .splash-title {
+            margin-top: 22px;
+            font-size: 26px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--gold), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            z-index: 2;
+            position: relative;
+            animation: splashText 0.8s 0.3s both;
+            letter-spacing: 0.5px;
+        }
+
+        .splash-subtitle {
+            margin-top: 6px;
+            font-size: 12px;
+            color: var(--text3);
+            z-index: 2;
+            position: relative;
+            font-weight: 600;
+            animation: splashText 0.8s 0.5s both;
+        }
+
+        @keyframes splashText {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .splash-loader {
+            margin-top: 30px;
+            width: 60px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            z-index: 2;
+            position: relative;
+        }
+
+        .splash-loader::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 40%; height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            animation: loaderMove 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loaderMove {
+            0% { left: -40%; }
+            100% { left: 100%; }
+        }
+
+        .splash-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+        }
+
+        .splash-orb.s1 { width: 150px; height: 150px; background: var(--primary); top: 10%; left: 10%; animation: orbFloat 4s ease-in-out infinite; }
+        .splash-orb.s2 { width: 100px; height: 100px; background: var(--secondary); bottom: 15%; right: 15%; animation: orbFloat 4s ease-in-out infinite 1s; }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0,0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        /* ============ TOP TABS ============ */
+        .top-tabs {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 1, 24, 0.9);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            z-index: 100;
+            padding: 12px 12px 10px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .top-tab-list {
+            display: flex;
+            gap: 8px;
+            background: rgba(30,18,64,0.5);
+            padding: 5px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .top-tab {
+            flex: 1;
+            padding: 10px 8px;
+            text-align: center;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text3);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            position: relative;
+        }
+
+        .top-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px var(--glow1);
+        }
+
+        .top-tab-icon { font-size: 15px; }
+
+        .top-tab-badge {
+            background: var(--danger);
+            color: white;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 1px 5px;
+            border-radius: 10px;
+            margin-left: 3px;
+        }
+
         /* ============ HEADER ============ */
         .header {
             background: linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #1a0533 100%);
-            padding: 28px 20px 24px;
+            padding: 22px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            border-bottom: 1px solid var(--border);
         }
 
         .header::before {
@@ -113,16 +266,7 @@
             position: absolute;
             top: -50%; left: -50%;
             width: 200%; height: 200%;
-            background: conic-gradient(
-                from 0deg, 
-                transparent, 
-                rgba(168,85,247,0.15), 
-                transparent, 
-                rgba(236,72,153,0.12), 
-                transparent, 
-                rgba(252,211,77,0.1), 
-                transparent
-            );
+            background: conic-gradient(from 0deg, transparent, rgba(168,85,247,0.15), transparent, rgba(236,72,153,0.12), transparent);
             animation: headerRotate 25s linear infinite;
         }
 
@@ -130,60 +274,44 @@
             to { transform: rotate(360deg); }
         }
 
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
+        .header-content { position: relative; z-index: 2; }
 
         .header-logo {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            font-size: 32px;
-            margin-bottom: 12px;
-            box-shadow: 0 8px 25px var(--glow1), inset 0 2px 5px rgba(255,255,255,0.2);
-            position: relative;
+            border-radius: 18px;
+            font-size: 28px;
+            margin-bottom: 10px;
+            box-shadow: 0 8px 25px var(--glow1);
             animation: logoFloat 3s ease-in-out infinite;
         }
 
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .header-logo::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            filter: blur(15px);
-            opacity: 0.5;
-            z-index: -1;
+            50% { transform: translateY(-4px); }
         }
 
         .header h1 {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 900;
             background: linear-gradient(135deg, #fff 0%, var(--gold) 50%, var(--primary-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
+            margin-bottom: 3px;
         }
 
         .header p {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text2);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
             font-weight: 500;
         }
 
@@ -195,14 +323,8 @@
             animation: orbFloat 8s ease-in-out infinite;
         }
 
-        .header-orb.o1 { width: 120px; height: 120px; background: var(--primary); top: -40px; right: -30px; animation-delay: 0s; }
-        .header-orb.o2 { width: 80px; height: 80px; background: var(--secondary); bottom: -25px; left: 5%; animation-delay: 2s; }
-        .header-orb.o3 { width: 60px; height: 60px; background: var(--gold); top: 15px; left: 25%; animation-delay: 4s; }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(15px, -10px) scale(1.1); }
-        }
+        .header-orb.o1 { width: 100px; height: 100px; background: var(--primary); top: -30px; right: -20px; }
+        .header-orb.o2 { width: 70px; height: 70px; background: var(--secondary); bottom: -20px; left: 5%; }
 
         /* ============ BOTTOM NAV ============ */
         .bottom-nav {
@@ -218,7 +340,7 @@
             backdrop-filter: blur(30px) saturate(180%);
             -webkit-backdrop-filter: blur(30px) saturate(180%);
             border-radius: 22px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
         .nav-item {
@@ -232,7 +354,6 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 16px;
             position: relative;
-            overflow: hidden;
         }
 
         .nav-item.active {
@@ -250,26 +371,22 @@
             height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 0 0 5px 5px;
-            box-shadow: 0 0 10px var(--glow1);
         }
 
         .nav-icon {
             font-size: 22px;
             margin-bottom: 4px;
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            filter: grayscale(0.5);
         }
 
         .nav-item.active .nav-icon {
             transform: scale(1.15) translateY(-2px);
-            filter: grayscale(0);
         }
 
         .nav-label {
             font-size: 10px;
             font-weight: 700;
             color: var(--text3);
-            transition: color 0.3s;
         }
 
         .nav-item.active .nav-label {
@@ -290,18 +407,12 @@
             min-width: 18px;
             text-align: center;
             box-shadow: 0 2px 10px rgba(239,68,68,0.5);
-            animation: badgePulse 2s infinite;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { transform: translateX(16px) scale(1); }
-            50% { transform: translateX(16px) scale(1.1); }
         }
 
         /* ============ PAGES ============ */
         .page {
             display: none;
-            padding: 18px 15px;
+            padding: 16px 12px;
             animation: pageIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -314,19 +425,19 @@
 
         /* ============ SECTION TITLE ============ */
         .section-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            position: relative;
+            padding: 0 4px;
         }
 
         .section-title::before {
             content: '';
             width: 4px;
-            height: 20px;
+            height: 18px;
             background: linear-gradient(180deg, var(--primary), var(--secondary));
             border-radius: 4px;
             box-shadow: 0 0 10px var(--glow1);
@@ -350,61 +461,48 @@
         .welcome-banner {
             background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(236,72,153,0.08));
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 18px;
-            margin-bottom: 18px;
+            border-radius: 20px;
+            padding: 16px;
+            margin: 0 4px 15px;
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
         }
 
-        .welcome-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%; right: -50%;
-            width: 100%; height: 200%;
-            background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
-        }
-
         .welcome-avatar {
-            width: 52px; height: 52px;
+            width: 45px; height: 45px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             flex-shrink: 0;
             overflow: hidden;
             border: 2px solid rgba(168,85,247,0.4);
             box-shadow: 0 4px 15px var(--glow1);
-            position: relative;
         }
 
         .welcome-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-        .welcome-text { position: relative; flex: 1; }
+        .welcome-text { flex: 1; }
         .welcome-text h3 { 
-            font-size: 15px; 
+            font-size: 14px; 
             font-weight: 700; 
-            margin-bottom: 3px;
-            background: linear-gradient(135deg, #fff, var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 2px;
         }
         .welcome-text p { font-size: 11px; color: var(--text3); font-weight: 500; }
 
         /* ============ HERO CARD ============ */
         .hero-card {
             background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #EC4899 100%);
-            border-radius: 24px;
-            padding: 22px;
-            margin-bottom: 18px;
+            border-radius: 22px;
+            padding: 20px;
+            margin: 0 4px 16px;
             position: relative;
             overflow: hidden;
             color: #000;
@@ -424,38 +522,29 @@
             animation: shimmer 4s linear infinite;
         }
 
-        .hero-card::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 100px; height: 100px;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
         @keyframes shimmer {
             0% { transform: translate(-25%, -25%) rotate(0deg); }
             100% { transform: translate(-25%, -25%) rotate(360deg); }
         }
 
         .hero-content { position: relative; z-index: 2; }
-        .hero-content .hero-label {
+        .hero-label {
             display: inline-block;
-            background: rgba(0,0,0,0.15);
+            background: rgba(0,0,0,0.2);
             padding: 4px 10px;
             border-radius: 20px;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 800;
             margin-bottom: 8px;
             letter-spacing: 0.5px;
         }
         .hero-content h2 { 
-            font-size: 22px; 
+            font-size: 20px; 
             font-weight: 900; 
-            margin-bottom: 6px; 
-            line-height: 1.2;
+            margin-bottom: 5px;
         }
         .hero-content p { 
-            font-size: 12px; 
+            font-size: 11px; 
             opacity: 0.85; 
             font-weight: 600; 
             margin-bottom: 12px;
@@ -463,24 +552,23 @@
         .hero-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             background: rgba(0,0,0,0.85);
             color: #FCD34D;
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-size: 12px;
+            padding: 9px 16px;
+            border-radius: 11px;
+            font-size: 11px;
             font-weight: 800;
             border: none;
             cursor: pointer;
-            transition: all 0.3s;
+            font-family: inherit;
         }
-        .hero-btn:active { transform: scale(0.95); }
 
         .hero-icon {
             position: absolute;
-            right: 15px;
-            bottom: -10px;
-            font-size: 90px;
+            right: 12px;
+            bottom: -8px;
+            font-size: 80px;
             z-index: 1;
             opacity: 0.35;
             transform: rotate(-15deg);
@@ -488,18 +576,18 @@
 
         /* ============ SEARCH ============ */
         .search-box {
-            margin-bottom: 15px;
+            margin: 0 4px 12px;
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-            padding: 14px 18px 14px 44px;
-            border-radius: 16px;
+            padding: 12px 16px 12px 40px;
+            border-radius: 14px;
             border: 1px solid var(--glass-border);
             background: rgba(30,18,64,0.5);
             color: var(--text);
-            font-size: 14px;
+            font-size: 13px;
             font-family: inherit;
             outline: none;
             transition: all 0.3s;
@@ -509,29 +597,28 @@
 
         .search-box input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px var(--glow1), 0 0 20px var(--glow1);
-            background: rgba(30,18,64,0.7);
+            box-shadow: 0 0 0 3px var(--glow1);
         }
 
         .search-box input::placeholder { color: var(--text-muted); }
         
         .search-box::before {
-            content: '&#x1F50D;';
+            content: '🔍';
             position: absolute;
-            left: 14px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 16px;
+            font-size: 14px;
             opacity: 0.7;
         }
 
         /* ============ CATEGORY FILTERS ============ */
         .category-filters {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             overflow-x: auto;
-            padding-bottom: 12px;
-            margin-bottom: 16px;
+            padding: 0 4px 10px;
+            margin-bottom: 14px;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -539,186 +626,163 @@
         .category-filters::-webkit-scrollbar { display: none; }
 
         .cat-btn {
-            padding: 9px 18px;
-            border-radius: 22px;
+            padding: 8px 15px;
+            border-radius: 20px;
             border: 1px solid var(--glass-border);
             background: rgba(30,18,64,0.5);
             color: var(--text3);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             font-family: inherit;
             cursor: pointer;
             white-space: nowrap;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
             backdrop-filter: blur(10px);
         }
-
-        .cat-btn:active { transform: scale(0.95); }
 
         .cat-btn.active {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border-color: transparent;
-            box-shadow: 0 4px 20px var(--glow1);
-            transform: scale(1.05);
+            box-shadow: 0 4px 15px var(--glow1);
         }
 
-        /* ============ GROUP CARDS ============ */
+        /* ============ GROUP GRID - 2 COLUMNS ============ */
         .group-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
+            padding: 0 4px;
         }
 
         .group-card {
             background: linear-gradient(135deg, rgba(30,18,64,0.7), rgba(24,11,48,0.7));
-            border-radius: 22px;
+            border-radius: 18px;
             overflow: hidden;
             border: 1px solid var(--glass-border);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             backdrop-filter: blur(10px);
             cursor: pointer;
         }
 
-        .group-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 22px;
-            padding: 1px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--gold));
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s;
-            pointer-events: none;
+        .group-card:active { 
+            transform: scale(0.97);
+            box-shadow: 0 10px 30px rgba(168,85,247,0.3);
         }
 
-        .group-card:active::before { opacity: 1; }
-        .group-card:active { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(168,85,247,0.3); }
-
-        .group-banner {
+        /* 3:4 aspect ratio thumbnail */
+        .group-thumb {
             width: 100%;
-            aspect-ratio: 3 / 4;
-            min-height: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            aspect-ratio: 3/4;
             position: relative;
             overflow: hidden;
-            background-position: center;
             background-size: cover;
-        }
-        .group-banner > img { width:100%; height:100%; object-fit:cover; display:block; position:absolute; inset:0; }
-        .group-banner.no-thumb::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 25% 20%,rgba(255,255,255,.18),transparent 42%), linear-gradient(135deg,rgba(0,0,0,.05),rgba(0,0,0,.28)); }
-
-
-        .group-banner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 60%);
+            background-position: center;
         }
 
-        .group-banner::after {
+        .group-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .group-thumb::after {
             content: '';
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            height: 60px;
-            background: linear-gradient(transparent, rgba(30,18,64,0.9));
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            pointer-events: none;
         }
 
-        .c-badge {
+        .thumb-badge {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 6px 13px;
-            border-radius: 25px;
-            font-size: 10px;
+            top: 8px;
+            right: 8px;
+            padding: 4px 9px;
+            border-radius: 20px;
+            font-size: 9px;
             font-weight: 800;
             z-index: 2;
             backdrop-filter: blur(15px);
-            letter-spacing: 0.3px;
             border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        .c-badge.vip {
+        .thumb-badge.vip {
             background: linear-gradient(135deg, rgba(252,211,77,0.95), rgba(245,158,11,0.95));
             color: #000;
         }
-        .c-badge.hot { 
+        .thumb-badge.hot { 
             background: linear-gradient(135deg, rgba(245,158,11,0.95), rgba(249,115,22,0.95));
             color: #fff;
         }
-        .c-badge.new { 
+        .thumb-badge.new { 
             background: linear-gradient(135deg, rgba(16,185,129,0.95), rgba(6,182,212,0.95));
             color: #fff;
         }
-        .c-badge.exclusive {
+        .thumb-badge.exclusive {
             background: linear-gradient(135deg, rgba(236,72,153,0.95), rgba(168,85,247,0.95));
             color: #fff;
         }
 
-        .group-info { padding: 16px 18px 18px; }
-
-        .group-info { padding: 11px; }
-        .group-title {
-            font-size: 16px;
+        .thumb-access {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            font-size: 9px;
             font-weight: 800;
-            margin-bottom: 8px;
-            line-height: 1.4;
+            color: var(--gold);
+            background: rgba(0,0,0,0.6);
+            padding: 3px 8px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            z-index: 2;
             display: flex;
             align-items: center;
-            gap: 6px;
-            color: #fff;
+            gap: 3px;
+        }
+
+        .group-info { padding: 12px; }
+
+        .group-title {
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 34px;
         }
 
         .verified-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 20px;
-            height: 20px;
+            width: 14px;
+            height: 14px;
             background: linear-gradient(135deg, #4facfe, #00f2fe);
             border-radius: 50%;
-            font-size: 11px;
+            font-size: 8px;
             color: white;
-            flex-shrink: 0;
             font-weight: 900;
-            box-shadow: 0 2px 8px rgba(79,172,254,0.4);
+            margin-left: 3px;
+            vertical-align: middle;
         }
 
-        .group-desc {
-            font-size: 12px;
-            color: var(--text2);
-            margin-bottom: 14px;
-            line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-weight: 500;
-        }
-
-        .group-bottom {
+        .price-row {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .c-price-wrap { 
-            display: flex; 
-            align-items: baseline; 
-            gap: 6px; 
+            align-items: baseline;
+            gap: 5px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
         }
 
         .c-price {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 900;
             background: linear-gradient(135deg, var(--gold), var(--secondary));
             -webkit-background-clip: text;
@@ -728,107 +792,76 @@
         }
 
         .c-price-old {
-            font-size: 13px;
+            font-size: 11px;
             color: var(--text-muted);
             text-decoration: line-through;
             font-weight: 600;
         }
 
-        .c-lifetime {
-            font-size: 10px;
-            color: var(--success);
-            font-weight: 800;
-            background: rgba(16,185,129,0.15);
-            padding: 5px 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(16,185,129,0.25);
-            white-space: nowrap;
-        }
-
         .buy-btn {
             width: 100%;
-            padding: 14px;
+            padding: 10px;
             border: none;
-            border-radius: 14px;
-            font-size: 14px;
+            border-radius: 11px;
+            font-size: 11px;
             font-weight: 800;
             font-family: inherit;
             cursor: pointer;
             color: white;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            margin-top: 14px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 6px 20px var(--glow1);
-            letter-spacing: 0.3px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px var(--glow1);
+            letter-spacing: 0.2px;
         }
 
-        .buy-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-            transition: left 0.6s;
-        }
-
-        .buy-btn:hover::before { left: 100%; }
-        .buy-btn:active { 
-            transform: scale(0.97); 
-            box-shadow: 0 3px 10px var(--glow1);
-        }
+        .buy-btn:active { transform: scale(0.95); }
 
         /* ============ GROUP DETAIL MODAL ============ */
         .detail-banner {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 70px;
+            width: 100%;
+            aspect-ratio: 3/4;
+            max-height: 350px;
             position: relative;
+            background-size: cover;
+            background-position: center;
         }
 
-        .detail-banner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 60%);
+        .detail-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .detail-banner::after {
             content: '';
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            height: 80px;
+            height: 60px;
             background: linear-gradient(transparent, var(--bg2));
         }
 
         .detail-screenshots {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             overflow-x: auto;
-            padding-bottom: 10px;
-            margin: 15px 0;
+            padding-bottom: 8px;
+            margin: 12px 0;
         }
 
         .detail-screenshots::-webkit-scrollbar { display: none; }
 
         .detail-ss {
-            min-width: 200px;
-            height: 130px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: var(--text3);
+            min-width: 170px;
+            aspect-ratio: 3/4;
+            border-radius: 12px;
             border: 1px solid var(--glass-border);
             background: var(--card-solid);
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: var(--text3);
         }
 
         .detail-ss img {
@@ -837,22 +870,22 @@
 
         .detail-info-row {
             display: flex;
-            gap: 10px;
-            margin-bottom: 14px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .detail-info-item {
             flex: 1;
             background: linear-gradient(135deg, rgba(30,18,64,0.6), rgba(24,11,48,0.6));
-            border-radius: 14px;
-            padding: 14px 10px;
+            border-radius: 12px;
+            padding: 12px 8px;
             text-align: center;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
         }
 
         .detail-info-item .dii-val {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 900;
             background: linear-gradient(135deg, var(--primary-light), var(--secondary));
             -webkit-background-clip: text;
@@ -861,9 +894,9 @@
         }
 
         .detail-info-item .dii-label {
-            font-size: 10px;
+            font-size: 9px;
             color: var(--text3);
-            margin-top: 4px;
+            margin-top: 3px;
             font-weight: 600;
         }
 
@@ -883,7 +916,7 @@
 
         .modal {
             background: linear-gradient(180deg, var(--bg2), var(--bg));
-            border-radius: 28px 28px 0 0;
+            border-radius: 26px 26px 0 0;
             width: 100%;
             max-width: 500px;
             max-height: 93vh;
@@ -898,7 +931,7 @@
         }
 
         .modal-handle {
-            width: 42px;
+            width: 40px;
             height: 4px;
             background: rgba(255,255,255,0.2);
             border-radius: 2px;
@@ -906,76 +939,67 @@
         }
 
         .modal-header {
-            padding: 8px 20px 16px;
+            padding: 8px 20px 14px;
             text-align: center;
         }
 
-        .modal-header h2 {
-            font-size: 20px;
-            font-weight: 800;
-        }
-
-        .modal-body { padding: 0 20px 30px; }
+        .modal-header h2 { font-size: 18px; font-weight: 800; }
+        .modal-body { padding: 0 18px 25px; }
 
         /* ============ PAYMENT ============ */
         .pay-methods {
             display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 18px;
         }
 
         .pay-method {
             flex: 1;
-            padding: 18px 10px;
-            border-radius: 16px;
+            padding: 16px 10px;
+            border-radius: 14px;
             text-align: center;
             cursor: pointer;
             border: 2px solid var(--glass-border);
             background: linear-gradient(135deg, rgba(30,18,64,0.6), rgba(24,11,48,0.6));
             transition: all 0.3s;
             position: relative;
-            backdrop-filter: blur(10px);
         }
 
         .pay-method.bk.selected {
             border-color: var(--bkash);
-            box-shadow: 0 0 25px rgba(226,19,110,0.25);
+            box-shadow: 0 0 20px rgba(226,19,110,0.25);
             background: linear-gradient(135deg, rgba(226,19,110,0.15), rgba(226,19,110,0.05));
         }
 
         .pay-method.ng.selected {
             border-color: var(--nagad);
-            box-shadow: 0 0 25px rgba(246,146,30,0.25);
+            box-shadow: 0 0 20px rgba(246,146,30,0.25);
             background: linear-gradient(135deg, rgba(246,146,30,0.15), rgba(246,146,30,0.05));
         }
 
-        .pay-method .pm-icon { font-size: 34px; margin-bottom: 8px; }
-        .pay-method .pm-name { font-size: 14px; font-weight: 800; }
+        .pay-method .pm-icon { font-size: 30px; margin-bottom: 6px; }
+        .pay-method .pm-name { font-size: 13px; font-weight: 800; }
         
         .pay-method .pm-check {
             position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 22px;
-            height: 22px;
+            top: 6px; right: 6px;
+            width: 20px; height: 20px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--success), var(--accent));
             display: none;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: 900;
+            font-size: 11px;
             color: white;
-            box-shadow: 0 2px 10px rgba(16,185,129,0.4);
+            font-weight: 900;
         }
 
         .pay-method.selected .pm-check { display: flex; }
 
         .pay-box {
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 16px;
-            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 14px;
         }
 
         .pay-box.bk-box {
@@ -989,45 +1013,42 @@
         }
 
         .pay-number {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 900;
             letter-spacing: 2px;
             font-family: 'Courier New', monospace;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .copy-btn {
             border: none;
             color: white;
-            padding: 8px 18px;
-            border-radius: 10px;
-            font-size: 12px;
+            padding: 7px 15px;
+            border-radius: 9px;
+            font-size: 11px;
             font-weight: 800;
             font-family: inherit;
             cursor: pointer;
-            transition: transform 0.2s;
         }
 
-        .copy-btn:active { transform: scale(0.95); }
-
         /* ============ FORM ============ */
-        .fg { margin-bottom: 16px; }
+        .fg { margin-bottom: 14px; }
         .fg label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: var(--text2);
         }
 
         .fg input, .fg select, .fg textarea {
             width: 100%;
-            padding: 14px 16px;
-            border-radius: 14px;
+            padding: 12px 14px;
+            border-radius: 12px;
             border: 1px solid var(--glass-border);
             background: rgba(30,18,64,0.5);
             color: var(--text);
-            font-size: 14px;
+            font-size: 13px;
             outline: none;
             transition: all 0.3s;
             font-family: inherit;
@@ -1038,26 +1059,23 @@
         .fg input:focus, .fg select:focus, .fg textarea:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px var(--glow1);
-            background: rgba(30,18,64,0.8);
         }
 
         .fg input::placeholder, .fg textarea::placeholder { color: var(--text-muted); }
-        .fg textarea { resize: vertical; min-height: 90px; }
+        .fg textarea { resize: vertical; min-height: 80px; }
 
         .btn {
             width: 100%;
-            padding: 15px;
+            padding: 13px;
             border: none;
-            border-radius: 14px;
-            font-size: 15px;
+            border-radius: 13px;
+            font-size: 14px;
             font-weight: 800;
             font-family: inherit;
             cursor: pointer;
             color: white;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            letter-spacing: 0.3px;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s;
+            letter-spacing: 0.2px;
         }
 
         .btn:active { transform: scale(0.97); }
@@ -1076,7 +1094,6 @@
         .btn-ghost {
             background: rgba(255,255,255,0.06);
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
         }
         
         .btn-danger {
@@ -1084,29 +1101,23 @@
             box-shadow: 0 6px 20px rgba(239,68,68,0.3);
         }
         
-        .btn-bkash { background: var(--bkash); box-shadow: 0 4px 15px rgba(226,19,110,0.3); }
-        .btn-nagad { background: var(--nagad); box-shadow: 0 4px 15px rgba(246,146,30,0.3); }
-        .btn-gold {
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: #000;
-            box-shadow: 0 6px 20px var(--glow3);
-        }
+        .btn-bkash { background: var(--bkash); }
+        .btn-nagad { background: var(--nagad); }
 
         /* ============ STEPS ============ */
         .steps {
             display: flex;
             justify-content: center;
             gap: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
         }
 
         .steps::before {
             content: '';
             position: absolute;
-            top: 20px;
-            left: 25%;
-            right: 25%;
+            top: 18px;
+            left: 25%; right: 25%;
             height: 2px;
             background: rgba(255,255,255,0.08);
         }
@@ -1114,24 +1125,23 @@
         .step { text-align: center; z-index: 1; }
 
         .step-dot {
-            width: 40px;
-            height: 40px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             background: var(--card-solid);
             border: 2px solid rgba(255,255,255,0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 8px;
-            font-size: 14px;
+            margin: 0 auto 6px;
+            font-size: 13px;
             font-weight: 900;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.4s;
         }
 
         .step.active .step-dot {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-color: transparent;
-            box-shadow: 0 4px 20px var(--glow1);
+            box-shadow: 0 4px 15px var(--glow1);
             transform: scale(1.1);
         }
         
@@ -1147,44 +1157,42 @@
         .info-box {
             background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
             border: 1px solid rgba(245,158,11,0.2);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 14px;
         }
 
         .info-box h4 {
             color: var(--warning);
-            font-size: 13px;
-            margin-bottom: 10px;
+            font-size: 12px;
+            margin-bottom: 8px;
             font-weight: 800;
         }
         
-        .info-box ol { padding-left: 20px; }
+        .info-box ol { padding-left: 18px; }
         .info-box li {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text2);
-            margin-bottom: 6px;
-            line-height: 1.6;
+            margin-bottom: 5px;
+            line-height: 1.5;
             font-weight: 500;
         }
 
         /* ============ ORDER CARDS ============ */
         .order-card {
             background: linear-gradient(135deg, rgba(30,18,64,0.6), rgba(24,11,48,0.6));
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 14px;
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 12px;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
-            transition: all 0.3s;
         }
 
         .order-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         .order-id {
@@ -1195,103 +1203,75 @@
         }
 
         .o-status {
-            padding: 5px 13px;
-            border-radius: 22px;
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 10px;
             font-weight: 800;
         }
 
         .o-status.pending {
-            background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+            background: rgba(245,158,11,0.15);
             color: var(--warning);
             border: 1px solid rgba(245,158,11,0.25);
         }
         
         .o-status.approved {
-            background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+            background: rgba(16,185,129,0.15);
             color: var(--success);
             border: 1px solid rgba(16,185,129,0.25);
         }
         
         .o-status.rejected {
-            background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.05));
+            background: rgba(239,68,68,0.15);
             color: var(--danger);
             border: 1px solid rgba(239,68,68,0.25);
         }
 
-        .order-name {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-        
-        .order-meta {
-            font-size: 11px;
-            color: var(--text2);
-            line-height: 2;
-            font-weight: 500;
-        }
+        .order-name { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+        .order-meta { font-size: 11px; color: var(--text2); line-height: 1.9; font-weight: 500; }
 
         .join-btn {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border: none;
-            border-radius: 14px;
-            font-size: 14px;
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: 800;
             font-family: inherit;
             cursor: pointer;
             color: white;
             background: linear-gradient(135deg, #229ED9, #2AABEE);
-            margin-top: 14px;
+            margin-top: 12px;
             box-shadow: 0 6px 20px rgba(34,158,217,0.35);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            transition: all 0.3s;
+            gap: 6px;
         }
-
-        .join-btn:active { transform: scale(0.97); }
 
         /* ============ PROFILE ============ */
         .profile-card {
             text-align: center;
-            padding: 30px 20px;
+            padding: 26px 20px;
             background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(236,72,153,0.08));
-            border-radius: 26px;
-            margin-bottom: 18px;
+            border-radius: 24px;
+            margin: 0 4px 16px;
             border: 1px solid var(--border);
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
         }
 
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(168,85,247,0.15) 0%, transparent 50%);
-            animation: profileGlow 6s ease-in-out infinite;
-        }
-
-        @keyframes profileGlow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
         .p-avatar {
-            width: 100px;
-            height: 100px;
+            width: 90px; height: 90px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 42px;
+            font-size: 38px;
             font-weight: 700;
-            margin: 0 auto 16px;
+            margin: 0 auto 14px;
             border: 3px solid rgba(255,255,255,0.15);
             box-shadow: 0 10px 35px var(--glow1);
             overflow: hidden;
@@ -1302,41 +1282,24 @@
 
         .p-online {
             position: absolute;
-            bottom: 4px;
-            right: 4px;
-            width: 16px;
-            height: 16px;
+            bottom: 3px; right: 3px;
+            width: 15px; height: 15px;
             background: var(--success);
             border-radius: 50%;
             border: 3px solid var(--bg2);
-            box-shadow: 0 0 10px var(--success);
         }
 
         .p-name {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
-            position: relative;
             background: linear-gradient(135deg, #fff, var(--primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .p-username {
-            font-size: 13px;
-            color: var(--primary-light);
-            position: relative;
-            margin-top: 4px;
-            font-weight: 600;
-        }
-        
-        .p-id {
-            font-size: 11px;
-            color: var(--text-muted);
-            position: relative;
-            margin-top: 4px;
-            font-family: monospace;
-        }
+        .p-username { font-size: 12px; color: var(--primary-light); margin-top: 3px; font-weight: 600; }
+        .p-id { font-size: 10px; color: var(--text-muted); margin-top: 3px; font-family: monospace; }
 
         .p-vip {
             display: inline-block;
@@ -1345,34 +1308,28 @@
             font-size: 10px;
             font-weight: 900;
             padding: 4px 12px;
-            border-radius: 22px;
-            margin-top: 10px;
-            position: relative;
+            border-radius: 20px;
+            margin-top: 8px;
             box-shadow: 0 4px 15px var(--glow3);
-            letter-spacing: 0.5px;
         }
 
         .p-stats {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
-            margin-bottom: 18px;
+            margin: 0 4px 16px;
         }
 
         .p-stat {
             background: linear-gradient(135deg, rgba(30,18,64,0.6), rgba(24,11,48,0.6));
-            border-radius: 16px;
-            padding: 16px 8px;
+            border-radius: 14px;
+            padding: 14px 6px;
             text-align: center;
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s;
         }
 
-        .p-stat:active { transform: scale(0.98); }
-
         .p-stat-num {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             background: linear-gradient(135deg, var(--primary-light), var(--secondary));
             -webkit-background-clip: text;
@@ -1380,88 +1337,102 @@
             background-clip: text;
         }
 
-        .p-stat-label {
-            font-size: 10px;
-            color: var(--text3);
-            margin-top: 4px;
-            font-weight: 600;
-        }
+        .p-stat-label { font-size: 10px; color: var(--text3); margin-top: 3px; font-weight: 600; }
 
         .p-menu {
             background: linear-gradient(135deg, rgba(30,18,64,0.6), rgba(24,11,48,0.6));
-            border-radius: 20px;
+            border-radius: 18px;
             overflow: hidden;
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
+            margin: 0 4px;
         }
 
         .p-menu-item {
             display: flex;
             align-items: center;
-            padding: 16px 20px;
+            padding: 14px 16px;
             cursor: pointer;
             transition: background 0.25s;
             border-bottom: 1px solid rgba(255,255,255,0.03);
+            position: relative;
         }
 
         .p-menu-item:last-child { border-bottom: none; }
         .p-menu-item:active { background: rgba(168,85,247,0.08); }
 
         .pmi-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            width: 36px; height: 36px;
+            border-radius: 11px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            margin-right: 14px;
+            font-size: 16px;
+            margin-right: 12px;
         }
 
         .pmi-text { flex: 1; }
-        .pmi-text h4 { font-size: 14px; font-weight: 700; }
-        .pmi-text p { font-size: 11px; color: var(--text3); margin-top: 2px; font-weight: 500; }
-        .pmi-arrow { color: var(--text-muted); font-size: 16px; }
+        .pmi-text h4 { font-size: 13px; font-weight: 700; }
+        .pmi-text p { font-size: 10px; color: var(--text3); margin-top: 2px; font-weight: 500; }
+        .pmi-arrow { color: var(--text-muted); font-size: 15px; }
+
+        /* Live chat pulse dot */
+        .live-dot {
+            position: relative;
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            margin-left: 6px;
+        }
+
+        .live-dot::before {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--success);
+            opacity: 0.4;
+            animation: livePulse 1.5s infinite;
+        }
+
+        @keyframes livePulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(2); opacity: 0; }
+        }
 
         /* ============ ADMIN ============ */
         .admin-card {
-            max-width: 360px;
-            margin: 40px auto;
+            max-width: 340px;
+            margin: 30px auto;
             background: linear-gradient(135deg, rgba(30,18,64,0.7), rgba(24,11,48,0.7));
-            border-radius: 24px;
-            padding: 30px;
+            border-radius: 22px;
+            padding: 26px;
             text-align: center;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(15px);
-            box-shadow: var(--shadow-lg);
         }
 
         .admin-card .a-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
+            font-size: 45px;
+            margin-bottom: 12px;
             display: inline-block;
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
         }
 
         .admin-tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 18px;
+            gap: 6px;
+            margin-bottom: 16px;
             overflow-x: auto;
-            padding-bottom: 5px;
+            padding-bottom: 4px;
         }
 
         .admin-tabs::-webkit-scrollbar { display: none; }
 
         .a-tab {
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-size: 12px;
+            padding: 9px 15px;
+            border-radius: 10px;
+            font-size: 11px;
             font-weight: 800;
             font-family: inherit;
             cursor: pointer;
@@ -1470,90 +1441,78 @@
             border: 1px solid var(--glass-border);
             white-space: nowrap;
             transition: all 0.3s;
-            backdrop-filter: blur(10px);
         }
 
         .a-tab.active {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border-color: transparent;
-            box-shadow: 0 4px 15px var(--glow1);
         }
 
         .admin-order-card {
             background: linear-gradient(135deg, rgba(30,18,64,0.6), rgba(24,11,48,0.6));
-            border-radius: 18px;
-            padding: 18px;
-            margin-bottom: 14px;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
         }
 
-        .a-actions { display: flex; gap: 8px; margin-top: 14px; }
+        .a-actions { display: flex; gap: 8px; margin-top: 12px; }
 
         .a-actions button {
             flex: 1;
-            padding: 11px;
+            padding: 10px;
             border: none;
-            border-radius: 12px;
-            font-size: 12px;
+            border-radius: 11px;
+            font-size: 11px;
             font-weight: 800;
             font-family: inherit;
             cursor: pointer;
             color: white;
-            transition: transform 0.2s;
         }
 
         .a-actions .a-approve {
             background: linear-gradient(135deg, var(--success), #059669);
-            box-shadow: 0 4px 15px rgba(16,185,129,0.3);
         }
         
         .a-actions .a-reject {
             background: linear-gradient(135deg, var(--danger), #DC2626);
-            box-shadow: 0 4px 15px rgba(239,68,68,0.3);
         }
-        
-        .a-actions button:active { transform: scale(0.95); }
 
         .a-link-input {
             width: 100%;
-            padding: 12px 14px;
-            border-radius: 12px;
+            padding: 11px 12px;
+            border-radius: 11px;
             border: 1px solid var(--glass-border);
             background: rgba(24,11,48,0.7);
             color: var(--text);
-            font-size: 12px;
-            margin-top: 12px;
+            font-size: 11px;
+            margin-top: 10px;
             outline: none;
             font-family: inherit;
-            font-weight: 500;
         }
 
         .stats-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 18px;
         }
 
         .s-card {
             background: linear-gradient(135deg, rgba(30,18,64,0.6), rgba(24,11,48,0.6));
-            border-radius: 16px;
-            padding: 18px;
+            border-radius: 14px;
+            padding: 16px;
             text-align: center;
             border: 1px solid var(--glass-border);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
         }
 
         .s-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 3px;
         }
 
@@ -1562,90 +1521,67 @@
         .s-card:nth-child(3)::before { background: linear-gradient(90deg, var(--danger), var(--warning)); }
         .s-card:nth-child(4)::before { background: linear-gradient(90deg, var(--gold), var(--secondary)); }
 
-        .s-num { font-size: 26px; font-weight: 900; }
+        .s-num { font-size: 22px; font-weight: 900; }
         .s-card:nth-child(1) .s-num { color: var(--warning); }
         .s-card:nth-child(2) .s-num { color: var(--success); }
         .s-card:nth-child(3) .s-num { color: var(--danger); }
         .s-card:nth-child(4) .s-num { color: var(--gold); }
-        .s-label { font-size: 11px; color: var(--text3); margin-top: 5px; font-weight: 700; }
+        .s-label { font-size: 10px; color: var(--text3); margin-top: 4px; font-weight: 700; }
 
-        /* ============ ADD FORM ============ */
         .add-form {
             background: linear-gradient(135deg, rgba(30,18,64,0.6), rgba(24,11,48,0.6));
-            border-radius: 20px;
-            padding: 20px;
+            border-radius: 18px;
+            padding: 18px;
             border: 1px solid var(--glass-border);
-            margin-bottom: 14px;
-            backdrop-filter: blur(10px);
+            margin-bottom: 12px;
         }
 
         .color-picker-row {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .color-opt {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 9px;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.25s;
         }
 
         .color-opt.selected {
             border-color: white;
             transform: scale(1.15);
-            box-shadow: 0 0 15px rgba(255,255,255,0.4);
         }
 
-        /* ============ EMPTY STATE ============ */
         .empty {
             text-align: center;
-            padding: 50px 20px;
+            padding: 40px 20px;
         }
 
-        .empty .e-icon {
-            font-size: 60px;
-            margin-bottom: 14px;
-            display: inline-block;
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-        
-        .empty h3 {
-            font-size: 16px;
-            color: var(--text2);
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        
-        .empty p {
-            font-size: 13px;
-            color: var(--text3);
-            font-weight: 500;
-        }
+        .empty .e-icon { font-size: 55px; margin-bottom: 12px; }
+        .empty h3 { font-size: 15px; color: var(--text2); margin-bottom: 6px; font-weight: 700; }
+        .empty p { font-size: 12px; color: var(--text3); font-weight: 500; }
 
-        /* ============ TOAST ============ */
         .toast {
             position: fixed;
-            bottom: 100px;
+            bottom: 95px;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(135deg, var(--card2), var(--card-solid));
             color: white;
-            padding: 13px 26px;
-            border-radius: 16px;
-            font-size: 13px;
+            padding: 12px 24px;
+            border-radius: 14px;
+            font-size: 12px;
             font-weight: 700;
             z-index: 2000;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            animation: toastPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: toastPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid var(--glass-border);
             white-space: nowrap;
-            backdrop-filter: blur(20px);
         }
 
         @keyframes toastPop {
@@ -1659,8 +1595,7 @@
 
         .pulse-dot {
             display: inline-block;
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
             background: var(--success);
             border-radius: 50%;
             margin-right: 4px;
@@ -1671,160 +1606,144 @@
             0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.7); }
             50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
         }
-
-        /* Skeleton loader */
-        @keyframes shimmerLoad {
-            0% { background-position: -200px 0; }
-            100% { background-position: 200px 0; }
-        }
-
-        /* ============ PREMIUM SPLASH ============ */
-        .app-splash {
-            position: fixed; inset: 0; z-index: 99999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: radial-gradient(circle at 50% 35%, rgba(168,85,247,.20), transparent 35%), #0A0118;
-            transition: opacity .45s ease, visibility .45s ease, transform .45s ease;
-        }
-        .app-splash.hide { opacity: 0; visibility: hidden; transform: scale(1.03); pointer-events: none; }
-        .splash-glow { position:absolute; width:230px; height:230px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--secondary)); filter:blur(75px); opacity:.22; animation:splashGlow 1.8s ease-in-out infinite; }
-        .splash-logo { position:relative; width:82px; height:82px; display:flex; align-items:center; justify-content:center; border-radius:25px; font-size:42px; background:linear-gradient(135deg,var(--primary),var(--secondary)); box-shadow:0 15px 55px var(--glow1); animation:splashLogo 1.3s ease-in-out infinite; }
-        .splash-title { position:relative; margin-top:18px; font-size:24px; font-weight:900; background:linear-gradient(135deg,#fff,var(--gold),var(--primary-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        .splash-subtitle { position:relative; margin-top:5px; font-size:11px; color:var(--text3); }
-        .splash-loader { position:relative; display:flex; gap:6px; margin-top:22px; }
-        .splash-loader span { width:7px; height:7px; border-radius:50%; background:var(--primary-light); animation:splashDot 1s infinite ease-in-out; }
-        .splash-loader span:nth-child(2){animation-delay:.15s}.splash-loader span:nth-child(3){animation-delay:.3s}
-        @keyframes splashLogo {0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.06) rotate(2deg)}}
-        @keyframes splashGlow {0%,100%{transform:scale(.9);opacity:.18}50%{transform:scale(1.15);opacity:.28}}
-        @keyframes splashDot {0%,80%,100%{transform:translateY(0);opacity:.45}40%{transform:translateY(-6px);opacity:1}}
-
-        /* ============ LIVE SUPPORT ============ */
-        .live-support {
-            position:fixed; right:18px; bottom:78px; z-index:650;
-            display:flex; align-items:center; gap:8px; padding:10px 14px 10px 10px;
-            border:1px solid rgba(255,255,255,.14); border-radius:999px; color:#fff;
-            background:linear-gradient(135deg,rgba(34,158,217,.96),rgba(42,171,238,.82));
-            box-shadow:0 10px 30px rgba(34,158,217,.32); backdrop-filter:blur(15px);
-            font-family:inherit; font-size:11px; font-weight:900; cursor:pointer;
-            animation:supportFloat 2.6s ease-in-out infinite;
-        }
-        .live-support .support-dot { width:9px;height:9px;border-radius:50%;background:#7CFFB2;box-shadow:0 0 0 0 rgba(124,255,178,.7);animation:supportPulse 1.8s infinite; }
-        @keyframes supportFloat {0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-        @keyframes supportPulse {70%{box-shadow:0 0 0 7px rgba(124,255,178,0)}100%{box-shadow:0 0 0 0 rgba(124,255,178,0)}}
-        @media(max-width:380px){.live-support{right:12px;bottom:75px;padding:9px 12px 9px 9px}}
-
     </style>
 </head>
 <body>
-    <!-- ====== PREMIUM SPLASH ====== -->
-    <div id="appSplash" class="app-splash">
-        <div class="splash-glow"></div>
-        <div class="splash-logo">&#x1F48E;</div>
-        <div class="splash-title">&#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;</div>
-        <div class="splash-subtitle">&#x98F;&#x995;&#x9CD;&#x9B8;&#x995;&#x9CD;&#x9B2;&#x9C1;&#x9B8;&#x9BF;&#x9AD; &#x99F;&#x9C7;&#x9B2;&#x9BF;&#x997;&#x9CD;&#x9B0;&#x9BE;&#x9AE; &#x995;&#x9BE;&#x9B2;&#x9C7;&#x995;&#x9B6;&#x9A8;</div>
-        <div class="splash-loader"><span></span><span></span><span></span></div>
+
+    <!-- ====== SPLASH SCREEN ====== -->
+    <div class="splash" id="splash">
+        <div class="splash-orb s1"></div>
+        <div class="splash-orb s2"></div>
+        <div class="splash-logo">💎</div>
+        <div class="splash-title">প্রিমিয়াম গ্রুপ</div>
+        <div class="splash-subtitle">এক্সক্লুসিভ টেলিগ্রাম কালেকশন</div>
+        <div class="splash-loader"></div>
     </div>
 
+    <!-- ====== TOP TABS ====== -->
+    <div class="top-tabs">
+        <div class="top-tab-list">
+            <div class="top-tab active" onclick="showPage('home')" id="tab-home">
+                <span class="top-tab-icon">🏠</span>
+                <span>হোম</span>
+            </div>
+            <div class="top-tab" onclick="showPage('orders')" id="tab-orders">
+                <span class="top-tab-icon">📦</span>
+                <span>অর্ডার</span>
+                <span class="top-tab-badge hidden" id="topBadge">0</span>
+            </div>
+            <div class="top-tab" onclick="showPage('profile')" id="tab-profile">
+                <span class="top-tab-icon">👤</span>
+                <span>প্রোফাইল</span>
+            </div>
+        </div>
+    </div>
 
     <!-- HEADER -->
     <div class="header">
         <div class="header-orb o1"></div>
         <div class="header-orb o2"></div>
-        <div class="header-orb o3"></div>
         <div class="header-content">
-            <div class="header-logo">&#x1F48E;</div>
-            <h1>&#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;</h1>
-            <p><span class="pulse-dot"></span>&#x98F;&#x995;&#x9CD;&#x9B8;&#x995;&#x9CD;&#x9B2;&#x9C1;&#x9B8;&#x9BF;&#x9AD; &#x99F;&#x9C7;&#x9B2;&#x9BF;&#x997;&#x9CD;&#x9B0;&#x9BE;&#x9AE; &#x995;&#x9BE;&#x9B2;&#x9C7;&#x995;&#x9B6;&#x9A8;</p>
+            <div class="header-logo">💎</div>
+            <h1>প্রিমিয়াম গ্রুপ</h1>
+            <p><span class="pulse-dot"></span>এক্সক্লুসিভ টেলিগ্রাম কালেকশন</p>
         </div>
     </div>
 
-    <button class="live-support" onclick="contactSupport()" aria-label="&#x9B2;&#x9BE;&#x987;&#x9AD; &#x99A;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9C7; &#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8;&#x9C7;&#x9B0; &#x9B8;&#x9BE;&#x9A5;&#x9C7; &#x9AF;&#x9CB;&#x997;&#x9BE;&#x9AF;&#x9CB;&#x997; &#x995;&#x9B0;&#x9C1;&#x9A8;">
-        <span class="support-dot"></span>
-        <span>&#x9B2;&#x9BE;&#x987;&#x9AD; &#x99A;&#x9CD;&#x9AF;&#x9BE;&#x99F; &#x2022; &#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8;</span>
-    </button>
-
     <!-- ====== HOME ====== -->
     <div class="page active" id="page-home">
-        <div class="welcome-banner" id="welcomeBanner">
-            <div class="welcome-avatar" id="welcomeAvatar">&#x1F44B;</div>
+        <div class="welcome-banner">
+            <div class="welcome-avatar" id="welcomeAvatar">👋</div>
             <div class="welcome-text">
-                <h3 id="welcomeName">&#x9B8;&#x9CD;&#x9AC;&#x9BE;&#x997;&#x9A4;&#x9AE;!</h3>
-                <p>&#x1F48E; &#x986;&#x99C;&#x995;&#x9C7;&#x9B0; &#x9B8;&#x9C7;&#x9B0;&#x9BE; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AC;&#x9CD;&#x9B0;&#x9BE;&#x989;&#x99C; &#x995;&#x9B0;&#x9C1;&#x9A8;</p>
+                <h3 id="welcomeName">স্বাগতম!</h3>
+                <p>💎 আজকের সেরা গ্রুপ ব্রাউজ করুন</p>
             </div>
         </div>
 
         <div class="hero-card" onclick="scrollToGroups()">
             <div class="hero-content">
-                <span class="hero-label">&#x1F525; &#x9B2;&#x9BF;&#x9AE;&#x9BF;&#x99F;&#x9C7;&#x9A1; &#x985;&#x9AB;&#x9BE;&#x9B0;</span>
-                <h2>VIP &#x9AE;&#x9C7;&#x9AE;&#x9CD;&#x9AC;&#x9BE;&#x9B0;&#x9B6;&#x9BF;&#x9AA;</h2>
-                <p>&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE; &#x98F;&#x995;&#x9CD;&#x9B8;&#x9C7;&#x9B8; &#x2022; &#x98F;&#x995;&#x9CD;&#x9B8;&#x995;&#x9CD;&#x9B2;&#x9C1;&#x9B8;&#x9BF;&#x9AD; &#x995;&#x9A8;&#x9CD;&#x99F;&#x9C7;&#x9A8;&#x9CD;&#x99F;</p>
-                <button class="hero-btn">
-                    &#x98F;&#x995;&#x9CD;&#x9B8;&#x9AA;&#x9CD;&#x9B2;&#x9CB;&#x9B0; &#x995;&#x9B0;&#x9C1;&#x9A8; &#x2192;
-                </button>
+                <span class="hero-label">🔥 লিমিটেড অফার</span>
+                <h2>VIP মেম্বারশিপ</h2>
+                <p>লাইফটাইম এক্সেস • এক্সক্লুসিভ কন্টেন্ট</p>
+                <button class="hero-btn">এক্সপ্লোর করুন →</button>
             </div>
-            <div class="hero-icon">&#x1F451;</div>
+            <div class="hero-icon">👑</div>
         </div>
 
         <div class="search-box">
-            <input type="text" placeholder="&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x996;&#x9C1;&#x981;&#x99C;&#x9C1;&#x9A8;..." oninput="searchGroups(this.value)" id="searchInput">
+            <input type="text" placeholder="গ্রুপ খুঁজুন..." oninput="searchGroups(this.value)" id="searchInput">
         </div>
 
         <div class="category-filters" id="catFilters"></div>
 
-        <div class="section-title" id="groupsSection"><span class="grad-text">&#x9B8;&#x995;&#x9B2; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;</span></div>
+        <div class="section-title" id="groupsSection"><span class="grad-text">সকল গ্রুপ</span></div>
         <div class="group-grid" id="groupGrid"></div>
     </div>
 
     <!-- ====== ORDERS ====== -->
     <div class="page" id="page-orders">
-        <div class="section-title"><span class="grad-text">&#x986;&#x9AE;&#x9BE;&#x9B0; &#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0;&#x9B8;&#x9AE;&#x9C2;&#x9B9;</span></div>
-        <div id="ordersList"></div>
+        <div class="section-title"><span class="grad-text">আমার অর্ডারসমূহ</span></div>
+        <div id="ordersList" style="padding: 0 4px;"></div>
     </div>
 
     <!-- ====== PROFILE ====== -->
     <div class="page" id="page-profile">
         <div class="profile-card">
-            <div class="p-avatar" id="pAvatar">&#x1F464;<div class="p-online"></div></div>
-            <div class="p-name" id="pName">&#x987;&#x989;&#x99C;&#x9BE;&#x9B0;</div>
+            <div class="p-avatar" id="pAvatar">👤<div class="p-online"></div></div>
+            <div class="p-name" id="pName">ইউজার</div>
             <div class="p-username" id="pUsername">@username</div>
             <div class="p-id" id="pId">ID: N/A</div>
-            <div class="p-vip" id="pVip" style="display:none;">&#x1F48E; VIP MEMBER</div>
+            <div class="p-vip" id="pVip" style="display:none;">💎 VIP MEMBER</div>
         </div>
 
         <div class="p-stats">
             <div class="p-stat">
                 <div class="p-stat-num" id="ps-total">0</div>
-                <div class="p-stat-label">&#x9AE;&#x9CB;&#x99F; &#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0;</div>
+                <div class="p-stat-label">মোট অর্ডার</div>
             </div>
             <div class="p-stat">
                 <div class="p-stat-num" id="ps-ok">0</div>
-                <div class="p-stat-label">&#x99C;&#x9AF;&#x9BC;&#x9C7;&#x9A8; &#x995;&#x9B0;&#x9BE;</div>
+                <div class="p-stat-label">জয়েন করা</div>
             </div>
             <div class="p-stat">
                 <div class="p-stat-num" id="ps-wait">0</div>
-                <div class="p-stat-label">&#x985;&#x9AA;&#x9C7;&#x995;&#x9CD;&#x9B7;&#x9AE;&#x9BE;&#x9A3;</div>
+                <div class="p-stat-label">অপেক্ষমাণ</div>
             </div>
         </div>
 
         <div class="p-menu">
             <div class="p-menu-item" onclick="showPage('orders')">
-                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(168,85,247,0.05))">&#x1F4E6;</div>
-                <div class="pmi-text"><h4>&#x986;&#x9AE;&#x9BE;&#x9B0; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;&#x9B8;&#x9AE;&#x9C2;&#x9B9;</h4><p>&#x99C;&#x9AF;&#x9BC;&#x9C7;&#x9A8; &#x995;&#x9B0;&#x9BE; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9A6;&#x9C7;&#x996;&#x9C1;&#x9A8;</p></div>
-                <div class="pmi-arrow">&#x203A;</div>
+                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(168,85,247,0.05))">📦</div>
+                <div class="pmi-text"><h4>আমার গ্রুপসমূহ</h4><p>জয়েন করা গ্রুপ দেখুন</p></div>
+                <div class="pmi-arrow">›</div>
             </div>
             <div class="p-menu-item" onclick="showPage('home')">
-                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(236,72,153,0.2),rgba(236,72,153,0.05))">&#x1F6D2;</div>
-                <div class="pmi-text"><h4>&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x995;&#x9BF;&#x9A8;&#x9C1;&#x9A8;</h4><p>&#x9A8;&#x9A4;&#x9C1;&#x9A8; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AC;&#x9CD;&#x9B0;&#x9BE;&#x989;&#x99C; &#x995;&#x9B0;&#x9C1;&#x9A8;</p></div>
-                <div class="pmi-arrow">&#x203A;</div>
+                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(236,72,153,0.2),rgba(236,72,153,0.05))">🛒</div>
+                <div class="pmi-text"><h4>গ্রুপ কিনুন</h4><p>নতুন গ্রুপ ব্রাউজ করুন</p></div>
+                <div class="pmi-arrow">›</div>
+            </div>
+            <div class="p-menu-item" onclick="contactAdminLive()">
+                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(16,185,129,0.05))">💬</div>
+                <div class="pmi-text">
+                    <h4 style="display:flex;align-items:center;">অ্যাডমিন লাইভ চ্যাট<span class="live-dot"></span></h4>
+                    <p>সরাসরি অ্যাডমিনের সাথে চ্যাট করুন</p>
+                </div>
+                <div class="pmi-arrow">›</div>
             </div>
             <div class="p-menu-item" onclick="contactSupport()">
-                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(6,182,212,0.2),rgba(6,182,212,0.05))">&#x1F4AC;</div>
-                <div class="pmi-text"><h4>&#x9B8;&#x9BE;&#x9AA;&#x9CB;&#x9B0;&#x9CD;&#x99F;</h4><p>&#x9AF;&#x9C7;&#x995;&#x9CB;&#x9A8;&#x9CB; &#x9B8;&#x9AE;&#x9AF;&#x9BC; &#x9AF;&#x9CB;&#x997;&#x9BE;&#x9AF;&#x9CB;&#x997; &#x995;&#x9B0;&#x9C1;&#x9A8;</p></div>
-                <div class="pmi-arrow">&#x203A;</div>
+                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(6,182,212,0.2),rgba(6,182,212,0.05))">🎧</div>
+                <div class="pmi-text"><h4>সাপোর্ট</h4><p>যেকোনো সময় যোগাযোগ করুন</p></div>
+                <div class="pmi-arrow">›</div>
             </div>
             <div class="p-menu-item" onclick="shareApp()">
-                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(252,211,77,0.2),rgba(252,211,77,0.05))">&#x1F381;</div>
-                <div class="pmi-text"><h4>&#x9AC;&#x9A8;&#x9CD;&#x9A7;&#x9C1;&#x9A6;&#x9C7;&#x9B0; &#x9B6;&#x9C7;&#x9AF;&#x9BC;&#x9BE;&#x9B0; &#x995;&#x9B0;&#x9C1;&#x9A8;</h4><p>&#x9AC;&#x9A8;&#x9CD;&#x9A7;&#x9C1;&#x9A6;&#x9C7;&#x9B0; &#x9B8;&#x9BE;&#x9A5;&#x9C7; &#x9B6;&#x9C7;&#x9AF;&#x9BC;&#x9BE;&#x9B0; &#x995;&#x9B0;&#x9C1;&#x9A8;</p></div>
-                <div class="pmi-arrow">&#x203A;</div>
+                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(252,211,77,0.2),rgba(252,211,77,0.05))">🎁</div>
+                <div class="pmi-text"><h4>বন্ধুদের শেয়ার করুন</h4><p>বন্ধুদের সাথে শেয়ার করুন</p></div>
+                <div class="pmi-arrow">›</div>
+            </div>
+            <div class="p-menu-item hidden" id="adminMenuItem" onclick="showPage('admin')">
+                <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(239,68,68,0.2),rgba(239,68,68,0.05))">🔐</div>
+                <div class="pmi-text"><h4>অ্যাডমিন প্যানেল</h4><p>শুধুমাত্র অ্যাডমিনের জন্য</p></div>
+                <div class="pmi-arrow">›</div>
             </div>
         </div>
     </div>
@@ -1833,11 +1752,12 @@
     <div class="page" id="page-admin">
         <div id="adminArea">
             <div class="admin-card">
-                <div class="a-icon">&#x1F510;</div>
-                <h2 style="font-size:19px;margin-bottom:6px;">&#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8; &#x9AA;&#x9CD;&#x9AF;&#x9BE;&#x9A8;&#x9C7;&#x9B2;</h2>
-                <p style="font-size:12px;color:var(--text3);margin-bottom:20px;font-weight:500;">&#x9B2;&#x997;&#x987;&#x9A8; &#x995;&#x9B0;&#x9A4;&#x9C7; &#x9AA;&#x9BE;&#x9B8;&#x993;&#x9AF;&#x9BC;&#x9BE;&#x9B0;&#x9CD;&#x9A1; &#x9A6;&#x9BF;&#x9A8;</p>
-                <div class="fg"><input type="password" id="adminPw" placeholder="&#x1F511; &#x9AA;&#x9BE;&#x9B8;&#x993;&#x9AF;&#x9BC;&#x9BE;&#x9B0;&#x9CD;&#x9A1; &#x9A6;&#x9BF;&#x9A8;" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
-                <button class="btn btn-primary" onclick="doAdminLogin()">&#x1F513; &#x9B2;&#x997;&#x987;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8;</button>
+                <div class="a-icon">🔐</div>
+                <h2 style="font-size:18px;margin-bottom:5px;">অ্যাডমিন প্যানেল</h2>
+                <p style="font-size:11px;color:var(--text3);margin-bottom:18px;font-weight:500;">লগইন করতে পাসওয়ার্ড দিন</p>
+                <div class="fg"><input type="password" id="adminPw" placeholder="🔑 পাসওয়ার্ড দিন" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
+                <button class="btn btn-primary" onclick="doAdminLogin()">🔓 লগইন করুন</button>
+                <button class="btn btn-ghost" style="margin-top:8px;" onclick="showPage('profile')">← ফিরে যান</button>
             </div>
         </div>
     </div>
@@ -1847,52 +1767,52 @@
         <div class="modal">
             <div class="modal-handle"></div>
             <div class="modal-header">
-                <h2>&#x1F4B3; <span class="grad-text">&#x9AA;&#x9C7;&#x9AE;&#x9C7;&#x9A8;&#x9CD;&#x99F;</span></h2>
-                <p id="payModalTitle" style="font-size:12px;color:var(--text3);margin-top:5px;font-weight:600;"></p>
+                <h2>💳 <span class="grad-text">পেমেন্ট</span></h2>
+                <p id="payModalTitle" style="font-size:11px;color:var(--text3);margin-top:5px;font-weight:600;"></p>
             </div>
             <div class="modal-body">
                 <div class="steps">
-                    <div class="step active" id="s1"><div class="step-dot">1</div><div class="step-name">&#x9AA;&#x9C7;&#x9AE;&#x9C7;&#x9A8;&#x9CD;&#x99F;</div></div>
-                    <div class="step" id="s2"><div class="step-dot">2</div><div class="step-name">&#x9A4;&#x9A5;&#x9CD;&#x9AF;</div></div>
-                    <div class="step" id="s3"><div class="step-dot">3</div><div class="step-name">&#x9B8;&#x9AE;&#x9CD;&#x9AA;&#x9A8;&#x9CD;&#x9A8;</div></div>
+                    <div class="step active" id="s1"><div class="step-dot">1</div><div class="step-name">পেমেন্ট</div></div>
+                    <div class="step" id="s2"><div class="step-dot">2</div><div class="step-name">তথ্য</div></div>
+                    <div class="step" id="s3"><div class="step-dot">3</div><div class="step-name">সম্পন্ন</div></div>
                 </div>
 
                 <div id="pStep1">
-                    <p style="font-size:14px;font-weight:800;text-align:center;margin-bottom:14px;">&#x9AA;&#x9C7;&#x9AE;&#x9C7;&#x9A8;&#x9CD;&#x99F; &#x9AE;&#x9C7;&#x9A5;&#x9A1; &#x9AC;&#x9BE;&#x99B;&#x9BE;&#x987; &#x995;&#x9B0;&#x9C1;&#x9A8;</p>
+                    <p style="font-size:13px;font-weight:800;text-align:center;margin-bottom:12px;">পেমেন্ট মেথড বাছাই করুন</p>
                     <div class="pay-methods">
                         <div class="pay-method bk" onclick="pickPay('bkash',this)">
-                            <div class="pm-check">&#x2713;</div>
-                            <div class="pm-icon">&#x1F497;</div>
-                            <div class="pm-name" style="color:var(--bkash)">&#x9AC;&#x9BF;&#x995;&#x9BE;&#x9B6;</div>
+                            <div class="pm-check">✓</div>
+                            <div class="pm-icon">💗</div>
+                            <div class="pm-name" style="color:var(--bkash)">বিকাশ</div>
                         </div>
                         <div class="pay-method ng" onclick="pickPay('nagad',this)">
-                            <div class="pm-check">&#x2713;</div>
-                            <div class="pm-icon">&#x1F9E1;</div>
-                            <div class="pm-name" style="color:var(--nagad)">&#x9A8;&#x997;&#x9A6;</div>
+                            <div class="pm-check">✓</div>
+                            <div class="pm-icon">🧡</div>
+                            <div class="pm-name" style="color:var(--nagad)">নগদ</div>
                         </div>
                     </div>
                     <div id="payInfo" style="display:none"></div>
-                    <button class="btn btn-primary" id="nextBtn1" onclick="goStep(2)" disabled>&#x9AA;&#x9B0;&#x9AC;&#x9B0;&#x9CD;&#x9A4;&#x9C0; &#x9A7;&#x9BE;&#x9AA; &#x2192;</button>
+                    <button class="btn btn-primary" id="nextBtn1" onclick="goStep(2)" disabled>পরবর্তী ধাপ →</button>
                 </div>
 
                 <div id="pStep2" style="display:none">
-                    <div class="fg"><label>&#x1F464; &#x986;&#x9AA;&#x9A8;&#x9BE;&#x9B0; &#x9A8;&#x9BE;&#x9AE; *</label><input type="text" id="fName" placeholder="&#x9AA;&#x9C1;&#x9B0;&#x9CB; &#x9A8;&#x9BE;&#x9AE; &#x9B2;&#x9BF;&#x996;&#x9C1;&#x9A8;"></div>
-                    <div class="fg"><label>&#x1F4F1; &#x9AA;&#x9CD;&#x9B0;&#x9C7;&#x9B0;&#x995;&#x9C7;&#x9B0; &#x9A8;&#x9AE;&#x9CD;&#x9AC;&#x9B0; *</label><input type="tel" id="fPhone" placeholder="01XXXXXXXXX"></div>
-                    <div class="fg"><label>&#x1F522; &#x99F;&#x9CD;&#x9B0;&#x9BE;&#x9A8;&#x99C;&#x9C7;&#x995;&#x9B6;&#x9A8; &#x986;&#x987;&#x9A1;&#x9BF; *</label><input type="text" id="fTrx" placeholder="TrxID &#x9B2;&#x9BF;&#x996;&#x9C1;&#x9A8;"></div>
-                    <div class="fg"><label>&#x1F4B0; &#x9AA;&#x9B0;&#x9BF;&#x9AE;&#x9BE;&#x9A3; (&#x9F3;) *</label><input type="number" id="fAmount" placeholder="&#x995;&#x9A4; &#x99F;&#x9BE;&#x995;&#x9BE; &#x9AA;&#x9BE;&#x9A0;&#x9BF;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;&#x9A8;"></div>
+                    <div class="fg"><label>👤 আপনার নাম *</label><input type="text" id="fName" placeholder="পুরো নাম লিখুন"></div>
+                    <div class="fg"><label>📱 প্রেরকের নম্বর *</label><input type="tel" id="fPhone" placeholder="01XXXXXXXXX"></div>
+                    <div class="fg"><label>🔢 ট্রানজেকশন আইডি *</label><input type="text" id="fTrx" placeholder="TrxID লিখুন"></div>
+                    <div class="fg"><label>💰 পরিমাণ (৳) *</label><input type="number" id="fAmount" placeholder="কত টাকা পাঠিয়েছেন"></div>
                     <div class="row-2">
-                        <button class="btn btn-ghost" onclick="goStep(1)">&#x2190; &#x9AA;&#x9C7;&#x99B;&#x9A8;&#x9C7;</button>
-                        <button class="btn btn-success" onclick="placeOrder()">&#x2705; &#x99C;&#x9AE;&#x9BE; &#x9A6;&#x9BF;&#x9A8;</button>
+                        <button class="btn btn-ghost" onclick="goStep(1)">← পেছনে</button>
+                        <button class="btn btn-success" onclick="placeOrder()">✅ জমা দিন</button>
                     </div>
                 </div>
 
-                <div id="pStep3" style="display:none;text-align:center;padding:25px 0;">
-                    <div style="font-size:70px;margin-bottom:14px;animation:iconFloat 2s ease-in-out infinite;">&#x1F389;</div>
-                    <h3 style="font-size:20px;margin-bottom:10px;" class="grad-text">&#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0; &#x9B8;&#x9AB;&#x9B2;!</h3>
-                    <p style="font-size:13px;color:var(--text2);margin-bottom:25px;line-height:1.7;font-weight:500;">
-                        &#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8; &#x9AA;&#x9C7;&#x9AE;&#x9C7;&#x9A8;&#x9CD;&#x99F; &#x9AF;&#x9BE;&#x99A;&#x9BE;&#x987; &#x995;&#x9B0;&#x9C7; &#x985;&#x9A8;&#x9C1;&#x9AE;&#x9CB;&#x9A6;&#x9A8; &#x9A6;&#x9BF;&#x9B2;&#x9C7;<br>&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;&#x9C7;&#x9B0; &#x987;&#x9A8;&#x9AD;&#x9BE;&#x987;&#x99F; &#x9B2;&#x9BF;&#x982;&#x995; &#x9AA;&#x9BE;&#x9AC;&#x9C7;&#x9A8;&#x964;<br>&#x99F;&#x9C7;&#x9B2;&#x9BF;&#x997;&#x9CD;&#x9B0;&#x9BE;&#x9AE;&#x9C7;&#x993; &#x9A8;&#x9CB;&#x99F;&#x9BF;&#x9AB;&#x9BF;&#x995;&#x9C7;&#x9B6;&#x9A8; &#x9AF;&#x9BE;&#x9AC;&#x9C7;! &#x1F514;
+                <div id="pStep3" style="display:none;text-align:center;padding:20px 0;">
+                    <div style="font-size:60px;margin-bottom:12px;">🎉</div>
+                    <h3 style="font-size:18px;margin-bottom:8px;" class="grad-text">অর্ডার সফল!</h3>
+                    <p style="font-size:12px;color:var(--text2);margin-bottom:22px;line-height:1.7;font-weight:500;">
+                        অ্যাডমিন পেমেন্ট যাচাই করে অনুমোদন দিলে<br>গ্রুপের ইনভাইট লিংক পাবেন।<br>টেলিগ্রামেও নোটিফিকেশন যাবে! 🔔
                     </p>
-                    <button class="btn btn-primary" onclick="closePayModal()">&#x1F44D; &#x9A0;&#x9BF;&#x995; &#x986;&#x99B;&#x9C7;</button>
+                    <button class="btn btn-primary" onclick="closePayModal()">👍 ঠিক আছে</button>
                 </div>
             </div>
         </div>
@@ -1906,17 +1826,14 @@
     <!-- ====== BOTTOM NAV ====== -->
     <div class="bottom-nav">
         <div class="nav-item active" onclick="showPage('home')" id="nav-home">
-            <div class="nav-icon">&#x1F3E0;</div><div class="nav-label">&#x9B9;&#x9CB;&#x9AE;</div>
+            <div class="nav-icon">🏠</div><div class="nav-label">হোম</div>
         </div>
         <div class="nav-item" onclick="showPage('orders')" id="nav-orders">
-            <div class="nav-icon">&#x1F4E6;</div><div class="nav-label">&#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0;</div>
+            <div class="nav-icon">📦</div><div class="nav-label">অর্ডার</div>
             <div class="nav-badge" id="oBadge" style="display:none">0</div>
         </div>
         <div class="nav-item" onclick="showPage('profile')" id="nav-profile">
-            <div class="nav-icon">&#x1F464;</div><div class="nav-label">&#x9AA;&#x9CD;&#x9B0;&#x9CB;&#x9AB;&#x9BE;&#x987;&#x9B2;</div>
-        </div>
-        <div class="nav-item hidden" onclick="showPage('admin')" id="nav-admin">
-            <div class="nav-icon">&#x1F510;</div><div class="nav-label">&#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8;</div>
+            <div class="nav-icon">👤</div><div class="nav-label">প্রোফাইল</div>
         </div>
     </div>
 
@@ -1930,7 +1847,8 @@ const CFG = {
     adminId: '6377295796',
     adminTgId: 6377295796,
     botUsername: 'sumaiyarobot',
-    supportUsername: 'sumaiyarobot'
+    supportUsername: 'sumaiyarobot',
+    adminUsername: 'smmehedichowdury'  // Live chat username
 };
 
 function getAdminPw() {
@@ -1940,89 +1858,89 @@ function getAdminPw() {
 // ===== DATA =====
 let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
     {
-        id: 1, title: 'VIP &#x9AE;&#x9C1;&#x9AD;&#x9BF; &#x99C;&#x9CB;&#x9A8;', 
-        desc: '&#x9B8;&#x9B0;&#x9CD;&#x9AC;&#x9B6;&#x9C7;&#x9B7; &#x9AC;&#x9BE;&#x982;&#x9B2;&#x9BE;, &#x9B9;&#x9BF;&#x9A8;&#x9CD;&#x9A6;&#x9BF;, &#x987;&#x982;&#x9B0;&#x9C7;&#x99C;&#x9BF; &#x9AE;&#x9C1;&#x9AD;&#x9BF; &#x993; &#x993;&#x9AF;&#x9BC;&#x9C7;&#x9AC; &#x9B8;&#x9BF;&#x9B0;&#x9BF;&#x99C;&#x964; &#x9AA;&#x9CD;&#x9B0;&#x9A4;&#x9BF;&#x9A6;&#x9BF;&#x9A8; &#x986;&#x9AA;&#x9A1;&#x9C7;&#x99F;&#x964; &#x9AC;&#x9BE;&#x982;&#x9B2;&#x9BE; &#x9B8;&#x9BE;&#x9AC;&#x99F;&#x9BE;&#x987;&#x99F;&#x9C7;&#x9B2; &#x9B8;&#x9B9; &#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x995;&#x9CB;&#x9AF;&#x9BC;&#x9BE;&#x9B2;&#x9BF;&#x99F;&#x9BF;&#x964;',
+        id: 1, title: 'VIP মুভি জোন', 
+        desc: 'সর্বশেষ বাংলা, হিন্দি, ইংরেজি মুভি ও ওয়েব সিরিজ। প্রতিদিন আপডেট। বাংলা সাবটাইটেল সহ প্রিমিয়াম কোয়ালিটি।',
         price: 199, oldPrice: 999, category: 'movie',
-        badge: '&#x1F451; VIP', badgeClass: 'vip',
-        emoji: '&#x1F3AC;', gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
-        access: '&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE;', verified: true,
+        badge: '👑 VIP', badgeClass: 'vip',
+        emoji: '🎬', gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 2, title: '&#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x995;&#x9CB;&#x9B0;&#x9CD;&#x9B8; &#x9B9;&#x9BE;&#x9AC;',
-        desc: '&#x9B8;&#x995;&#x9B2; &#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x995;&#x9CB;&#x9B0;&#x9CD;&#x9B8; - Udemy, Coursera, Skillshare &#x98F;&#x9B0; &#x995;&#x9CB;&#x9B0;&#x9CD;&#x9B8;&#x964; &#x9AB;&#x9CD;&#x9B0;&#x9BF;&#x9A4;&#x9C7; &#x985;&#x9CD;&#x9AF;&#x9BE;&#x995;&#x9CD;&#x9B8;&#x9C7;&#x9B8;&#x964;',
+        id: 2, title: 'প্রিমিয়াম কোর্স হাব',
+        desc: 'সকল প্রিমিয়াম কোর্স - Udemy, Coursera, Skillshare এর কোর্স। ফ্রিতে অ্যাক্সেস।',
         price: 299, oldPrice: 1500, category: 'course',
-        badge: '&#x1F525; &#x9B9;&#x99F;', badgeClass: 'hot',
-        emoji: '&#x1F4DA;', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)',
-        access: '&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE;', verified: true,
+        badge: '🔥 হট', badgeClass: 'hot',
+        emoji: '📚', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 3, title: '&#x99F;&#x9CD;&#x9B0;&#x9C7;&#x9A1;&#x9BF;&#x982; &#x9B8;&#x9BF;&#x997;&#x9A8;&#x9CD;&#x9AF;&#x9BE;&#x9B2;',
-        desc: '&#x9AB;&#x9B0;&#x9C7;&#x995;&#x9CD;&#x9B8;, &#x995;&#x9CD;&#x9B0;&#x9BF;&#x9AA;&#x9CD;&#x99F;&#x9CB;, &#x9B8;&#x9CD;&#x99F;&#x995; &#x9AE;&#x9BE;&#x9B0;&#x9CD;&#x995;&#x9C7;&#x99F; &#x9B8;&#x9BF;&#x997;&#x9A8;&#x9CD;&#x9AF;&#x9BE;&#x9B2;&#x964; &#x9AA;&#x9CD;&#x9B0;&#x9CB; &#x99F;&#x9CD;&#x9B0;&#x9C7;&#x9A1;&#x9BE;&#x9B0;&#x9A6;&#x9C7;&#x9B0; &#x9AA;&#x9B0;&#x9BE;&#x9AE;&#x9B0;&#x9CD;&#x9B6;&#x964; &#x9AA;&#x9CD;&#x9B0;&#x9A4;&#x9BF;&#x9A6;&#x9BF;&#x9A8; &#x9B8;&#x9BF;&#x997;&#x9A8;&#x9CD;&#x9AF;&#x9BE;&#x9B2;&#x964;',
+        id: 3, title: 'ট্রেডিং সিগন্যাল',
+        desc: 'ফরেক্স, ক্রিপ্টো, স্টক মার্কেট সিগন্যাল। প্রো ট্রেডারদের পরামর্শ। প্রতিদিন সিগন্যাল।',
         price: 500, oldPrice: 2500, category: 'trading',
-        badge: '&#x1F48E; &#x98F;&#x995;&#x9CD;&#x9B8;&#x995;&#x9CD;&#x9B2;&#x9C1;&#x9B8;&#x9BF;&#x9AD;', badgeClass: 'exclusive',
-        emoji: '&#x1F4C8;', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)',
-        access: '&#x9E7; &#x9AC;&#x99B;&#x9B0;', verified: true,
+        badge: '💎 এক্সক্লুসিভ', badgeClass: 'exclusive',
+        emoji: '📈', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)',
+        access: '১ বছর', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 4, title: '&#x997;&#x9C7;&#x9AE;&#x9BF;&#x982; &#x9AA;&#x9CD;&#x9AF;&#x9BE;&#x9B0;&#x9BE;&#x9A1;&#x9BE;&#x987;&#x9B8;',
-        desc: '&#x9B8;&#x9AC; &#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x997;&#x9C7;&#x9AE;, &#x9AE;&#x9A1;, &#x99A;&#x9BF;&#x99F; &#x995;&#x9CB;&#x9A1;&#x964; PUBG, FreeFire, GTA &#x9B8;&#x9AC; &#x997;&#x9C7;&#x9AE;&#x9C7;&#x9B0; &#x9B0;&#x9BF;&#x9B8;&#x9CB;&#x9B0;&#x9CD;&#x9B8;&#x964;',
+        id: 4, title: 'গেমিং প্যারাডাইস',
+        desc: 'সব প্রিমিয়াম গেম, মড, চিট কোড। PUBG, FreeFire, GTA সব গেমের রিসোর্স।',
         price: 149, oldPrice: 799, category: 'gaming',
-        badge: '&#x2728; &#x9A8;&#x9A4;&#x9C1;&#x9A8;', badgeClass: 'new',
-        emoji: '&#x1F3AE;', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)',
-        access: '&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE;', verified: true,
+        badge: '✨ নতুন', badgeClass: 'new',
+        emoji: '🎮', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 5, title: '&#x9B8;&#x9AB;&#x99F;&#x993;&#x9AF;&#x9BC;&#x9CD;&#x9AF;&#x9BE;&#x9B0; &#x9AD;&#x9B2;&#x9CD;&#x99F;',
-        desc: '&#x9B8;&#x995;&#x9B2; &#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x9B8;&#x9AB;&#x99F;&#x993;&#x9AF;&#x9BC;&#x9CD;&#x9AF;&#x9BE;&#x9B0;, &#x985;&#x9CD;&#x9AF;&#x9BE;&#x9AA;, &#x995;&#x9CD;&#x9B0;&#x9CD;&#x9AF;&#x9BE;&#x995;&#x964; Adobe, Microsoft &#x9B8;&#x9AC; &#x9B2;&#x9BE;&#x987;&#x9B8;&#x9C7;&#x9A8;&#x9CD;&#x9B8;&#x964;',
+        id: 5, title: 'সফটওয়্যার ভল্ট',
+        desc: 'সকল প্রিমিয়াম সফটওয়্যার, অ্যাপ, ক্র্যাক। Adobe, Microsoft সব লাইসেন্স।',
         price: 250, oldPrice: 1200, category: 'software',
-        badge: '&#x1F451; VIP', badgeClass: 'vip',
-        emoji: '&#x1F4BB;', gradient: 'linear-gradient(135deg, #fa709a, #fee140)',
-        access: '&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE;', verified: true,
+        badge: '👑 VIP', badgeClass: 'vip',
+        emoji: '💻', gradient: 'linear-gradient(135deg, #fa709a, #fee140)',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 6, title: '&#x9A8;&#x9C7;&#x99F;&#x9AB;&#x9CD;&#x9B2;&#x9BF;&#x995;&#x9CD;&#x9B8; &#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE;',
-        desc: '&#x9B8;&#x995;&#x9B2; OTT &#x9AA;&#x9CD;&#x9B2;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9AB;&#x9B0;&#x9CD;&#x9AE;&#x9C7;&#x9B0; &#x985;&#x9CD;&#x9AF;&#x9BE;&#x995;&#x9BE;&#x989;&#x9A8;&#x9CD;&#x99F;&#x964; Netflix, Amazon Prime, Disney+ Hotstar&#x964;',
+        id: 6, title: 'নেটফ্লিক্স প্রিমিয়াম',
+        desc: 'সকল OTT প্ল্যাটফর্মের অ্যাকাউন্ট। Netflix, Amazon Prime, Disney+ Hotstar।',
         price: 350, oldPrice: 1500, category: 'ott',
-        badge: '&#x1F4A5; &#x9B8;&#x9C7;&#x9B2;', badgeClass: 'exclusive',
-        emoji: '&#x1F3A5;', gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)',
-        access: '&#x9E7; &#x9AC;&#x99B;&#x9B0;', verified: true,
+        badge: '💥 সেল', badgeClass: 'exclusive',
+        emoji: '🎥', gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)',
+        access: '১ বছর', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 7, title: '&#x9AB;&#x9CD;&#x9B0;&#x9BF;&#x9B2;&#x9CD;&#x9AF;&#x9BE;&#x9A8;&#x9CD;&#x9B8;&#x9BF;&#x982; &#x99F;&#x9BF;&#x9AA;&#x9B8;',
-        desc: 'Upwork, Fiverr &#x98F; &#x995;&#x9BE;&#x99C; &#x9AA;&#x9BE;&#x993;&#x9AF;&#x9BC;&#x9BE;&#x9B0; &#x99F;&#x9BF;&#x9AA;&#x9B8;, &#x9AC;&#x9BE;&#x9AF;&#x9BC;&#x9BE;&#x9B0; &#x997;&#x9BE;&#x987;&#x9A1;, &#x9AA;&#x9CD;&#x9B0;&#x9AB;&#x9BE;&#x987;&#x9B2; &#x985;&#x9AA;&#x99F;&#x9BF;&#x9AE;&#x9BE;&#x987;&#x99C;&#x9C7;&#x9B6;&#x9A8;&#x964;',
+        id: 7, title: 'ফ্রিল্যান্সিং টিপস',
+        desc: 'Upwork, Fiverr এ কাজ পাওয়ার টিপস, বায়ার গাইড, প্রফাইল অপটিমাইজেশন।',
         price: 199, oldPrice: 899, category: 'business',
-        badge: '&#x1F525; &#x9B9;&#x99F;', badgeClass: 'hot',
-        emoji: '&#x1F4BC;', gradient: 'linear-gradient(135deg, #96fbc4, #f9f586)',
-        access: '&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE;', verified: true,
+        badge: '🔥 হট', badgeClass: 'hot',
+        emoji: '💼', gradient: 'linear-gradient(135deg, #96fbc4, #f9f586)',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     },
     {
-        id: 8, title: '&#x987;&#x9B8;&#x9B2;&#x9BE;&#x9AE;&#x9BF;&#x995; &#x9B2;&#x9C7;&#x995;&#x99A;&#x9BE;&#x9B0;',
-        desc: '&#x9AC;&#x9BF;&#x996;&#x9CD;&#x9AF;&#x9BE;&#x9A4; &#x986;&#x9B2;&#x9C7;&#x9AE;&#x9A6;&#x9C7;&#x9B0; &#x993;&#x9AF;&#x9BC;&#x9BE;&#x99C;, &#x9AC;&#x9AF;&#x9BC;&#x9BE;&#x9A8;, &#x987;&#x9B8;&#x9B2;&#x9BE;&#x9AE;&#x9BF;&#x995; &#x9AC;&#x987; &#x993; &#x985;&#x9A1;&#x9BF;&#x993;&#x964; &#x9B8;&#x9BE;&#x9AA;&#x9CD;&#x9A4;&#x9BE;&#x9B9;&#x9BF;&#x995; &#x9A8;&#x9A4;&#x9C1;&#x9A8; &#x995;&#x9A8;&#x9CD;&#x99F;&#x9C7;&#x9A8;&#x9CD;&#x99F;&#x964;',
+        id: 8, title: 'ইসলামিক লেকচার',
+        desc: 'বিখ্যাত আলেমদের ওয়াজ, বয়ান, ইসলামিক বই ও অডিও। সাপ্তাহিক নতুন কন্টেন্ট।',
         price: 99, oldPrice: 500, category: 'islamic',
-        badge: '&#x2728; &#x9A8;&#x9A4;&#x9C1;&#x9A8;', badgeClass: 'new',
-        emoji: '&#x1F54C;', gradient: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
-        access: '&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE;', verified: true,
+        badge: '✨ নতুন', badgeClass: 'new',
+        emoji: '🕌', gradient: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
+        access: 'লাইফটাইম', verified: true,
         screenshots: [], thumbnail: ''
     }
 ];
 
 let categories = JSON.parse(localStorage.getItem('pg_categories') || 'null') || [
-    { id: 'all', name: '&#x1F31F; &#x9B8;&#x9AC;' },
-    { id: 'movie', name: '&#x1F3AC; &#x9AE;&#x9C1;&#x9AD;&#x9BF;' },
-    { id: 'course', name: '&#x1F4DA; &#x995;&#x9CB;&#x9B0;&#x9CD;&#x9B8;' },
-    { id: 'trading', name: '&#x1F4C8; &#x99F;&#x9CD;&#x9B0;&#x9C7;&#x9A1;&#x9BF;&#x982;' },
-    { id: 'gaming', name: '&#x1F3AE; &#x997;&#x9C7;&#x9AE;&#x9BF;&#x982;' },
-    { id: 'software', name: '&#x1F4BB; &#x9B8;&#x9AB;&#x99F;&#x993;&#x9AF;&#x9BC;&#x9CD;&#x9AF;&#x9BE;&#x9B0;' },
-    { id: 'ott', name: '&#x1F3A5; OTT' },
-    { id: 'business', name: '&#x1F4BC; &#x9AC;&#x9BF;&#x99C;&#x9A8;&#x9C7;&#x9B8;' },
-    { id: 'islamic', name: '&#x1F54C; &#x987;&#x9B8;&#x9B2;&#x9BE;&#x9AE;&#x9BF;&#x995;' }
+    { id: 'all', name: '🌟 সব' },
+    { id: 'movie', name: '🎬 মুভি' },
+    { id: 'course', name: '📚 কোর্স' },
+    { id: 'trading', name: '📈 ট্রেডিং' },
+    { id: 'gaming', name: '🎮 গেমিং' },
+    { id: 'software', name: '💻 সফটওয়্যার' },
+    { id: 'ott', name: '🎥 OTT' },
+    { id: 'business', name: '💼 বিজনেস' },
+    { id: 'islamic', name: '🕌 ইসলামিক' }
 ];
 
 let orders = JSON.parse(localStorage.getItem('pg_orders') || '[]');
@@ -2067,6 +1985,14 @@ function isAdmin() {
     return false;
 }
 
+// ===== SPLASH SCREEN =====
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('splash').classList.add('hidden');
+        init();
+    }, 1800);
+});
+
 // ===== INIT =====
 function init() {
     initUser();
@@ -2074,7 +2000,7 @@ function init() {
     renderGroups();
     updateBadge();
     if (isAdmin()) {
-        document.getElementById('nav-admin').classList.remove('hidden');
+        document.getElementById('adminMenuItem').classList.remove('hidden');
     }
 }
 
@@ -2086,16 +2012,16 @@ function initUser() {
         const un = u.username || '';
         const full = `${fn} ${ln}`.trim();
 
-        document.getElementById('welcomeName').textContent = `&#x9B8;&#x9CD;&#x9AC;&#x9BE;&#x997;&#x9A4;&#x9AE;, ${fn}! &#x1F44B;`;
-        document.getElementById('pName').textContent = full || '&#x987;&#x989;&#x99C;&#x9BE;&#x9B0;';
+        document.getElementById('welcomeName').textContent = `স্বাগতম, ${fn}! 👋`;
+        document.getElementById('pName').textContent = full || 'ইউজার';
         document.getElementById('pUsername').textContent = un ? `@${un}` : '';
-        document.getElementById('pId').textContent = `&#x1F194; ID: ${u.id}`;
+        document.getElementById('pId').textContent = `🆔 ID: ${u.id}`;
 
         if (u.photo_url) {
             document.getElementById('pAvatar').innerHTML = `<img src="${u.photo_url}"><div class="p-online"></div>`;
             document.getElementById('welcomeAvatar').innerHTML = `<img src="${u.photo_url}">`;
         } else {
-            const ini = fn.charAt(0) || '&#x1F464;';
+            const ini = fn.charAt(0) || '👤';
             document.getElementById('pAvatar').innerHTML = `${ini}<div class="p-online"></div>`;
             document.getElementById('welcomeAvatar').textContent = ini;
         }
@@ -2123,7 +2049,16 @@ function updateBadge() {
     if (u) uo = orders.filter(o => o.tgUser?.id === u.id);
     const pc = uo.filter(o => o.status === 'pending').length;
     const b = document.getElementById('oBadge');
-    if (pc > 0) { b.style.display = 'block'; b.textContent = pc; } else { b.style.display = 'none'; }
+    const tb = document.getElementById('topBadge');
+    if (pc > 0) { 
+        b.style.display = 'block'; 
+        b.textContent = pc;
+        tb.classList.remove('hidden');
+        tb.textContent = pc;
+    } else { 
+        b.style.display = 'none';
+        tb.classList.add('hidden');
+    }
 }
 
 // ===== RENDER =====
@@ -2137,26 +2072,22 @@ function renderCategories() {
 function renderGroups(list = groups) {
     const el = document.getElementById('groupGrid');
     if (list.length === 0) {
-        el.innerHTML = `<div class="empty"><div class="e-icon">&#x1F50D;</div><h3>&#x995;&#x9CB;&#x9A8;&#x9CB; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AA;&#x9BE;&#x993;&#x9AF;&#x9BC;&#x9BE; &#x9AF;&#x9BE;&#x9AF;&#x9BC;&#x9A8;&#x9BF;</h3><p>&#x985;&#x9A8;&#x9CD;&#x9AF; &#x995;&#x9BF;&#x993;&#x9AF;&#x9BC;&#x9BE;&#x9B0;&#x9CD;&#x9A1; &#x9A6;&#x9BF;&#x9AF;&#x9BC;&#x9C7; &#x996;&#x9C1;&#x981;&#x99C;&#x9C1;&#x9A8;</p></div>`;
+        el.innerHTML = `<div class="empty" style="grid-column:span 2;"><div class="e-icon">🔍</div><h3>কোনো গ্রুপ পাওয়া যায়নি</h3><p>অন্য কিওয়ার্ড দিয়ে খুঁজুন</p></div>`;
         return;
     }
     el.innerHTML = list.map(g => `
         <div class="group-card" onclick="showDetail(${g.id})">
-            <div class="group-banner ${g.thumbnail ? '' : 'no-thumb'}" style="background:${g.gradient}">
-                ${g.thumbnail ? `<img src="${g.thumbnail}" alt="${g.title}" onerror="this.style.display='none';this.parentElement.classList.add('no-thumb');">` : ''}
-                <span class="c-badge ${g.badgeClass}">${g.badge}</span>
+            <div class="group-thumb" style="${g.thumbnail ? `background-image:url('${g.thumbnail}');` : `background:${g.gradient};`}">
+                <span class="thumb-badge ${g.badgeClass}">${g.badge}</span>
+                <span class="thumb-access">🔓 ${g.access}</span>
             </div>
             <div class="group-info">
-                <div class="group-title">
-                    ${g.title}
-                    ${g.verified ? '<span class="verified-icon">&#x2713;</span>' : ''}
+                <div class="group-title">${g.title}${g.verified ? '<span class="verified-icon">✓</span>' : ''}</div>
+                <div class="price-row">
+                    <span class="c-price">৳${g.price}</span>
+                    <span class="c-price-old">৳${g.oldPrice}</span>
                 </div>
-                <div class="group-desc">${g.desc}</div>
-                <div class="group-bottom">
-                    <div class="c-price-wrap"><span class="c-price">&#x9F3;${g.price}</span><span class="c-price-old">&#x9F3;${g.oldPrice}</span></div>
-                    <span class="c-lifetime">${g.access}</span>
-                </div>
-                <button class="buy-btn" onclick="event.stopPropagation();openPay(${g.id})">&#x1F680; &#x98F;&#x996;&#x9A8;&#x987; &#x99C;&#x9AF;&#x9BC;&#x9C7;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8;</button>
+                <button class="buy-btn" onclick="event.stopPropagation();openPay(${g.id})">🚀 জয়েন করুন</button>
             </div>
         </div>
     `).join('');
@@ -2185,48 +2116,41 @@ function showDetail(id) {
 
     document.getElementById('detailModalContent').innerHTML = `
         <div class="modal-handle"></div>
-        <div class="detail-banner" style="background:${g.gradient};position:relative;overflow:hidden;">
-            ${g.thumbnail ? `<img src="${g.thumbnail}" alt="${g.title}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : ''}
-        </div>
-        <div style="padding:20px 22px 30px;">
-            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:14px;">
-                <div style="flex:1;">
-                    <h2 style="font-size:20px;font-weight:900;line-height:1.4;margin-bottom:8px;display:flex;align-items:center;gap:6px;">
-                        ${g.title}
-                        ${g.verified ? '<span class="verified-icon">&#x2713;</span>' : ''}
-                    </h2>
-                    <span class="c-badge ${g.badgeClass}" style="position:static;display:inline-block;">${g.badge}</span>
-                </div>
+        <div class="detail-banner" style="${g.thumbnail ? `background-image:url('${g.thumbnail}');` : `background:${g.gradient};`}"></div>
+        <div style="padding:16px 20px 30px;">
+            <div style="margin-bottom:12px;">
+                <h2 style="font-size:18px;font-weight:900;line-height:1.4;margin-bottom:6px;">${g.title}${g.verified ? '<span class="verified-icon">✓</span>' : ''}</h2>
+                <span class="thumb-badge ${g.badgeClass}" style="position:static;display:inline-block;">${g.badge}</span>
             </div>
 
             <div class="detail-info-row">
-                <div class="detail-info-item"><div class="dii-val">${discount}%</div><div class="dii-label">&#x9A1;&#x9BF;&#x9B8;&#x995;&#x9BE;&#x989;&#x9A8;&#x9CD;&#x99F;</div></div>
-                <div class="detail-info-item" style="border-color:rgba(252,211,77,0.3);"><div class="dii-val" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">&#x1F513; ${g.access}</div><div class="dii-label">&#x985;&#x9CD;&#x9AF;&#x9BE;&#x995;&#x9CD;&#x9B8;&#x9C7;&#x9B8;</div></div>
+                <div class="detail-info-item"><div class="dii-val">${discount}%</div><div class="dii-label">ডিসকাউন্ট</div></div>
+                <div class="detail-info-item" style="border-color:rgba(252,211,77,0.3);"><div class="dii-val" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">🔓 ${g.access}</div><div class="dii-label">অ্যাক্সেস</div></div>
             </div>
 
             ${g.screenshots && g.screenshots.length > 0 ? `
-                <div class="section-title" style="font-size:15px;">&#x1F4F8; <span class="grad-text">&#x9B8;&#x9CD;&#x995;&#x9CD;&#x9B0;&#x9BF;&#x9A8;&#x9B6;&#x99F;</span></div>
+                <div class="section-title" style="font-size:14px;padding:0;">📸 <span class="grad-text">স্ক্রিনশট</span></div>
                 <div class="detail-screenshots">
-                    ${g.screenshots.map(s => `<div class="detail-ss"><img src="${s}" onerror="this.parentElement.innerHTML='&#x1F4F7; &#x99B;&#x9AC;&#x9BF; &#x9B2;&#x9CB;&#x9A1; &#x9B9;&#x9AF;&#x9BC;&#x9A8;&#x9BF;'"></div>`).join('')}
+                    ${g.screenshots.map(s => `<div class="detail-ss"><img src="${s}" onerror="this.parentElement.innerHTML='📷'"></div>`).join('')}
                 </div>
             ` : ''}
 
-            <div class="section-title" style="font-size:15px;">&#x1F4DD; <span class="grad-text">&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9B8;&#x9AE;&#x9CD;&#x9AA;&#x9B0;&#x9CD;&#x995;&#x9C7;</span></div>
-            <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:18px;font-weight:500;">${g.desc}</p>
+            <div class="section-title" style="font-size:14px;padding:0;">📝 <span class="grad-text">গ্রুপ সম্পর্কে</span></div>
+            <p style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:16px;font-weight:500;">${g.desc}</p>
 
-            <div style="background:linear-gradient(135deg,rgba(252,211,77,0.1),rgba(236,72,153,0.05));border-radius:16px;padding:18px;margin-bottom:18px;border:1px solid rgba(252,211,77,0.2);">
-                <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
-                    <span style="font-size:32px;font-weight:900;" class="grad-gold">&#x9F3;${g.price}</span>
-                    <span style="font-size:17px;color:var(--text-muted);text-decoration:line-through;font-weight:600;">&#x9F3;${g.oldPrice}</span>
+            <div style="background:linear-gradient(135deg,rgba(252,211,77,0.1),rgba(236,72,153,0.05));border-radius:14px;padding:16px;margin-bottom:16px;border:1px solid rgba(252,211,77,0.2);">
+                <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
+                    <span style="font-size:28px;font-weight:900;" class="grad-gold">৳${g.price}</span>
+                    <span style="font-size:15px;color:var(--text-muted);text-decoration:line-through;font-weight:600;">৳${g.oldPrice}</span>
                 </div>
-                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                    <span style="font-size:11px;color:var(--success);font-weight:800;background:rgba(16,185,129,0.15);padding:4px 12px;border-radius:12px;">&#x1F4A5; ${discount}% &#x99B;&#x9BE;&#x9A1;&#x9BC;!</span>
-                    <span style="font-size:11px;color:var(--gold);font-weight:800;">&#x1F513; ${g.access} &#x985;&#x9CD;&#x9AF;&#x9BE;&#x995;&#x9CD;&#x9B8;&#x9C7;&#x9B8;</span>
+                <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                    <span style="font-size:10px;color:var(--success);font-weight:800;background:rgba(16,185,129,0.15);padding:3px 10px;border-radius:11px;">💥 ${discount}% ছাড়!</span>
+                    <span style="font-size:10px;color:var(--gold);font-weight:800;">🔓 ${g.access}</span>
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="closeDetailModal();openPay(${g.id})">&#x1F680; &#x99C;&#x9AF;&#x9BC;&#x9C7;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8; &#x2014; &#x9F3;${g.price}</button>
-            <button class="btn btn-ghost" style="margin-top:10px;" onclick="closeDetailModal()">&#x2190; &#x9AB;&#x9BF;&#x9B0;&#x9C7; &#x9AF;&#x9BE;&#x9A8;</button>
+            <button class="btn btn-primary" onclick="closeDetailModal();openPay(${g.id})">🚀 জয়েন করুন — ৳${g.price}</button>
+            <button class="btn btn-ghost" style="margin-top:8px;" onclick="closeDetailModal()">← ফিরে যান</button>
         </div>
     `;
     document.getElementById('detailModal').classList.add('active');
@@ -2240,7 +2164,7 @@ function openPay(id) {
     selPay = null;
     if (!selGroup) return;
 
-    document.getElementById('payModalTitle').textContent = `${selGroup.title} &#x2014; &#x9F3;${selGroup.price}`;
+    document.getElementById('payModalTitle').textContent = `${selGroup.title} — ৳${selGroup.price}`;
     document.getElementById('payModal').classList.add('active');
     goStep(1);
 
@@ -2264,7 +2188,7 @@ function pickPay(method, el) {
     el.classList.add('selected');
 
     const num = method === 'bkash' ? CFG.bkash : CFG.nagad;
-    const name = method === 'bkash' ? '&#x9AC;&#x9BF;&#x995;&#x9BE;&#x9B6;' : '&#x9A8;&#x997;&#x9A6;';
+    const name = method === 'bkash' ? 'বিকাশ' : 'নগদ';
     const cls = method === 'bkash' ? 'bk-box' : 'ng-box';
     const col = method === 'bkash' ? 'var(--bkash)' : 'var(--nagad)';
     const btnCls = method === 'bkash' ? 'btn-bkash' : 'btn-nagad';
@@ -2272,20 +2196,19 @@ function pickPay(method, el) {
     document.getElementById('payInfo').style.display = 'block';
     document.getElementById('payInfo').innerHTML = `
         <div class="pay-box ${cls}">
-            <h3 style="font-size:14px;color:${col};margin-bottom:8px;font-weight:800;">&#x1F4F2; ${name} &#x9B8;&#x9C7;&#x9A8;&#x9CD;&#x9A1; &#x9AE;&#x9BE;&#x9A8;&#x9BF; &#x995;&#x9B0;&#x9C1;&#x9A8;</h3>
-            <p style="font-size:11px;color:var(--text2);font-weight:500;">&#x9A8;&#x9BF;&#x99A;&#x9C7;&#x9B0; &#x9A8;&#x9AE;&#x9CD;&#x9AC;&#x9B0;&#x9C7; &#x9B8;&#x9C7;&#x9A8;&#x9CD;&#x9A1; &#x9AE;&#x9BE;&#x9A8;&#x9BF; &#x995;&#x9B0;&#x9C1;&#x9A8;:</p>
+            <h3 style="font-size:13px;color:${col};margin-bottom:6px;font-weight:800;">📲 ${name} সেন্ড মানি করুন</h3>
+            <p style="font-size:11px;color:var(--text2);font-weight:500;">নিচের নম্বরে সেন্ড মানি করুন:</p>
             <div class="pay-number">${num}</div>
-            <button class="copy-btn ${btnCls}" onclick="copyNum('${num}')">&#x1F4CB; &#x9A8;&#x9AE;&#x9CD;&#x9AC;&#x9B0; &#x995;&#x9AA;&#x9BF; &#x995;&#x9B0;&#x9C1;&#x9A8;</button>
-            <p style="margin-top:12px;font-size:13px;font-weight:600;">&#x9AA;&#x9B0;&#x9BF;&#x9AE;&#x9BE;&#x9A3;: <strong style="color:${col};font-size:20px;">&#x9F3;${selGroup.price}</strong></p>
+            <button class="copy-btn ${btnCls}" onclick="copyNum('${num}')">📋 নম্বর কপি করুন</button>
+            <p style="margin-top:10px;font-size:12px;font-weight:600;">পরিমাণ: <strong style="color:${col};font-size:18px;">৳${selGroup.price}</strong></p>
         </div>
         <div class="info-box">
-            <h4>&#x26A0;&#xFE0F; &#x997;&#x9C1;&#x9B0;&#x9C1;&#x9A4;&#x9CD;&#x9AC;&#x9AA;&#x9C2;&#x9B0;&#x9CD;&#x9A3; &#x9A8;&#x9BF;&#x9B0;&#x9CD;&#x9A6;&#x9C7;&#x9B6;&#x9A8;&#x9BE;</h4>
+            <h4>⚠️ গুরুত্বপূর্ণ নির্দেশনা</h4>
             <ol>
-                <li>${name} &#x9B8;&#x9C7;&#x9A8;&#x9CD;&#x9A1; &#x9AE;&#x9BE;&#x9A8;&#x9BF; &#x995;&#x9B0;&#x9C1;&#x9A8; &#x2014; &#x9F3;${selGroup.price}</li>
-                <li>&#x99F;&#x9CD;&#x9B0;&#x9BE;&#x9A8;&#x99C;&#x9C7;&#x995;&#x9B6;&#x9A8; &#x986;&#x987;&#x9A1;&#x9BF; (TrxID) &#x9B8;&#x982;&#x9B0;&#x995;&#x9CD;&#x9B7;&#x9A3; &#x995;&#x9B0;&#x9C1;&#x9A8;</li>
-                <li>&#x9AA;&#x9B0;&#x9AC;&#x9B0;&#x9CD;&#x9A4;&#x9C0; &#x9A7;&#x9BE;&#x9AA;&#x9C7; &#x9B8;&#x9A0;&#x9BF;&#x995; &#x9A4;&#x9A5;&#x9CD;&#x9AF; &#x9A6;&#x9BF;&#x9A8;</li>
-                <li>&#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8; &#x9AF;&#x9BE;&#x99A;&#x9BE;&#x987; &#x995;&#x9B0;&#x9C7; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x987;&#x9A8;&#x9AD;&#x9BE;&#x987;&#x99F; &#x9B2;&#x9BF;&#x982;&#x995; &#x9A6;&#x9BF;&#x9AC;&#x9C7;</li>
-                <li>&#x99F;&#x9C7;&#x9B2;&#x9BF;&#x997;&#x9CD;&#x9B0;&#x9BE;&#x9AE;&#x9C7; &#x9A8;&#x9CB;&#x99F;&#x9BF;&#x9AB;&#x9BF;&#x995;&#x9C7;&#x9B6;&#x9A8; &#x9AA;&#x9BE;&#x9AC;&#x9C7;&#x9A8; &#x1F514;</li>
+                <li>${name} সেন্ড মানি করুন — ৳${selGroup.price}</li>
+                <li>ট্রানজেকশন আইডি (TrxID) সংরক্ষণ করুন</li>
+                <li>পরবর্তী ধাপে সঠিক তথ্য দিন</li>
+                <li>অ্যাডমিন যাচাই করে গ্রুপ ইনভাইট লিংক দিবে</li>
             </ol>
         </div>
     `;
@@ -2293,8 +2216,8 @@ function pickPay(method, el) {
 }
 
 function copyNum(n) {
-    navigator.clipboard.writeText(n).then(() => toast('&#x2705; &#x9A8;&#x9AE;&#x9CD;&#x9AC;&#x9B0; &#x995;&#x9AA;&#x9BF; &#x9B9;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;!')).catch(() => {
-        const i = document.createElement('input'); i.value = n; document.body.appendChild(i); i.select(); document.execCommand('copy'); document.body.removeChild(i); toast('&#x2705; &#x995;&#x9AA;&#x9BF; &#x9B9;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;!');
+    navigator.clipboard.writeText(n).then(() => toast('✅ নম্বর কপি হয়েছে!')).catch(() => {
+        const i = document.createElement('input'); i.value = n; document.body.appendChild(i); i.select(); document.execCommand('copy'); document.body.removeChild(i); toast('✅ কপি হয়েছে!');
     });
 }
 
@@ -2316,8 +2239,8 @@ function placeOrder() {
     const trx = document.getElementById('fTrx').value.trim();
     const amt = document.getElementById('fAmount').value.trim();
 
-    if (!name || !phone || !trx || !amt) { toast('&#x26A0;&#xFE0F; &#x9B8;&#x9AC; &#x9A4;&#x9A5;&#x9CD;&#x9AF; &#x9AA;&#x9C2;&#x9B0;&#x9A3; &#x995;&#x9B0;&#x9C1;&#x9A8;!'); return; }
-    if (phone.length < 11) { toast('&#x26A0;&#xFE0F; &#x9B8;&#x9A0;&#x9BF;&#x995; &#x9A8;&#x9AE;&#x9CD;&#x9AC;&#x9B0; &#x9A6;&#x9BF;&#x9A8;!'); return; }
+    if (!name || !phone || !trx || !amt) { toast('⚠️ সব তথ্য পূরণ করুন!'); return; }
+    if (phone.length < 11) { toast('⚠️ সঠিক নম্বর দিন!'); return; }
 
     const u = getTgUser();
     const order = {
@@ -2342,35 +2265,34 @@ function placeOrder() {
     updateBadge();
     updateStats();
     goStep(3);
-    toast('&#x2705; &#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0; &#x9B8;&#x9AB;&#x9B2;!');
+    toast('✅ অর্ডার সফল!');
 }
 
-// ===== TELEGRAM BOT =====
 async function sendAdminNotif(o) {
-    const msg = `&#x1F195; *&#x9A8;&#x9A4;&#x9C1;&#x9A8; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0;!*\n&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;\n&#x1F4E6; \`${o.id}\`\n&#x1F48E; ${o.groupName}\n&#x1F4B0; &#x9F3;${o.groupPrice}\n&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;\n&#x1F464; ${o.customerName}\n&#x1F4F1; \`${o.senderNumber}\`\n&#x1F4B3; ${o.payMethod === 'bkash' ? '&#x1F497; &#x9AC;&#x9BF;&#x995;&#x9BE;&#x9B6;' : '&#x1F9E1; &#x9A8;&#x997;&#x9A6;'}\n&#x1F522; TrxID: \`${o.trxId}\`\n&#x1F4B5; &#x9F3;${o.amountPaid}\n&#x1F4C5; ${o.date}${o.tgUser ? `\n&#x1F464; ${o.tgUser.firstName} @${o.tgUser.username}\n&#x1F194; \`${o.tgUser.id}\`` : ''}\n&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;\n&#x26A1; &#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8; &#x9AA;&#x9CD;&#x9AF;&#x9BE;&#x9A8;&#x9C7;&#x9B2;&#x9C7; &#x997;&#x9BF;&#x9AF;&#x9BC;&#x9C7; &#x985;&#x9A8;&#x9C1;&#x9AE;&#x9CB;&#x9A6;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8;`;
+    const msg = `🆕 *নতুন গ্রুপ অর্ডার!*\n━━━━━━━━━━━━━\n📦 \`${o.id}\`\n💎 ${o.groupName}\n💰 ৳${o.groupPrice}\n━━━━━━━━━━━━━\n👤 ${o.customerName}\n📱 \`${o.senderNumber}\`\n💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'}\n🔢 TrxID: \`${o.trxId}\`\n💵 ৳${o.amountPaid}\n📅 ${o.date}${o.tgUser ? `\n👤 ${o.tgUser.firstName} @${o.tgUser.username}\n🆔 \`${o.tgUser.id}\`` : ''}\n━━━━━━━━━━━━━`;
     try {
         await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ chat_id: CFG.adminId, text: msg, parse_mode: 'Markdown' })
         });
-    } catch(e) { console.log(e); }
+    } catch(e) {}
 }
 
 async function sendUserLink(o) {
     if (!o.tgUser) return;
-    const msg = `&#x1F389; *&#x985;&#x9AD;&#x9BF;&#x9A8;&#x9A8;&#x9CD;&#x9A6;&#x9A8;!*\n&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;\n&#x2705; &#x986;&#x9AA;&#x9A8;&#x9BE;&#x9B0; &#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0; &#x985;&#x9A8;&#x9C1;&#x9AE;&#x9CB;&#x9A6;&#x9BF;&#x9A4;!\n\n&#x1F48E; *&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;:* ${o.groupName}\n&#x1F4B0; *&#x9AE;&#x9C2;&#x9B2;&#x9CD;&#x9AF;:* &#x9F3;${o.groupPrice}\n\n&#x1F517; *&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;&#x9C7; &#x99C;&#x9AF;&#x9BC;&#x9C7;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8;:*\n${o.inviteLink}\n\n&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;&#x2501;\n&#x26A0;&#xFE0F; *&#x997;&#x9C1;&#x9B0;&#x9C1;&#x9A4;&#x9CD;&#x9AC;&#x9AA;&#x9C2;&#x9B0;&#x9CD;&#x9A3;:*\n&#x2022; &#x9B2;&#x9BF;&#x982;&#x995;&#x99F;&#x9BF; &#x985;&#x9A8;&#x9CD;&#x9AF; &#x995;&#x9BE;&#x9B0;&#x9CB; &#x9B8;&#x9BE;&#x9A5;&#x9C7; &#x9B6;&#x9C7;&#x9AF;&#x9BC;&#x9BE;&#x9B0; &#x995;&#x9B0;&#x9AC;&#x9C7;&#x9A8; &#x9A8;&#x9BE;\n&#x2022; &#x9B2;&#x9BF;&#x982;&#x995;&#x99F;&#x9BF; &#x9B2;&#x9BF;&#x9AE;&#x9BF;&#x99F;&#x9C7;&#x9A1; &#x99F;&#x9BE;&#x987;&#x9AE;&#x9C7;&#x9B0; &#x99C;&#x9A8;&#x9CD;&#x9AF;\n&#x2022; &#x9B8;&#x9AE;&#x9B8;&#x9CD;&#x9AF;&#x9BE; &#x9B9;&#x9B2;&#x9C7; &#x9B8;&#x9BE;&#x9AA;&#x9CB;&#x9B0;&#x9CD;&#x99F;&#x9C7; &#x9AF;&#x9CB;&#x997;&#x9BE;&#x9AF;&#x9CB;&#x997; &#x995;&#x9B0;&#x9C1;&#x9A8;\n\n&#x9A7;&#x9A8;&#x9CD;&#x9AF;&#x9AC;&#x9BE;&#x9A6;! &#x1F64F;`;
+    const msg = `🎉 *অভিনন্দন!*\n━━━━━━━━━━━━━\n✅ আপনার অর্ডার অনুমোদিত!\n\n💎 *গ্রুপ:* ${o.groupName}\n💰 *মূল্য:* ৳${o.groupPrice}\n\n🔗 *গ্রুপে জয়েন করুন:*\n${o.inviteLink}\n\nধন্যবাদ! 🙏`;
     try {
         await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ chat_id: o.tgUser.id, text: msg, parse_mode: 'Markdown' })
         });
-        toast('&#x2705; &#x987;&#x989;&#x99C;&#x9BE;&#x9B0;&#x995;&#x9C7; &#x987;&#x9A8;&#x9AD;&#x9BE;&#x987;&#x99F; &#x9B2;&#x9BF;&#x982;&#x995; &#x9AA;&#x9BE;&#x9A0;&#x9BE;&#x9A8;&#x9CB; &#x9B9;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;!');
-    } catch(e) { toast('&#x26A0;&#xFE0F; &#x9AA;&#x9BE;&#x9A0;&#x9BE;&#x9A4;&#x9C7; &#x9B8;&#x9AE;&#x9B8;&#x9CD;&#x9AF;&#x9BE;'); }
+        toast('✅ ইউজারকে ইনভাইট লিংক পাঠানো হয়েছে!');
+    } catch(e) { toast('⚠️ পাঠাতে সমস্যা'); }
 }
 
 async function sendUserReject(o) {
     if (!o.tgUser) return;
-    const msg = `&#x274C; *&#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0; &#x9AA;&#x9CD;&#x9B0;&#x9A4;&#x9CD;&#x9AF;&#x9BE;&#x996;&#x9CD;&#x9AF;&#x9BE;&#x9A4;*\n\n&#x1F48E; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;: ${o.groupName}\n&#x1F522; TrxID: \`${o.trxId}\`\n\n&#x9AA;&#x9C7;&#x9AE;&#x9C7;&#x9A8;&#x9CD;&#x99F; &#x9AF;&#x9BE;&#x99A;&#x9BE;&#x987; &#x995;&#x9B0;&#x9BE; &#x9AF;&#x9BE;&#x9AF;&#x9BC;&#x9A8;&#x9BF;&#x964;\n&#x9B8;&#x9A0;&#x9BF;&#x995; &#x9A4;&#x9A5;&#x9CD;&#x9AF; &#x9A6;&#x9BF;&#x9AF;&#x9BC;&#x9C7; &#x986;&#x9AC;&#x9BE;&#x9B0; &#x99A;&#x9C7;&#x9B7;&#x9CD;&#x99F;&#x9BE; &#x995;&#x9B0;&#x9C1;&#x9A8;&#x964; &#x1F64F;`;
+    const msg = `❌ *অর্ডার প্রত্যাখ্যাত*\n\n💎 গ্রুপ: ${o.groupName}\n🔢 TrxID: \`${o.trxId}\`\n\nপেমেন্ট যাচাই করা যায়নি। আবার চেষ্টা করুন। 🙏`;
     try {
         await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -2387,7 +2309,7 @@ function renderOrders() {
     if (u) uo = orders.filter(o => o.tgUser?.id === u.id);
 
     if (uo.length === 0) {
-        el.innerHTML = `<div class="empty"><div class="e-icon">&#x1F4ED;</div><h3>&#x995;&#x9CB;&#x9A8;&#x9CB; &#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0; &#x9A8;&#x9C7;&#x987;</h3><p>&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x995;&#x9BF;&#x9A8;&#x9B2;&#x9C7; &#x98F;&#x996;&#x9BE;&#x9A8;&#x9C7; &#x9A6;&#x9C7;&#x996;&#x9BE;&#x9AC;&#x9C7;</p><button class="btn btn-primary" style="max-width:200px;margin:20px auto 0;font-size:13px;" onclick="showPage('home')">&#x1F6D2; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9A6;&#x9C7;&#x996;&#x9C1;&#x9A8;</button></div>`;
+        el.innerHTML = `<div class="empty"><div class="e-icon">📭</div><h3>কোনো অর্ডার নেই</h3><p>গ্রুপ কিনলে এখানে দেখাবে</p><button class="btn btn-primary" style="max-width:180px;margin:18px auto 0;font-size:12px;" onclick="showPage('home')">🛒 গ্রুপ দেখুন</button></div>`;
         return;
     }
 
@@ -2395,16 +2317,16 @@ function renderOrders() {
         <div class="order-card">
             <div class="order-top">
                 <span class="order-id">${o.id}</span>
-                <span class="o-status ${o.status}">${o.status === 'pending' ? '&#x23F3; &#x985;&#x9AA;&#x9C7;&#x995;&#x9CD;&#x9B7;&#x9AE;&#x9BE;&#x9A3;' : o.status === 'approved' ? '&#x2705; &#x985;&#x9A8;&#x9C1;&#x9AE;&#x9CB;&#x9A6;&#x9BF;&#x9A4;' : '&#x274C; &#x9AA;&#x9CD;&#x9B0;&#x9A4;&#x9CD;&#x9AF;&#x9BE;&#x996;&#x9CD;&#x9AF;&#x9BE;&#x9A4;'}</span>
+                <span class="o-status ${o.status}">${o.status === 'pending' ? '⏳ অপেক্ষমাণ' : o.status === 'approved' ? '✅ অনুমোদিত' : '❌ প্রত্যাখ্যাত'}</span>
             </div>
             <div class="order-name">${o.groupName}</div>
             <div class="order-meta">
-                &#x1F4B3; ${o.payMethod === 'bkash' ? '&#x1F497; &#x9AC;&#x9BF;&#x995;&#x9BE;&#x9B6;' : '&#x1F9E1; &#x9A8;&#x997;&#x9A6;'} | &#x1F522; ${o.trxId}<br>
-                &#x1F4B5; &#x9F3;${o.amountPaid} | &#x1F4C5; ${o.date}
+                💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'} | 🔢 ${o.trxId}<br>
+                💵 ৳${o.amountPaid} | 📅 ${o.date}
             </div>
-            ${o.status === 'approved' && o.inviteLink ? `<button class="join-btn" onclick="window.open('${o.inviteLink}','_blank')">&#x1F4F2; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;&#x9C7; &#x99C;&#x9AF;&#x9BC;&#x9C7;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8;</button>` : ''}
-            ${o.status === 'pending' ? `<p style="color:var(--warning);font-size:11px;margin-top:12px;text-align:center;font-weight:600;">&#x23F3; &#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8; &#x9B6;&#x9C0;&#x998;&#x9CD;&#x9B0;&#x987; &#x9AF;&#x9BE;&#x99A;&#x9BE;&#x987; &#x995;&#x9B0;&#x9AC;&#x9C7;...</p>` : ''}
-            ${o.status === 'rejected' ? `<p style="color:var(--danger);font-size:11px;margin-top:12px;font-weight:600;">&#x26A0;&#xFE0F; &#x9AA;&#x9C7;&#x9AE;&#x9C7;&#x9A8;&#x9CD;&#x99F; &#x9AF;&#x9BE;&#x99A;&#x9BE;&#x987; &#x9B9;&#x9AF;&#x9BC;&#x9A8;&#x9BF;&#x964; &#x986;&#x9AC;&#x9BE;&#x9B0; &#x99A;&#x9C7;&#x9B7;&#x9CD;&#x99F;&#x9BE; &#x995;&#x9B0;&#x9C1;&#x9A8;&#x964;</p>` : ''}
+            ${o.status === 'approved' && o.inviteLink ? `<button class="join-btn" onclick="window.open('${o.inviteLink}','_blank')">📲 গ্রুপে জয়েন করুন</button>` : ''}
+            ${o.status === 'pending' ? `<p style="color:var(--warning);font-size:11px;margin-top:10px;text-align:center;font-weight:600;">⏳ অ্যাডমিন শীঘ্রই যাচাই করবে...</p>` : ''}
+            ${o.status === 'rejected' ? `<p style="color:var(--danger);font-size:11px;margin-top:10px;font-weight:600;">⚠️ পেমেন্ট যাচাই হয়নি। আবার চেষ্টা করুন।</p>` : ''}
         </div>
     `).join('');
 }
@@ -2415,14 +2337,14 @@ function doAdminLogin() {
     if (pw === getAdminPw()) {
         const u = getTgUser();
         if (u && u.id !== CFG.adminTgId) {
-            toast('&#x274C; &#x986;&#x9AA;&#x9A8;&#x9BF; &#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8; &#x9A8;&#x9A8;!');
+            toast('❌ আপনি অ্যাডমিন নন!');
             return;
         }
         adminLogged = true;
         renderAdmin();
-        toast('&#x2705; &#x9B2;&#x997;&#x987;&#x9A8; &#x9B8;&#x9AB;&#x9B2;!');
+        toast('✅ লগইন সফল!');
     } else {
-        toast('&#x274C; &#x9AD;&#x9C1;&#x9B2; &#x9AA;&#x9BE;&#x9B8;&#x993;&#x9AF;&#x9BC;&#x9BE;&#x9B0;&#x9CD;&#x9A1;!');
+        toast('❌ ভুল পাসওয়ার্ড!');
     }
 }
 
@@ -2434,69 +2356,69 @@ function renderAdmin() {
     const rev = orders.filter(o => o.status === 'approved').reduce((s, o) => s + parseInt(o.amountPaid || 0), 0);
 
     area.innerHTML = `
-        <div class="section-title"><span class="grad-text">&#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8; &#x9A1;&#x9CD;&#x9AF;&#x9BE;&#x9B6;&#x9AC;&#x9CB;&#x9B0;&#x9CD;&#x9A1;</span></div>
+        <div class="section-title"><span class="grad-text">অ্যাডমিন ড্যাশবোর্ড</span></div>
 
         <div class="stats-row">
-            <div class="s-card"><div class="s-num">${pc}</div><div class="s-label">&#x23F3; &#x985;&#x9AA;&#x9C7;&#x995;&#x9CD;&#x9B7;&#x9AE;&#x9BE;&#x9A3;</div></div>
-            <div class="s-card"><div class="s-num">${ac}</div><div class="s-label">&#x2705; &#x9B8;&#x9AB;&#x9B2;</div></div>
-            <div class="s-card"><div class="s-num">${rc}</div><div class="s-label">&#x274C; &#x9AA;&#x9CD;&#x9B0;&#x9A4;&#x9CD;&#x9AF;&#x9BE;&#x996;&#x9CD;&#x9AF;&#x9BE;&#x9A4;</div></div>
-            <div class="s-card"><div class="s-num">&#x9F3;${rev}</div><div class="s-label">&#x1F4B0; &#x986;&#x9AF;&#x9BC;</div></div>
+            <div class="s-card"><div class="s-num">${pc}</div><div class="s-label">⏳ অপেক্ষমাণ</div></div>
+            <div class="s-card"><div class="s-num">${ac}</div><div class="s-label">✅ সফল</div></div>
+            <div class="s-card"><div class="s-num">${rc}</div><div class="s-label">❌ প্রত্যাখ্যাত</div></div>
+            <div class="s-card"><div class="s-num">৳${rev}</div><div class="s-label">💰 আয়</div></div>
         </div>
 
         <div class="admin-tabs">
-            <div class="a-tab ${adminTab === 'orders' ? 'active' : ''}" onclick="adminTab='orders';renderAdmin()">&#x1F4CB; &#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0;</div>
-            <div class="a-tab ${adminTab === 'groups' ? 'active' : ''}" onclick="adminTab='groups';renderAdmin()">&#x1F48E; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;</div>
-            <div class="a-tab ${adminTab === 'addgroup' ? 'active' : ''}" onclick="adminTab='addgroup';renderAdmin()">&#x2795; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AF;&#x9CB;&#x997;</div>
-            <div class="a-tab ${adminTab === 'categories' ? 'active' : ''}" onclick="adminTab='categories';renderAdmin()">&#x1F4C2; &#x995;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9BE;&#x997;&#x9B0;&#x9BF;</div>
+            <div class="a-tab ${adminTab === 'orders' ? 'active' : ''}" onclick="adminTab='orders';renderAdmin()">📋 অর্ডার</div>
+            <div class="a-tab ${adminTab === 'groups' ? 'active' : ''}" onclick="adminTab='groups';renderAdmin()">💎 গ্রুপ</div>
+            <div class="a-tab ${adminTab === 'addgroup' ? 'active' : ''}" onclick="adminTab='addgroup';renderAdmin()">➕ যোগ</div>
+            <div class="a-tab ${adminTab === 'categories' ? 'active' : ''}" onclick="adminTab='categories';renderAdmin()">📂 ক্যাটাগরি</div>
         </div>
 
         <div id="adminTabContent"></div>
 
-        <button class="btn btn-ghost" style="margin-top:20px;" onclick="adminLogout()">&#x1F6AA; &#x9B2;&#x997;&#x986;&#x989;&#x99F;</button>
+        <button class="btn btn-ghost" style="margin-top:16px;" onclick="adminLogout()">🚪 লগআউট</button>
     `;
 
     const tc = document.getElementById('adminTabContent');
 
     if (adminTab === 'orders') {
-        tc.innerHTML = orders.length === 0 ? `<div class="empty"><div class="e-icon">&#x1F4ED;</div><h3>&#x995;&#x9CB;&#x9A8;&#x9CB; &#x985;&#x9B0;&#x9CD;&#x9A1;&#x9BE;&#x9B0; &#x9A8;&#x9C7;&#x987;</h3></div>` :
+        tc.innerHTML = orders.length === 0 ? `<div class="empty"><div class="e-icon">📭</div><h3>কোনো অর্ডার নেই</h3></div>` :
             orders.slice().reverse().map(o => `
                 <div class="admin-order-card" style="border-left:3px solid ${o.status === 'pending' ? 'var(--warning)' : o.status === 'approved' ? 'var(--success)' : 'var(--danger)'}">
-                    <div class="order-top"><span class="order-id">${o.id}</span><span class="o-status ${o.status}">${o.status === 'pending' ? '&#x23F3;' : o.status === 'approved' ? '&#x2705;' : '&#x274C;'} ${o.status}</span></div>
+                    <div class="order-top"><span class="order-id">${o.id}</span><span class="o-status ${o.status}">${o.status === 'pending' ? '⏳' : o.status === 'approved' ? '✅' : '❌'} ${o.status}</span></div>
                     <div class="order-name">${o.groupName}</div>
                     <div class="order-meta">
-                        &#x1F464; <strong>${o.customerName}</strong><br>
-                        &#x1F4F1; ${o.senderNumber} | &#x1F4B3; ${o.payMethod === 'bkash' ? '&#x1F497; &#x9AC;&#x9BF;&#x995;&#x9BE;&#x9B6;' : '&#x1F9E1; &#x9A8;&#x997;&#x9A6;'}<br>
-                        &#x1F522; TrxID: <strong style="color:var(--primary-light)">${o.trxId}</strong><br>
-                        &#x1F4B5; &#x9F3;${o.amountPaid} | &#x1F4C5; ${o.date}
-                        ${o.tgUser ? `<br>&#x1F517; ${o.tgUser.firstName} @${o.tgUser.username} (${o.tgUser.id})` : ''}
+                        👤 <strong>${o.customerName}</strong><br>
+                        📱 ${o.senderNumber} | 💳 ${o.payMethod === 'bkash' ? '💗 বিকাশ' : '🧡 নগদ'}<br>
+                        🔢 TrxID: <strong style="color:var(--primary-light)">${o.trxId}</strong><br>
+                        💵 ৳${o.amountPaid} | 📅 ${o.date}
+                        ${o.tgUser ? `<br>🔗 ${o.tgUser.firstName} @${o.tgUser.username} (${o.tgUser.id})` : ''}
                     </div>
                     ${o.status === 'pending' ? `
-                        <input type="text" class="a-link-input" id="lnk-${o.id}" placeholder="&#x1F517; &#x99F;&#x9C7;&#x9B2;&#x9BF;&#x997;&#x9CD;&#x9B0;&#x9BE;&#x9AE; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x987;&#x9A8;&#x9AD;&#x9BE;&#x987;&#x99F; &#x9B2;&#x9BF;&#x982;&#x995;..." value="${o.inviteLink || ''}">
+                        <input type="text" class="a-link-input" id="lnk-${o.id}" placeholder="🔗 টেলিগ্রাম গ্রুপ ইনভাইট লিংক..." value="${o.inviteLink || ''}">
                         <div class="a-actions">
-                            <button class="a-approve" onclick="approveO('${o.id}')">&#x2705; &#x985;&#x9A8;&#x9C1;&#x9AE;&#x9CB;&#x9A6;&#x9A8;</button>
-                            <button class="a-reject" onclick="rejectO('${o.id}')">&#x274C; &#x9AA;&#x9CD;&#x9B0;&#x9A4;&#x9CD;&#x9AF;&#x9BE;&#x996;&#x9CD;&#x9AF;&#x9BE;&#x9A8;</button>
+                            <button class="a-approve" onclick="approveO('${o.id}')">✅ অনুমোদন</button>
+                            <button class="a-reject" onclick="rejectO('${o.id}')">❌ প্রত্যাখ্যান</button>
                         </div>
                     ` : ''}
-                    ${o.status === 'approved' ? `<p style="color:var(--success);font-size:11px;margin-top:12px;word-break:break-all;font-weight:500;">&#x1F517; ${o.inviteLink}</p>` : ''}
+                    ${o.status === 'approved' ? `<p style="color:var(--success);font-size:11px;margin-top:10px;word-break:break-all;font-weight:500;">🔗 ${o.inviteLink}</p>` : ''}
                 </div>
             `).join('');
     }
 
     else if (adminTab === 'groups') {
         tc.innerHTML = `
-            <div class="section-title" style="font-size:15px;"><span class="grad-text">&#x9B8;&#x995;&#x9B2; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; (${groups.length})</span></div>
+            <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">সকল গ্রুপ (${groups.length})</span></div>
             ${groups.map(g => `
                 <div class="admin-order-card">
-                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                        <div style="width:48px;height:48px;border-radius:12px;background:${g.gradient};display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">${g.emoji}</div>
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                        <div style="width:45px;height:45px;border-radius:11px;background:${g.gradient};display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">${g.emoji}</div>
                         <div style="flex:1;">
-                            <div style="font-size:14px;font-weight:800;">${g.title}</div>
-                            <div style="font-size:11px;color:var(--text3);margin-top:2px;font-weight:500;">${g.category} | &#x9F3;${g.price} | &#x1F513; ${g.access}</div>
+                            <div style="font-size:13px;font-weight:800;">${g.title}</div>
+                            <div style="font-size:10px;color:var(--text3);margin-top:2px;font-weight:500;">${g.category} | ৳${g.price} | 🔓 ${g.access}</div>
                         </div>
                     </div>
                     <div class="row-2">
-                        <button class="btn btn-ghost" style="font-size:11px;padding:9px;" onclick="editGroup(${g.id})">&#x270F;&#xFE0F; &#x98F;&#x9A1;&#x9BF;&#x99F;</button>
-                        <button class="btn btn-danger" style="font-size:11px;padding:9px;" onclick="deleteGroup(${g.id})">&#x1F5D1;&#xFE0F; &#x9AE;&#x9C1;&#x99B;&#x9C1;&#x9A8;</button>
+                        <button class="btn btn-ghost" style="font-size:11px;padding:8px;" onclick="editGroup(${g.id})">✏️ এডিট</button>
+                        <button class="btn btn-danger" style="font-size:11px;padding:8px;" onclick="deleteGroup(${g.id})">🗑️ মুছুন</button>
                     </div>
                 </div>
             `).join('')}
@@ -2506,82 +2428,82 @@ function renderAdmin() {
     else if (adminTab === 'addgroup') {
         tc.innerHTML = `
             <div class="add-form">
-                <div class="section-title" style="font-size:15px;"><span class="grad-text">&#x9A8;&#x9A4;&#x9C1;&#x9A8; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AF;&#x9CB;&#x997;</span></div>
+                <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">নতুন গ্রুপ যোগ</span></div>
 
-                <div class="fg"><label>&#x1F48E; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;&#x9C7;&#x9B0; &#x9A8;&#x9BE;&#x9AE; *</label><input type="text" id="ac-title" placeholder="&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;&#x9C7;&#x9B0; &#x9A8;&#x9BE;&#x9AE;"></div>
-                <div class="fg"><label>&#x1F4DD; &#x9AC;&#x9BF;&#x9B8;&#x9CD;&#x9A4;&#x9BE;&#x9B0;&#x9BF;&#x9A4; *</label><textarea id="ac-desc" placeholder="&#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;&#x9C7;&#x9B0; &#x9AC;&#x9BF;&#x9B8;&#x9CD;&#x9A4;&#x9BE;&#x9B0;&#x9BF;&#x9A4; &#x9AC;&#x9B0;&#x9CD;&#x9A3;&#x9A8;&#x9BE;..."></textarea></div>
+                <div class="fg"><label>💎 গ্রুপের নাম *</label><input type="text" id="ac-title" placeholder="গ্রুপের নাম"></div>
+                <div class="fg"><label>📝 বিস্তারিত *</label><textarea id="ac-desc" placeholder="গ্রুপের বিস্তারিত বর্ণনা..."></textarea></div>
 
                 <div class="row-2">
-                    <div class="fg"><label>&#x1F4B0; &#x9AE;&#x9C2;&#x9B2;&#x9CD;&#x9AF; (&#x9F3;) *</label><input type="number" id="ac-price" placeholder="199"></div>
-                    <div class="fg"><label>&#x1F4B8; &#x986;&#x997;&#x9C7;&#x9B0; &#x9AE;&#x9C2;&#x9B2;&#x9CD;&#x9AF; (&#x9F3;)</label><input type="number" id="ac-oldprice" placeholder="999"></div>
+                    <div class="fg"><label>💰 মূল্য (৳) *</label><input type="number" id="ac-price" placeholder="199"></div>
+                    <div class="fg"><label>💸 আগের মূল্য (৳)</label><input type="number" id="ac-oldprice" placeholder="999"></div>
                 </div>
 
                 <div class="fg">
-                    <label>&#x1F4C2; &#x995;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9BE;&#x997;&#x9B0;&#x9BF; *</label>
+                    <label>📂 ক্যাটাগরি *</label>
                     <select id="ac-cat">
                         ${categories.filter(c => c.id !== 'all').map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
                     </select>
                 </div>
 
-                <div class="fg"><label>&#x1F513; &#x985;&#x9CD;&#x9AF;&#x9BE;&#x995;&#x9CD;&#x9B8;&#x9C7;&#x9B8; &#x99F;&#x9BE;&#x987;&#x9AA;</label><input type="text" id="ac-access" placeholder="&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE;"></div>
+                <div class="fg"><label>🔓 অ্যাক্সেস টাইপ</label><input type="text" id="ac-access" placeholder="লাইফটাইম"></div>
 
-                <div class="fg"><label>&#x1F3F7;&#xFE0F; &#x9AC;&#x9CD;&#x9AF;&#x9BE;&#x99C; &#x99F;&#x9C7;&#x995;&#x9CD;&#x9B8;&#x99F;</label><input type="text" id="ac-badge" placeholder="&#x1F451; VIP"></div>
+                <div class="fg"><label>🏷️ ব্যাজ টেক্সট</label><input type="text" id="ac-badge" placeholder="👑 VIP"></div>
 
                 <div class="fg">
-                    <label>&#x1F3A8; &#x9AC;&#x9CD;&#x9AF;&#x9BE;&#x99C; &#x9B8;&#x9CD;&#x99F;&#x9BE;&#x987;&#x9B2;</label>
+                    <label>🎨 ব্যাজ স্টাইল</label>
                     <select id="ac-badgeclass">
-                        <option value="vip">&#x1F451; VIP (&#x9B8;&#x9CB;&#x9A8;&#x9BE;&#x9B2;&#x9BF;)</option>
-                        <option value="hot">&#x1F525; &#x9B9;&#x99F; (&#x995;&#x9AE;&#x9B2;&#x9BE;)</option>
-                        <option value="new">&#x2728; &#x9A8;&#x9A4;&#x9C1;&#x9A8; (&#x9B8;&#x9AC;&#x9C1;&#x99C;)</option>
-                        <option value="exclusive">&#x1F48E; &#x98F;&#x995;&#x9CD;&#x9B8;&#x995;&#x9CD;&#x9B2;&#x9C1;&#x9B8;&#x9BF;&#x9AD;</option>
+                        <option value="vip">👑 VIP (সোনালি)</option>
+                        <option value="hot">🔥 হট (কমলা)</option>
+                        <option value="new">✨ নতুন (সবুজ)</option>
+                        <option value="exclusive">💎 এক্সক্লুসিভ</option>
                     </select>
                 </div>
 
-                <div class="fg"><label>&#x1F600; &#x987;&#x9AE;&#x9CB;&#x99C;&#x9BF;</label><input type="text" id="ac-emoji" placeholder="&#x1F48E;"></div>
+                <div class="fg"><label>😀 ইমোজি (থাম্বনেইল না থাকলে)</label><input type="text" id="ac-emoji" placeholder="💎"></div>
 
                 <div class="fg">
-                    <label>&#x1F3A8; &#x997;&#x9CD;&#x9B0;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9BF;&#x9AF;&#x9BC;&#x9C7;&#x9A8;&#x9CD;&#x99F; &#x995;&#x9BE;&#x9B2;&#x9BE;&#x9B0;</label>
+                    <label>🎨 গ্র্যাডিয়েন্ট কালার (থাম্বনেইল না থাকলে)</label>
                     <div class="color-picker-row" id="gradientPicker">
-                        ${gradients.map((g, i) => `<div class="color-opt ${i === 0 ? 'selected' : ''}" style="background:${g}" onclick="pickGradient(${i},this)" data-grad="${g}"></div>`).join('')}
+                        ${gradients.map((g, i) => `<div class="color-opt ${i === 0 ? 'selected' : ''}" style="background:${g}" onclick="pickGradient(${i},this)"></div>`).join('')}
                     </div>
                 </div>
 
-                <div class="fg"><label>&#x1F5BC;&#xFE0F; &#x9A5;&#x9BE;&#x9AE;&#x9CD;&#x9AC;&#x9A8;&#x9C7;&#x987;&#x9B2; URL</label><input type="text" id="ac-thumb" placeholder="https://i.postimg.cc/..."></div>
+                <div class="fg"><label>🖼️ থাম্বনেইল URL (3:4 রেশিও)</label><input type="text" id="ac-thumb" placeholder="https://i.postimg.cc/..."></div>
 
                 <div class="fg">
-                    <label>&#x1F4F8; &#x9B8;&#x9CD;&#x995;&#x9CD;&#x9B0;&#x9BF;&#x9A8;&#x9B6;&#x99F; URLs (&#x995;&#x9AE;&#x9BE; &#x9A6;&#x9BF;&#x9AF;&#x9BC;&#x9C7; &#x986;&#x9B2;&#x9BE;&#x9A6;&#x9BE;)</label>
+                    <label>📸 স্ক্রিনশট URLs (কমা দিয়ে আলাদা)</label>
                     <textarea id="ac-ss" placeholder="https://url1.jpg, https://url2.jpg" style="min-height:60px;"></textarea>
                 </div>
 
                 <div class="fg">
-                    <label>&#x2713; &#x9AD;&#x9C7;&#x9B0;&#x9BF;&#x9AB;&#x9BE;&#x987;&#x9A1; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;</label>
+                    <label>✓ ভেরিফাইড গ্রুপ</label>
                     <select id="ac-verified">
-                        <option value="true">&#x2705; &#x9B9;&#x9CD;&#x9AF;&#x9BE;&#x981; (&#x9AD;&#x9C7;&#x9B0;&#x9BF;&#x9AB;&#x9BE;&#x987;&#x9A1;)</option>
-                        <option value="false">&#x274C; &#x9A8;&#x9BE;</option>
+                        <option value="true">✅ হ্যাঁ</option>
+                        <option value="false">❌ না</option>
                     </select>
                 </div>
 
-                <button class="btn btn-success" onclick="addGroup()">&#x2705; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AF;&#x9CB;&#x997; &#x995;&#x9B0;&#x9C1;&#x9A8;</button>
+                <button class="btn btn-success" onclick="addGroup()">✅ গ্রুপ যোগ করুন</button>
             </div>
         `;
     }
 
     else if (adminTab === 'categories') {
         tc.innerHTML = `
-            <div class="section-title" style="font-size:15px;"><span class="grad-text">&#x995;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9BE;&#x997;&#x9B0;&#x9BF; &#x9AE;&#x9CD;&#x9AF;&#x9BE;&#x9A8;&#x9C7;&#x99C;</span></div>
+            <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">ক্যাটাগরি ম্যানেজ</span></div>
 
             ${categories.map(c => `
                 <div class="admin-order-card" style="display:flex;align-items:center;justify-content:space-between;">
-                    <span style="font-size:14px;font-weight:700;">${c.name}</span>
-                    ${c.id !== 'all' ? `<button class="btn btn-danger" style="width:auto;padding:7px 14px;font-size:11px;" onclick="deleteCat('${c.id}')">&#x1F5D1;&#xFE0F;</button>` : '<span style="font-size:10px;color:var(--text3);font-weight:600;">&#x9A1;&#x9BF;&#x9AB;&#x9B2;&#x9CD;&#x99F;</span>'}
+                    <span style="font-size:13px;font-weight:700;">${c.name}</span>
+                    ${c.id !== 'all' ? `<button class="btn btn-danger" style="width:auto;padding:6px 13px;font-size:11px;" onclick="deleteCat('${c.id}')">🗑️</button>` : '<span style="font-size:10px;color:var(--text3);font-weight:600;">ডিফল্ট</span>'}
                 </div>
             `).join('')}
 
-            <div class="add-form" style="margin-top:14px;">
-                <div class="section-title" style="font-size:15px;"><span class="grad-text">&#x9A8;&#x9A4;&#x9C1;&#x9A8; &#x995;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9BE;&#x997;&#x9B0;&#x9BF;</span></div>
-                <div class="fg"><label>&#x1F4DB; &#x995;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9BE;&#x997;&#x9B0;&#x9BF; &#x9A8;&#x9BE;&#x9AE;</label><input type="text" id="newCatName" placeholder="&#x1F3B5; &#x9AE;&#x9BF;&#x989;&#x99C;&#x9BF;&#x995;"></div>
-                <div class="fg"><label>&#x1F194; &#x986;&#x987;&#x9A1;&#x9BF; (&#x987;&#x982;&#x9B0;&#x9C7;&#x99C;&#x9BF;&#x9A4;&#x9C7;)</label><input type="text" id="newCatId" placeholder="music"></div>
-                <button class="btn btn-success" onclick="addCategory()">&#x2795; &#x9AF;&#x9CB;&#x997; &#x995;&#x9B0;&#x9C1;&#x9A8;</button>
+            <div class="add-form" style="margin-top:12px;">
+                <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">নতুন ক্যাটাগরি</span></div>
+                <div class="fg"><label>📛 ক্যাটাগরি নাম</label><input type="text" id="newCatName" placeholder="🎵 মিউজিক"></div>
+                <div class="fg"><label>🆔 আইডি</label><input type="text" id="newCatId" placeholder="music"></div>
+                <button class="btn btn-success" onclick="addCategory()">➕ যোগ করুন</button>
             </div>
         `;
     }
@@ -2601,15 +2523,15 @@ function addGroup() {
     const price = parseInt(document.getElementById('ac-price').value);
     const oldPrice = parseInt(document.getElementById('ac-oldprice').value) || price * 3;
     const cat = document.getElementById('ac-cat').value;
-    const access = document.getElementById('ac-access').value.trim() || '&#x9B2;&#x9BE;&#x987;&#x9AB;&#x99F;&#x9BE;&#x987;&#x9AE;';
-    const badge = document.getElementById('ac-badge').value.trim() || '&#x2728; &#x9A8;&#x9A4;&#x9C1;&#x9A8;';
+    const access = document.getElementById('ac-access').value.trim() || 'লাইফটাইম';
+    const badge = document.getElementById('ac-badge').value.trim() || '✨ নতুন';
     const badgeClass = document.getElementById('ac-badgeclass').value;
-    const emoji = document.getElementById('ac-emoji').value.trim() || '&#x1F48E;';
+    const emoji = document.getElementById('ac-emoji').value.trim() || '💎';
     const thumb = document.getElementById('ac-thumb').value.trim();
     const ssRaw = document.getElementById('ac-ss').value.trim();
     const verified = document.getElementById('ac-verified').value === 'true';
 
-    if (!title || !desc || !price) { toast('&#x26A0;&#xFE0F; &#x9A8;&#x9BE;&#x9AE;, &#x9AC;&#x9BF;&#x9B8;&#x9CD;&#x9A4;&#x9BE;&#x9B0;&#x9BF;&#x9A4; &#x993; &#x9AE;&#x9C2;&#x9B2;&#x9CD;&#x9AF; &#x9A6;&#x9BF;&#x9A8;!'); return; }
+    if (!title || !desc || !price) { toast('⚠️ নাম, বিস্তারিত ও মূল্য দিন!'); return; }
 
     const newGroup = {
         id: Date.now(),
@@ -2627,7 +2549,7 @@ function addGroup() {
     renderCategories();
     adminTab = 'groups';
     renderAdmin();
-    toast('&#x2705; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AF;&#x9CB;&#x997; &#x9B9;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;!');
+    toast('✅ গ্রুপ যোগ হয়েছে!');
 }
 
 function editGroup(id) {
@@ -2652,7 +2574,7 @@ function editGroup(id) {
         document.getElementById('ac-verified').value = g.verified ? 'true' : 'false';
 
         const btn = document.querySelector('.add-form .btn-success');
-        btn.textContent = '&#x270F;&#xFE0F; &#x986;&#x9AA;&#x9A1;&#x9C7;&#x99F; &#x995;&#x9B0;&#x9C1;&#x9A8;';
+        btn.textContent = '✏️ আপডেট করুন';
         btn.onclick = function() {
             groups = groups.filter(x => x.id !== id);
             addGroup();
@@ -2661,41 +2583,41 @@ function editGroup(id) {
 }
 
 function deleteGroup(id) {
-    if (!confirm('&#x98F;&#x987; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA;&#x99F;&#x9BF; &#x9AE;&#x9C1;&#x99B;&#x9C7; &#x9AB;&#x9C7;&#x9B2;&#x9A4;&#x9C7; &#x99A;&#x9BE;&#x9A8;?')) return;
+    if (!confirm('এই গ্রুপটি মুছে ফেলতে চান?')) return;
     groups = groups.filter(g => g.id !== id);
     saveGroups();
     renderGroups();
     renderAdmin();
-    toast('&#x1F5D1;&#xFE0F; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AE;&#x9C1;&#x99B;&#x9C7; &#x9AB;&#x9C7;&#x9B2;&#x9BE; &#x9B9;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;!');
+    toast('🗑️ গ্রুপ মুছে ফেলা হয়েছে!');
 }
 
 function addCategory() {
     const name = document.getElementById('newCatName').value.trim();
     const id = document.getElementById('newCatId').value.trim().toLowerCase();
-    if (!name || !id) { toast('&#x26A0;&#xFE0F; &#x9A8;&#x9BE;&#x9AE; &#x993; &#x986;&#x987;&#x9A1;&#x9BF; &#x9A6;&#x9BF;&#x9A8;!'); return; }
-    if (categories.find(c => c.id === id)) { toast('&#x26A0;&#xFE0F; &#x98F;&#x987; &#x986;&#x987;&#x9A1;&#x9BF; &#x986;&#x99B;&#x9C7;!'); return; }
+    if (!name || !id) { toast('⚠️ নাম ও আইডি দিন!'); return; }
+    if (categories.find(c => c.id === id)) { toast('⚠️ এই আইডি আছে!'); return; }
     categories.push({ id, name });
     saveCategories();
     renderCategories();
     renderAdmin();
-    toast('&#x2705; &#x995;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9BE;&#x997;&#x9B0;&#x9BF; &#x9AF;&#x9CB;&#x997; &#x9B9;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;!');
+    toast('✅ ক্যাটাগরি যোগ হয়েছে!');
 }
 
 function deleteCat(id) {
-    if (!confirm('&#x98F;&#x987; &#x995;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9BE;&#x997;&#x9B0;&#x9BF; &#x9AE;&#x9C1;&#x99B;&#x9AC;&#x9C7;&#x9A8;?')) return;
+    if (!confirm('এই ক্যাটাগরি মুছবেন?')) return;
     categories = categories.filter(c => c.id !== id);
     saveCategories();
     renderCategories();
     renderAdmin();
-    toast('&#x1F5D1;&#xFE0F; &#x995;&#x9CD;&#x9AF;&#x9BE;&#x99F;&#x9BE;&#x997;&#x9B0;&#x9BF; &#x9AE;&#x9C1;&#x99B;&#x9C7; &#x9AB;&#x9C7;&#x9B2;&#x9BE; &#x9B9;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;!');
+    toast('🗑️ ক্যাটাগরি মুছে ফেলা হয়েছে!');
 }
 
 function approveO(id) {
     const inp = document.getElementById('lnk-' + id);
     const link = inp ? inp.value.trim() : '';
-    if (!link) { toast('&#x26A0;&#xFE0F; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x987;&#x9A8;&#x9AD;&#x9BE;&#x987;&#x99F; &#x9B2;&#x9BF;&#x982;&#x995; &#x9A6;&#x9BF;&#x9A8;!'); return; }
+    if (!link) { toast('⚠️ গ্রুপ ইনভাইট লিংক দিন!'); return; }
     if (!link.includes('t.me/') && !link.includes('telegram.me/')) { 
-        toast('&#x26A0;&#xFE0F; &#x9B8;&#x9A0;&#x9BF;&#x995; &#x99F;&#x9C7;&#x9B2;&#x9BF;&#x997;&#x9CD;&#x9B0;&#x9BE;&#x9AE; &#x9B2;&#x9BF;&#x982;&#x995; &#x9A6;&#x9BF;&#x9A8;!'); 
+        toast('⚠️ সঠিক টেলিগ্রাম লিংক দিন!'); 
         return; 
     }
     const o = orders.find(x => x.id === id);
@@ -2706,7 +2628,7 @@ function approveO(id) {
         renderAdmin();
         sendUserLink(o);
         updateBadge(); updateStats();
-        toast('&#x2705; &#x985;&#x9A8;&#x9C1;&#x9AE;&#x9CB;&#x9A6;&#x9BF;&#x9A4;!');
+        toast('✅ অনুমোদিত!');
     }
 }
 
@@ -2718,7 +2640,7 @@ function rejectO(id) {
         renderAdmin();
         sendUserReject(o);
         updateBadge(); updateStats();
-        toast('&#x274C; &#x9AA;&#x9CD;&#x9B0;&#x9A4;&#x9CD;&#x9AF;&#x9BE;&#x996;&#x9CD;&#x9AF;&#x9BE;&#x9A4;!');
+        toast('❌ প্রত্যাখ্যাত!');
     }
 }
 
@@ -2726,28 +2648,50 @@ function adminLogout() {
     adminLogged = false;
     document.getElementById('adminArea').innerHTML = `
         <div class="admin-card">
-            <div class="a-icon">&#x1F510;</div>
-            <h2 style="font-size:19px;margin-bottom:6px;">&#x985;&#x9CD;&#x9AF;&#x9BE;&#x9A1;&#x9AE;&#x9BF;&#x9A8; &#x9AA;&#x9CD;&#x9AF;&#x9BE;&#x9A8;&#x9C7;&#x9B2;</h2>
-            <p style="font-size:12px;color:var(--text3);margin-bottom:20px;font-weight:500;">&#x9B2;&#x997;&#x987;&#x9A8; &#x995;&#x9B0;&#x9A4;&#x9C7; &#x9AA;&#x9BE;&#x9B8;&#x993;&#x9AF;&#x9BC;&#x9BE;&#x9B0;&#x9CD;&#x9A1; &#x9A6;&#x9BF;&#x9A8;</p>
-            <div class="fg"><input type="password" id="adminPw" placeholder="&#x1F511; &#x9AA;&#x9BE;&#x9B8;&#x993;&#x9AF;&#x9BC;&#x9BE;&#x9B0;&#x9CD;&#x9A1; &#x9A6;&#x9BF;&#x9A8;" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
-            <button class="btn btn-primary" onclick="doAdminLogin()">&#x1F513; &#x9B2;&#x997;&#x987;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8;</button>
+            <div class="a-icon">🔐</div>
+            <h2 style="font-size:18px;margin-bottom:5px;">অ্যাডমিন প্যানেল</h2>
+            <p style="font-size:11px;color:var(--text3);margin-bottom:18px;font-weight:500;">লগইন করতে পাসওয়ার্ড দিন</p>
+            <div class="fg"><input type="password" id="adminPw" placeholder="🔑 পাসওয়ার্ড দিন" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
+            <button class="btn btn-primary" onclick="doAdminLogin()">🔓 লগইন করুন</button>
+            <button class="btn btn-ghost" style="margin-top:8px;" onclick="showPage('profile')">← ফিরে যান</button>
         </div>
     `;
-    toast('&#x1F6AA; &#x9B2;&#x997;&#x986;&#x989;&#x99F;!');
+    toast('🚪 লগআউট!');
+    showPage('profile');
 }
 
 // ===== NAVIGATION =====
 function showPage(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
+    
     document.getElementById('page-' + page).classList.add('active');
-    document.getElementById('nav-' + page).classList.add('active');
+    
+    // Update bottom nav
+    const bottomNav = document.getElementById('nav-' + page);
+    if (bottomNav) bottomNav.classList.add('active');
+    
+    // Update top tab
+    const topTab = document.getElementById('tab-' + page);
+    if (topTab) topTab.classList.add('active');
 
     if (page === 'orders') renderOrders();
     if (page === 'profile') { initUser(); updateStats(); }
     if (page === 'admin' && adminLogged) renderAdmin();
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== LIVE CHAT WITH ADMIN =====
+function contactAdminLive() {
+    const adminLink = `https://t.me/${CFG.adminUsername}`;
+    if (tg && tg.openTelegramLink) {
+        tg.openTelegramLink(adminLink);
+    } else {
+        window.open(adminLink, '_blank');
+    }
+    toast('💬 অ্যাডমিনের সাথে চ্যাট শুরু হচ্ছে...');
 }
 
 function contactSupport() {
@@ -2757,36 +2701,32 @@ function contactSupport() {
     } else {
         window.open(supportLink, '_blank');
     }
-    toast('&#x1F4AC; &#x9B8;&#x9BE;&#x9AA;&#x9CB;&#x9B0;&#x9CD;&#x99F;&#x9C7; &#x9A8;&#x9BF;&#x9AF;&#x9BC;&#x9C7; &#x9AF;&#x9BE;&#x99A;&#x9CD;&#x99B;&#x9BF;...');
+    toast('💬 সাপোর্টে নিয়ে যাচ্ছি...');
 }
 
 function shareApp() {
     const botLink = `https://t.me/${CFG.botUsername}`;
-    const shareText = `&#x1F48E; &#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x99F;&#x9C7;&#x9B2;&#x9BF;&#x997;&#x9CD;&#x9B0;&#x9BE;&#x9AE; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9AA;&#x9C7;&#x9A4;&#x9C7; &#x98F;&#x987; &#x9AC;&#x99F;&#x9C7; &#x99C;&#x9AF;&#x9BC;&#x9C7;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8;!\n\n&#x1F3AC; &#x9AE;&#x9C1;&#x9AD;&#x9BF;, &#x1F4DA; &#x995;&#x9CB;&#x9B0;&#x9CD;&#x9B8;, &#x1F4C8; &#x99F;&#x9CD;&#x9B0;&#x9C7;&#x9A1;&#x9BF;&#x982; &#x9B8;&#x9B9; &#x986;&#x9B0;&#x9CB; &#x985;&#x9A8;&#x9C7;&#x995; &#x995;&#x9BF;&#x99B;&#x9C1;!\n\n&#x1F447; &#x98F;&#x996;&#x9A8;&#x987; &#x99C;&#x9AF;&#x9BC;&#x9C7;&#x9A8; &#x995;&#x9B0;&#x9C1;&#x9A8;:\n${botLink}`;
+    const shareText = `💎 প্রিমিয়াম টেলিগ্রাম গ্রুপ পেতে এই বটে জয়েন করুন!\n\n🎬 মুভি, 📚 কোর্স, 📈 ট্রেডিং সহ আরো অনেক কিছু!\n\n👇 এখনই জয়েন করুন:\n${botLink}`;
     
     if (tg && tg.openTelegramLink) {
         tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(botLink)}&text=${encodeURIComponent(shareText)}`);
     } else if (navigator.share) {
         navigator.share({ 
-            title: '&#x9AA;&#x9CD;&#x9B0;&#x9BF;&#x9AE;&#x9BF;&#x9AF;&#x9BC;&#x9BE;&#x9AE; &#x997;&#x9CD;&#x9B0;&#x9C1;&#x9AA; &#x9B8;&#x9CD;&#x99F;&#x9CB;&#x9B0;', 
+            title: 'প্রিমিয়াম গ্রুপ স্টোর', 
             text: shareText, 
             url: botLink 
         });
     } else {
         navigator.clipboard.writeText(botLink).then(() => {
-            toast('&#x1F4CB; &#x9AC;&#x99F; &#x9B2;&#x9BF;&#x982;&#x995; &#x995;&#x9AA;&#x9BF; &#x9B9;&#x9AF;&#x9BC;&#x9C7;&#x99B;&#x9C7;!');
-        }).catch(() => {
-            toast('&#x1F4CB; &#x9B2;&#x9BF;&#x982;&#x995;: ' + botLink);
+            toast('📋 বট লিংক কপি হয়েছে!');
         });
     }
 }
 
-// ===== SAVE =====
 function saveOrders() { localStorage.setItem('pg_orders', JSON.stringify(orders)); }
 function saveGroups() { localStorage.setItem('pg_groups', JSON.stringify(groups)); }
 function saveCategories() { localStorage.setItem('pg_categories', JSON.stringify(categories)); }
 
-// ===== TOAST =====
 function toast(msg) {
     const old = document.querySelector('.toast');
     if (old) old.remove();
@@ -2796,24 +2736,14 @@ function toast(msg) {
     setTimeout(() => { if (t.parentNode) t.remove(); }, 3000);
 }
 
-// ===== EVENTS =====
 document.getElementById('payModal').addEventListener('click', function(e) { if (e.target === this) closePayModal(); });
 document.getElementById('detailModal').addEventListener('click', function(e) { if (e.target === this) closeDetailModal(); });
 
 document.addEventListener('click', function(e) {
-    if (tg?.HapticFeedback && (e.target.classList.contains('btn') || e.target.classList.contains('buy-btn') || e.target.classList.contains('nav-item') || e.target.classList.contains('join-btn') || e.target.classList.contains('hero-btn'))) {
+    if (tg?.HapticFeedback && (e.target.classList.contains('btn') || e.target.classList.contains('buy-btn') || e.target.classList.contains('nav-item') || e.target.classList.contains('join-btn') || e.target.classList.contains('hero-btn') || e.target.classList.contains('top-tab'))) {
         tg.HapticFeedback.impactOccurred('light');
     }
 });
-
-// ===== START =====
-init();
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const splash = document.getElementById('appSplash');
-        if (splash) splash.classList.add('hide');
-    }, 1300);
-});
 </script>
 </body>
-</html>
+    </html>
