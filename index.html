@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            font-family: 'Hind Siliguri', 'Noto Sans Bengali', 'Kalpurush', 'SolaimanLipi', 'Inter', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -1637,6 +1637,18 @@
 </head>
 <body>
 
+    <noscript>
+        <div style="position:fixed;inset:0;z-index:99999;background:#0A0118;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;font-family:sans-serif;">
+            <div style="font-size:50px;margin-bottom:14px;">⚠️</div>
+            <h2 style="font-size:18px;margin-bottom:10px;">জাভাস্ক্রিপ্ট বন্ধ আছে বা সাপোর্ট করছে না</h2>
+            <p style="font-size:13px;line-height:1.7;max-width:320px;opacity:0.85;">
+                এই অ্যাপটি সঠিকভাবে চালাতে জাভাস্ক্রিপ্ট প্রয়োজন। ফাইল ম্যানেজারের "Preview" অপশনে খুলবেন না —
+                এর বদলে ফাইলটি সরাসরি <strong>Chrome / Firefox</strong> ব্রাউজারে খুলুন, অথবা
+                <strong>GitHub Pages</strong>-এ হোস্ট করে সেই লিংকে গিয়ে খুলুন।
+            </p>
+        </div>
+    </noscript>
+
     <!-- ====== SPLASH SCREEN ====== -->
     <div class="splash" id="splash">
         <div class="splash-orb s1"></div>
@@ -2686,4 +2698,173 @@ function renderAdmin() {
                 <div class="fg">
                     <label>ক্যাটাগরি *</label>
                     <select id="ac-cat">
-                        ${categories.filter(c => c.id !== 'all').map(c => `<option value="$
+                        ${categories.filter(c => c.id !== 'all').map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
+                    </select>
+                </div>
+
+                <div class="fg"><label>এক্সেস এর মেয়াদ</label><input type="text" id="ac-access" placeholder="যেমন: লাইফটাইম বা ১ মাস"></div>
+
+                <div class="fg"><label>ব্যাজ টেক্সট</label><input type="text" id="ac-badge" placeholder="যেমন: 🔥 হট"></div>
+
+                <div class="fg">
+                    <label>ব্যাজ টাইপ</label>
+                    <select id="ac-badgeclass">
+                        <option value="vip">👑 VIP (গোল্ডেন)</option>
+                        <option value="hot">🔥 হট (অরেঞ্জ)</option>
+                        <option value="new">✨ নতুন (গ্রিন)</option>
+                        <option value="exclusive">⚡ এক্সক্লুসিভ (পার্পল)</option>
+                    </select>
+                </div>
+
+                <div class="fg"><label>ইমোজি আইকন ( থাম্বনেইল না থাকলে দেখাবে )</label><input type="text" id="ac-emoji" placeholder="যেমন: 📚"></div>
+
+                <div class="fg">
+                    <label>ব্যাকগ্রাউন্ড গ্রাডিয়েন্ট (থাম্বনেইল না থাকলে দেখাবে)</label>
+                    <div class="color-picker-row" id="gradientPicker">
+                        ${gradients.map((g, i) => `<div class="color-opt ${i === 0 ? 'selected' : ''}" style="background:${g}" onclick="pickGradient(${i},this)"></div>`).join('')}
+                    </div>
+                </div>
+
+                <div class="fg"><label>থাম্বনেইল চিত্র URL (3:4 অনুপাত সেরা)</label><input type="text" id="ac-thumb" placeholder="https://i.postimg.cc/..."></div>
+
+                <div class="fg">
+                    <label>স্ক্রিনশট চিত্র URLs (কমা দিয়ে আলাদা করুন)</label>
+                    <textarea id="ac-ss" placeholder="https://url1.jpg, https://url2.jpg" style="min-height:60px;"></textarea>
+                </div>
+
+                <div class="fg">
+                    <label>ভেরিফাইড ব্যাজ</label>
+                    <select id="ac-verified">
+                        <option value="true">হ্যাঁ (ভেরিফাইড)</option>
+                        <option value="false">না</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-success" onclick="addGroup()">কোর্স সেভ করুন</button>
+            </div>
+        `;
+    }
+
+    else if (adminTab === 'categories') {
+        tc.innerHTML = `
+            <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">ক্যাটাগরি কন্ট্রোল</span></div>
+
+            ${categories.map(c => `
+                <div class="admin-order-card" style="display:flex;align-items:center;justify-content:space-between;">
+                    <span style="font-size:13px;font-weight:700;">${c.name}</span>
+                    ${c.id !== 'all' ? `<button class="btn btn-danger" style="width:auto;padding:6px 13px;font-size:11px;" onclick="deleteCat('${c.id}')">মুছুন</button>` : '<span style="font-size:10px;color:var(--text3);font-weight:600;">ডিফল্ট</span>'}
+                </div>
+            `).join('')}
+
+            <div class="add-form" style="margin-top:12px;">
+                <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">নতুন ক্যাটাগরি</span></div>
+                <div class="fg"><label>ক্যাটাগরির নাম ও আইকন</label><input type="text" id="newCatName" placeholder="যেমন: 🎨 ডিজাইন"></div>
+                <div class="fg"><label>ক্যাটাগরি আইডি</label><input type="text" id="newCatId" placeholder="design"></div>
+                <button class="btn btn-success" onclick="addCategory()">যোগ করুন</button>
+            </div>
+        `;
+    }
+
+    else if (adminTab === 'payment') {
+        tc.innerHTML = `
+            <div class="add-form">
+                <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">পেমেন্ট নাম্বার পরিবর্তন করুন</span></div>
+                <p style="font-size:11px;color:var(--text3);margin-bottom:14px;font-weight:500;">এই নাম্বারগুলোই ব্যবহারকারীরা পেমেন্ট করার সময় দেখতে পাবে।</p>
+
+                <div class="fg">
+                    <label><span class="brand-logo bkash sm">bKash</span> বিকাশ ডিপোজিট নাম্বার</label>
+                    <input type="tel" id="pay-bkash" value="${CFG.bkash}" placeholder="01XXXXXXXXX">
+                </div>
+
+                <div class="fg">
+                    <label><span class="brand-logo nagad sm">Nagad</span> নগদ ডিপোজিট নাম্বার</label>
+                    <input type="tel" id="pay-nagad" value="${CFG.nagad}" placeholder="01XXXXXXXXX">
+                </div>
+
+                <button class="btn btn-success" onclick="updatePayNumbers()">নাম্বার সেভ করুন</button>
+            </div>
+        `;
+    }
+}
+
+function updatePayNumbers() {
+    const bk = document.getElementById('pay-bkash').value.trim();
+    const ng = document.getElementById('pay-nagad').value.trim();
+
+    if (bk.length < 11 || ng.length < 11) { toast('সঠিক ১১ সংখ্যার মোবাইল নাম্বার দিন!'); return; }
+
+    savePayNumbers(bk, ng);
+    toast('পেমেন্ট নাম্বার সফলভাবে আপডেট হয়েছে!');
+}
+
+let selGradientIdx = 0;
+
+function pickGradient(idx, el) {
+    selGradientIdx = idx;
+    document.querySelectorAll('.color-opt').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function addGroup() {
+    const title = document.getElementById('ac-title').value.trim();
+    const desc = document.getElementById('ac-desc').value.trim();
+    const price = parseInt(document.getElementById('ac-price').value);
+    const oldPrice = parseInt(document.getElementById('ac-oldprice').value) || price * 3;
+    const cat = document.getElementById('ac-cat').value;
+    const access = document.getElementById('ac-access').value.trim() || 'লাইফটাইম';
+    const badge = document.getElementById('ac-badge').value.trim() || '🔥 হট';
+    const badgeClass = document.getElementById('ac-badgeclass').value;
+    const emoji = document.getElementById('ac-emoji').value.trim() || '⭐';
+    const thumb = document.getElementById('ac-thumb').value.trim();
+    const ssRaw = document.getElementById('ac-ss').value.trim();
+    const verified = document.getElementById('ac-verified').value === 'true';
+
+    if (!title || !desc || !price) { toast('শিরোনাম, বিবরণ এবং মূল্য ঘরগুলো পূরণ করা বাধ্যতামূলক!'); return; }
+
+    const newGroup = {
+        id: Date.now(),
+        title, desc, price, oldPrice, category: cat,
+        badge, badgeClass, emoji,
+        gradient: gradients[selGradientIdx] || gradients[0],
+        access, verified,
+        thumbnail: thumb,
+        screenshots: ssRaw ? ssRaw.split(',').map(s => s.trim()).filter(s => s) : []
+    };
+
+    groups.push(newGroup);
+    saveGroups();
+    renderGroups();
+    renderCategories();
+    adminTab = 'groups';
+    renderAdmin();
+    toast('নতুন কোর্স সফলভাবে তৈরি হয়েছে!');
+}
+
+function editGroup(id) {
+    const g = groups.find(x => x.id === id);
+    if (!g) return;
+
+    adminTab = 'addgroup';
+    renderAdmin();
+
+    setTimeout(() => {
+        document.getElementById('ac-title').value = g.title;
+        document.getElementById('ac-desc').value = g.desc;
+        document.getElementById('ac-price').value = g.price;
+        document.getElementById('ac-oldprice').value = g.oldPrice;
+        document.getElementById('ac-cat').value = g.category;
+        document.getElementById('ac-access').value = g.access;
+        document.getElementById('ac-badge').value = g.badge;
+        document.getElementById('ac-badgeclass').value = g.badgeClass;
+        document.getElementById('ac-emoji').value = g.emoji;
+        document.getElementById('ac-thumb').value = g.thumbnail || '';
+        document.getElementById('ac-ss').value = (g.screenshots || []).join(', ');
+        document.getElementById('ac-verified').value = g.verified ? 'true' : 'false';
+
+        // Delete old entry on update submit
+        groups = groups.filter(x => x.id !== id);
+    }, 50);
+}
+</script>
+</body>
+</html>
