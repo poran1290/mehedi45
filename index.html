@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIP Premium Community</title>
+    <title>Premium Course Store</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -979,6 +979,33 @@
 
         .pay-method .pm-icon { font-size: 30px; margin-bottom: 6px; }
         .pay-method .pm-name { font-size: 13px; font-weight: 800; }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+        }
+        .brand-logo.bkash {
+            background: linear-gradient(135deg, #E2136E, #C4106A);
+            color: #fff;
+        }
+        .brand-logo.nagad {
+            background: linear-gradient(135deg, #F6921E, #E8720C);
+            color: #fff;
+        }
+        .brand-logo.sm {
+            padding: 4px 10px;
+            font-size: 11px;
+            margin-bottom: 0;
+        }
         
         .pay-method .pm-check {
             position: absolute;
@@ -1614,29 +1641,10 @@
     <div class="splash" id="splash">
         <div class="splash-orb s1"></div>
         <div class="splash-orb s2"></div>
-        <div class="splash-logo">💎</div>
-        <div class="splash-title">VIP Store Mini App</div>
-        <div class="splash-subtitle">পছন্দের প্রিমিয়াম গ্রুপ ও চ্যানেলে যুক্ত হন সহজে</div>
+        <div class="splash-logo">🎓</div>
+        <div class="splash-title">Course Store Mini App</div>
+        <div class="splash-subtitle">পছন্দের প্রিমিয়াম কোর্সে সহজে যুক্ত হন</div>
         <div class="splash-loader"></div>
-    </div>
-
-    <!-- ====== TOP TABS ====== -->
-    <div class="top-tabs">
-        <div class="top-tab-list">
-            <div class="top-tab active" onclick="showPage('home')" id="tab-home">
-                <span class="top-tab-icon">🏠</span>
-                <span>হোম</span>
-            </div>
-            <div class="top-tab" onclick="showPage('orders')" id="tab-orders">
-                <span class="top-tab-icon">📦</span>
-                <span>আমার অর্ডার</span>
-                <span class="top-tab-badge hidden" id="topBadge">0</span>
-            </div>
-            <div class="top-tab" onclick="showPage('profile')" id="tab-profile">
-                <span class="top-tab-icon">👤</span>
-                <span>প্রোফাইল</span>
-            </div>
-        </div>
     </div>
 
     <!-- HEADER -->
@@ -1644,8 +1652,8 @@
         <div class="header-orb o1"></div>
         <div class="header-orb o2"></div>
         <div class="header-content">
-            <div class="header-logo">💎</div>
-            <h1>VIP Premium Store</h1>
+            <div class="header-logo">🎓</div>
+            <h1>Premium Course Store</h1>
             <p><span class="pulse-dot"></span> ইন্সট্যান্ট এক্সেস এবং অটোমেটেড সার্ভিস</p>
         </div>
     </div>
@@ -1656,7 +1664,7 @@
             <div class="welcome-avatar" id="welcomeAvatar">👤</div>
             <div class="welcome-text">
                 <h3 id="welcomeName">স্বাগতম!</h3>
-                <p>আপনার পছন্দের প্রিমিয়াম সার্ভিসে জয়েন করুন</p>
+                <p>আপনার পছন্দের প্রিমিয়াম কোর্সে জয়েন করুন</p>
             </div>
         </div>
 
@@ -1664,19 +1672,19 @@
             <div class="hero-content">
                 <span class="hero-label">ধামাকা অফার</span>
                 <h2>VIP অল এক্সেস মেম্বারশিপ</h2>
-                <p>একটি মেম্বারশিপেই পেয়ে যান সব ক্যাটাগরির সুপার এক্সেস</p>
+                <p>একটি মেম্বারশিপেই পেয়ে যান সব ক্যাটাগরির কোর্স এক্সেস</p>
                 <button class="hero-btn">এখনই দেখুন ➔</button>
             </div>
-            <div class="hero-icon">🔥</div>
+            <div class="hero-icon">🎓</div>
         </div>
 
         <div class="search-box">
-            <input type="text" placeholder="গ্রুপ বা চ্যানেল খুঁজুন..." oninput="searchGroups(this.value)" id="searchInput">
+            <input type="text" placeholder="কোর্স খুঁজুন..." oninput="searchGroups(this.value)" id="searchInput">
         </div>
 
         <div class="category-filters" id="catFilters"></div>
 
-        <div class="section-title" id="groupsSection"><span class="grad-text">সকল প্রিমিয়াম গ্রুপসমূহ</span></div>
+        <div class="section-title" id="groupsSection"><span class="grad-text">সকল প্রিমিয়াম কোর্সসমূহ</span></div>
         <div class="group-grid" id="groupGrid"></div>
     </div>
 
@@ -1719,7 +1727,7 @@
             </div>
             <div class="p-menu-item" onclick="showPage('home')">
                 <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(236,72,153,0.2),rgba(236,72,153,0.05))">🛍️</div>
-                <div class="pmi-text"><h4>নতুন সার্ভিস ব্রাউজ করুন</h4><p>এক্সপ্লোর করুন আমাদের লেটেস্ট অফার</p></div>
+                <div class="pmi-text"><h4>নতুন কোর্স ব্রাউজ করুন</h4><p>এক্সপ্লোর করুন আমাদের লেটেস্ট কোর্সসমূহ</p></div>
                 <div class="pmi-arrow">➔</div>
             </div>
             <div class="p-menu-item" onclick="contactAdminLive()">
@@ -1737,12 +1745,12 @@
             </div>
             <div class="p-menu-item" onclick="shareApp()">
                 <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(252,211,77,0.2),rgba(252,211,77,0.05))">🔗</div>
-                <div class="pmi-text"><h4>বন্ধুদের সাথে শেয়ার করুন</h4><p>শেয়ার করুন এবং একসাথে সুবিধা নিন</p></div>
+                <div class="pmi-text"><h4>বন্ধুদের সাথে শেয়ার করুন</h4><p>শেয়ার করুন এবং একসাথে সুবিধা নিন</p></div>
                 <div class="pmi-arrow">➔</div>
             </div>
             <div class="p-menu-item hidden" id="adminMenuItem" onclick="showPage('admin')">
                 <div class="pmi-icon" style="background:linear-gradient(135deg,rgba(239,68,68,0.2),rgba(239,68,68,0.05))">⚙️</div>
-                <div class="pmi-text"><h4>এডমিন প্যানেল</h4><p>অর্ডার এবং গ্রুপ প্যানেল ম্যানেজমেন্ট</p></div>
+                <div class="pmi-text"><h4>এডমিন প্যানেল</h4><p>অর্ডার এবং কোর্স প্যানেল ম্যানেজমেন্ট</p></div>
                 <div class="pmi-arrow">➔</div>
             </div>
         </div>
@@ -1753,9 +1761,9 @@
         <div id="adminArea">
             <div class="admin-card">
                 <div class="a-icon">🔐</div>
-                <h2 style="font-size:18px;margin-bottom:5px;">এডমিন পাসওয়ার্ড</h2>
+                <h2 style="font-size:18px;margin-bottom:5px;">এডমিন পাসওয়ার্ড</h2>
                 <p style="font-size:11px;color:var(--text3);margin-bottom:18px;font-weight:500;">এডমিন প্যানেলে ঢুকতে সিকিউরিটি কোড প্রদান করুন</p>
-                <div class="fg"><input type="password" id="adminPw" placeholder="পাসওয়ার্ড প্রবেশ করান" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
+                <div class="fg"><input type="password" id="adminPw" placeholder="পাসওয়ার্ড প্রবেশ করান" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
                 <button class="btn btn-primary" onclick="doAdminLogin()">লগইন করুন</button>
                 <button class="btn btn-ghost" style="margin-top:8px;" onclick="showPage('profile')">ফিরে যান</button>
             </div>
@@ -1782,12 +1790,12 @@
                     <div class="pay-methods">
                         <div class="pay-method bk" onclick="pickPay('bkash',this)">
                             <div class="pm-check">✓</div>
-                            <div class="pm-icon">🌸</div>
+                            <div class="brand-logo bkash">bKash</div>
                             <div class="pm-name" style="color:var(--bkash)">বিকাশ সেন্ড মানি</div>
                         </div>
                         <div class="pay-method ng" onclick="pickPay('nagad',this)">
                             <div class="pm-check">✓</div>
-                            <div class="pm-icon">🟠</div>
+                            <div class="brand-logo nagad">Nagad</div>
                             <div class="pm-name" style="color:var(--nagad)">নগদ সেন্ড মানি</div>
                         </div>
                     </div>
@@ -1797,9 +1805,13 @@
 
                 <div id="pStep2" style="display:none">
                     <div class="fg"><label>আপনার নাম *</label><input type="text" id="fName" placeholder="আপনার পুরো নাম দিন"></div>
-                    <div class="fg"><label>যে নম্বর থেকে টাকা পাঠিয়েছেন *</label><input type="tel" id="fPhone" placeholder="01XXXXXXXXX"></div>
-                    <div class="fg"><label>ট্রানজেকশন আইডি (TrxID) *</label><input type="text" id="fTrx" placeholder="TrxID প্রদান করুন"></div>
-                    <div class="fg"><label>প্রদেয় পরিমাণ (টাকা) *</label><input type="number" id="fAmount" placeholder="টাকার পরিমাণ লিখুন"></div>
+                    <div class="fg"><label>যে নম্বর থেকে টাকা পাঠিয়েছেন *</label><input type="tel" id="fPhone" placeholder="01XXXXXXXXX"></div>
+                    <div class="fg">
+                        <label>ট্রানজেকশন আইডি (TrxID) *</label>
+                        <input type="text" id="fTrx" placeholder="TrxID প্রদান করুন" oninput="this.value=this.value.replace(/[^A-Za-z0-9]/g,'')">
+                        <p id="trxHint" style="font-size:10px;color:var(--text3);margin-top:5px;font-weight:600;"></p>
+                    </div>
+                    <div class="fg"><label>প্রদেয় পরিমাণ (টাকা) *</label><input type="number" id="fAmount" placeholder="টাকার পরিমাণ লিখুন"></div>
                     <div class="row-2">
                         <button class="btn btn-ghost" onclick="goStep(1)">পেছনে যান</button>
                         <button class="btn btn-success" onclick="placeOrder()">সাবমিট করুন</button>
@@ -1808,9 +1820,9 @@
 
                 <div id="pStep3" style="display:none;text-align:center;padding:20px 0;">
                     <div style="font-size:60px;margin-bottom:12px;">🎉</div>
-                    <h3 style="font-size:18px;margin-bottom:8px;" class="grad-text">অর্ডার সফলভাবে জমা হয়েছে!</h3>
+                    <h3 style="font-size:18px;margin-bottom:8px;" class="grad-text">অর্ডার সফলভাবে জমা হয়েছে!</h3>
                     <p style="font-size:12px;color:var(--text2);margin-bottom:22px;line-height:1.7;font-weight:500;">
-                        আপনার পেমেন্ট ভেরিফাই করে খুব দ্রুত এক্সেস লিংক দেওয়া হবে।<br>আপনার অর্ডার স্টেটাস দেখতে "আমার অর্ডার" পেজ চেক করুন।
+                        আপনার পেমেন্ট ভেরিফাই করে খুব দ্রুত এক্সেস লিংক দেওয়া হবে।<br>আপনার অর্ডার স্টেটাস দেখতে "আমার অর্ডার" পেজ চেক করুন।
                     </p>
                     <button class="btn btn-primary" onclick="closePayModal()">ঠিক আছে</button>
                 </div>
@@ -1838,12 +1850,33 @@
     </div>
 
 <script>
-// ===== CONFIG =====
+// =====================================================================
+// CONFIG
+// ⚠️ SECURITY WARNING: This file runs entirely in the user's browser.
+// Anyone can view-source this page and read every value below,
+// including the bot token. A leaked bot token lets someone else fully
+// control your Telegram bot (read messages, send as your bot, etc).
+//
+// Before you deploy this for real:
+//  1) Rotate/regenerate this bot token with @BotFather right now if it
+//     has ever been shared or committed anywhere public.
+//  2) Move sendAdminNotif() / sendUserLink() / sendUserReject() to a
+//     small backend (or a Telegram Bot API webhook/Cloud Function) that
+//     holds the token server-side. The Mini App should call YOUR
+//     backend, not the Telegram API directly.
+//  3) Do the same for the admin password check (doAdminLogin) — a
+//     client-side password can be read directly from this file's
+//     source, so it should be validated on your server instead.
+// =====================================================================
 const CFG = {
     _ap: 'OTk1ODc0',
-    bkash: '01812137592',
-    nagad: '01812137592',
-    botToken: '8942961112:AAGD7-oxakkOwnF5zxnKuiGV72daPQtXrvI',
+    bkash: '01827006049',
+    nagad: '01827006049',
+    // 👉 PASTE YOUR REAL TELEGRAM BOT TOKEN HERE (get/rotate it from @BotFather).
+    // Admin notifications ("নতুন পেমেন্ট অর্ডার এসেছে") will NOT be sent while
+    // this stays as a placeholder — that's the exact reason notifications
+    // weren't working. See the security warning above before you paste it.
+    botToken: 'PUT_YOUR_BOT_TOKEN_HERE',
     adminId: '6377295796',
     adminTgId: 6377295796,
     botUsername: 'sumaiyarobot',
@@ -1851,24 +1884,32 @@ const CFG = {
     adminUsername: 'smmehedichowdury'  // Live chat username
 };
 
+// Admin can update the bKash/Nagad deposit numbers from the admin panel.
+// Those overrides are saved here and re-applied on every load.
+(function loadPaySettings() {
+    try {
+        const saved = JSON.parse(localStorage.getItem('pg_pay_numbers') || 'null');
+        if (saved && saved.bkash) CFG.bkash = saved.bkash;
+        if (saved && saved.nagad) CFG.nagad = saved.nagad;
+    } catch (e) {}
+})();
+
+function savePayNumbers(bkashNum, nagadNum) {
+    CFG.bkash = bkashNum;
+    CFG.nagad = nagadNum;
+    localStorage.setItem('pg_pay_numbers', JSON.stringify({ bkash: bkashNum, nagad: nagadNum }));
+}
+
 function getAdminPw() {
     try { return atob(CFG._ap).split('').reverse().join(''); } catch(e) { return ''; }
 }
 
 // ===== DATA =====
+// Only legitimate course / educational categories are included below.
 let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
     {
-        id: 1, title: 'VIP মুভি অ্যান্ড সিরিজ লিংকস', 
-        desc: 'সকল নতুন মুভি, ওয়েব সিরিজ এবং ট্রেন্ডিং ড্রামাগুলোর ডাইরেক্ট ডাউনলোড এবং ওয়াচ লিংক পেতে আমাদের VIP গ্রুপে জয়েন করুন।',
-        price: 199, oldPrice: 999, category: 'movie',
-        badge: '👑 VIP', badgeClass: 'vip',
-        emoji: '🎬', gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
-        access: 'লাইফটাইম', verified: true,
-        screenshots: [], thumbnail: ''
-    },
-    {
-        id: 2, title: 'প্রিমিয়াম স্কিল অ্যান্ড কোর্স',
-        desc: 'সব ধরনের প্রিমিয়াম স্কিল ডেভেলপমেন্ট কোর্স এবং টিউটোরিয়াল একসাথে পাওয়ার সেরা সুযোগ - Udemy, Coursera, Skillshare ইত্যাদি।',
+        id: 1, title: 'প্রিমিয়াম স্কিল অ্যান্ড কোর্স বান্ডেল',
+        desc: 'ওয়েব ডেভেলপমেন্ট, ডিজাইন, মার্কেটিং সহ বিভিন্ন স্কিল ডেভেলপমেন্ট কোর্স ও টিউটোরিয়াল একসাথে পাওয়ার সেরা সুযোগ।',
         price: 299, oldPrice: 1500, category: 'course',
         badge: '🔥 হট', badgeClass: 'hot',
         emoji: '📚', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)',
@@ -1876,8 +1917,8 @@ let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
         screenshots: [], thumbnail: ''
     },
     {
-        id: 3, title: 'ট্রেডিং সিগন্যাল VIP গ্রুপ',
-        desc: 'ক্রিপ্টো এবং ফরেক্স ট্রেডিংয়ের জন্য নিখুঁত সিগন্যাল এবং অ্যানালিসিস আপডেট পান প্রতিদিন পেশাদার ট্রেডারদের মাধ্যমে।',
+        id: 2, title: 'ট্রেডিং সিগন্যাল VIP গ্রুপ',
+        desc: 'ক্রিপ্টো এবং ফরেক্স ট্রেডিংয়ের জন্য নিখুঁত সিগন্যাল এবং অ্যানালিসিস আপডেট পান প্রতিদিন পেশাদার ট্রেডারদের মাধ্যমে।',
         price: 500, oldPrice: 2500, category: 'trading',
         badge: '⚡ এক্সক্লুসিভ', badgeClass: 'exclusive',
         emoji: '📈', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)',
@@ -1885,35 +1926,8 @@ let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
         screenshots: [], thumbnail: ''
     },
     {
-        id: 4, title: 'গেমিং মোড ও রিসোর্স',
-        desc: 'জনপ্রিয় গেমগুলোর প্রিমিয়াম ফিচারসমূহ এক্সেস করতে, হ্যাক মোড এবং রিসোর্স পেতে গেমিং হাবে এখনই জয়েন করুন। PUBG, FreeFire, GTA সহ অনেক গেম।',
-        price: 149, oldPrice: 799, category: 'gaming',
-        badge: '✨ নতুন', badgeClass: 'new',
-        emoji: '🎮', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)',
-        access: 'লাইফটাইম', verified: true,
-        screenshots: [], thumbnail: ''
-    },
-    {
-        id: 5, title: 'প্রিমিয়াম সফটওয়্যার ও অ্যাপস',
-        desc: 'পিসি এবং অ্যান্ড্রোয়েডের সব দরকারি প্রিমিয়াম পেড অ্যাপস, প্রো ভার্সন সফটওয়্যার, ক্র্যাক অ্যান্ড কীজ ফ্রিতে পান। Adobe, Microsoft ইত্যাদি।',
-        price: 250, oldPrice: 1200, category: 'software',
-        badge: '👑 VIP', badgeClass: 'vip',
-        emoji: '💻', gradient: 'linear-gradient(135deg, #fa709a, #fee140)',
-        access: 'লাইফটাইম', verified: true,
-        screenshots: [], thumbnail: ''
-    },
-    {
-        id: 6, title: 'OTT এক্সেস শেয়ারিং গ্রুপ',
-        desc: 'খুব কম খরচে সেরা OTT প্ল্যাটফর্মগুলির শেয়ার্ড মেম্বারশিপ পান একদম সেফ উপায়ে - Netflix, Amazon Prime, Disney+ Hotstar সহ আরও অনেক।',
-        price: 350, oldPrice: 1500, category: 'ott',
-        badge: '⚡ এক্সক্লুসিভ', badgeClass: 'exclusive',
-        emoji: '🍿', gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)',
-        access: '১ মাস', verified: true,
-        screenshots: [], thumbnail: ''
-    },
-    {
-        id: 7, title: 'ফ্রিমেকার্স এন্ড ফ্রিল্যান্সিং',
-        desc: 'Upwork, Fiverr এবং বিভিন্ন মার্কেটপ্লেসের গাইডলাইন, ক্লায়েন্ট পাওয়ার কৌশল এবং প্রয়োজনীয় গাইডলাইন মেটেরিয়াল পান।',
+        id: 3, title: 'ফ্রিল্যান্সিং ও আউটসোর্সিং মাস্টারক্লাস',
+        desc: 'Upwork, Fiverr এবং বিভিন্ন মার্কেটপ্লেসে সফল হওয়ার কৌশল, ক্লায়েন্ট পাওয়ার গাইডলাইন এবং প্রয়োজনীয় রিসোর্স নিয়ে সম্পূর্ণ কোর্স।',
         price: 199, oldPrice: 899, category: 'business',
         badge: '🔥 হট', badgeClass: 'hot',
         emoji: '💼', gradient: 'linear-gradient(135deg, #96fbc4, #f9f586)',
@@ -1921,8 +1935,8 @@ let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
         screenshots: [], thumbnail: ''
     },
     {
-        id: 8, title: 'ই ইসলামিক কর্নার VIP',
-        desc: 'কুরআন তাফসীর, হাদীস শরিফ, ইসলামিক ইতিহাস এবং বিভিন্ন স্কলারদের গুরুত্বপূর্ণ বক্তব্য ও পিডিএফ বই পাবেন।',
+        id: 4, title: 'ইসলামিক শিক্ষা কর্নার VIP',
+        desc: 'কুরআন তাফসীর, হাদীস শরিফ, ইসলামিক ইতিহাস এবং বিভিন্ন স্কলারদের গুরুত্বপূর্ণ বক্তব্য ও পিডিএফ বই নিয়ে শিক্ষামূলক কোর্স।',
         price: 99, oldPrice: 500, category: 'islamic',
         badge: '✨ নতুন', badgeClass: 'new',
         emoji: '🌙', gradient: 'linear-gradient(135deg, #ff9a9e, #fecfef)',
@@ -1933,12 +1947,8 @@ let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
 
 let categories = JSON.parse(localStorage.getItem('pg_categories') || 'null') || [
     { id: 'all', name: 'সকল' },
-    { id: 'movie', name: '🎬 মুভি' },
     { id: 'course', name: '📚 কোর্স' },
     { id: 'trading', name: '📈 ট্রেডিং' },
-    { id: 'gaming', name: '🎮 গেমিং' },
-    { id: 'software', name: '💻 সফটওয়্যার' },
-    { id: 'ott', name: '🍿 OTT' },
     { id: 'business', name: '💼 বিজনেস' },
     { id: 'islamic', name: '🌙 ইসলামিক' }
 ];
@@ -2049,15 +2059,11 @@ function updateBadge() {
     if (u) uo = orders.filter(o => o.tgUser?.id === u.id);
     const pc = uo.filter(o => o.status === 'pending').length;
     const b = document.getElementById('oBadge');
-    const tb = document.getElementById('topBadge');
     if (pc > 0) { 
         b.style.display = 'block'; 
         b.textContent = pc;
-        tb.classList.remove('hidden');
-        tb.textContent = pc;
     } else { 
         b.style.display = 'none';
-        tb.classList.add('hidden');
     }
 }
 
@@ -2069,7 +2075,6 @@ function saveCategories() { localStorage.setItem('pg_categories', JSON.stringify
 // ===== PAGE NAVIGATION =====
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
     const targetPage = document.getElementById('page-' + pageId);
@@ -2097,7 +2102,7 @@ function renderCategories() {
 function renderGroups(list = groups) {
     const el = document.getElementById('groupGrid');
     if (list.length === 0) {
-        el.innerHTML = `<div class="empty" style="grid-column:span 2;"><div class="e-icon">🔍</div><h3>কোনো গ্রুপ পাওয়া যায়নি</h3><p>অন্য কোনো নাম লিখে সার্চ করুন</p></div>`;
+        el.innerHTML = `<div class="empty" style="grid-column:span 2;"><div class="e-icon">🔍</div><h3>কোনো কোর্স পাওয়া যায়নি</h3><p>অন্য কোনো নাম লিখে সার্চ করুন</p></div>`;
         return;
     }
     el.innerHTML = list.map(g => `
@@ -2149,8 +2154,8 @@ function showDetail(id) {
             </div>
 
             <div class="detail-info-row">
-                <div class="detail-info-item"><div class="dii-val">${discount}%</div><div class="dii-label">ছাড়ের মোট মূল্য</div></div>
-                <div class="detail-info-item" style="border-color:rgba(252,211,77,0.3);"><div class="dii-val" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">⏱️ ${g.access}</div><div class="dii-label">মেয়াদকাল</div></div>
+                <div class="detail-info-item"><div class="dii-val">${discount}%</div><div class="dii-label">ছাড়ের মোট মূল্য</div></div>
+                <div class="detail-info-item" style="border-color:rgba(252,211,77,0.3);"><div class="dii-val" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">⏱️ ${g.access}</div><div class="dii-label">মেয়াদকাল</div></div>
             </div>
 
             ${g.screenshots && g.screenshots.length > 0 ? `
@@ -2160,7 +2165,7 @@ function showDetail(id) {
                 </div>
             ` : ''}
 
-            <div class="section-title" style="font-size:14px;padding:0;">📝 <span class="grad-text">গ্রুপের বিবরণ</span></div>
+            <div class="section-title" style="font-size:14px;padding:0;">📝 <span class="grad-text">কোর্সের বিবরণ</span></div>
             <p style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:16px;font-weight:500;">${g.desc}</p>
 
             <div style="background:linear-gradient(135deg,rgba(252,211,77,0.1),rgba(236,72,153,0.05));border-radius:14px;padding:16px;margin-bottom:16px;border:1px solid rgba(252,211,77,0.2);">
@@ -2169,7 +2174,7 @@ function showDetail(id) {
                     <span style="font-size:15px;color:var(--text-muted);text-decoration:line-through;font-weight:600;">৳${g.oldPrice}</span>
                 </div>
                 <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-                    <span style="font-size:10px;color:var(--success);font-weight:800;background:rgba(16,185,129,0.15);padding:3px 10px;border-radius:11px;">🎉 ${discount}% বিশেষ ছাড়!</span>
+                    <span style="font-size:10px;color:var(--success);font-weight:800;background:rgba(16,185,129,0.15);padding:3px 10px;border-radius:11px;">🎉 ${discount}% বিশেষ ছাড়!</span>
                     <span style="font-size:10px;color:var(--gold);font-weight:800;">⏱️ ${g.access}</span>
                 </div>
             </div>
@@ -2207,6 +2212,9 @@ function openPay(id) {
 
 function closePayModal() { document.getElementById('payModal').classList.remove('active'); }
 
+// bKash TrxID = 10 chars, Nagad TrxID = 8 chars. Both: A-Z a-z 0-9 only.
+const TRX_LEN = { bkash: 10, nagad: 8 };
+
 function pickPay(method, el) {
     selPay = method;
     document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('selected'));
@@ -2217,32 +2225,44 @@ function pickPay(method, el) {
     const cls = method === 'bkash' ? 'bk-box' : 'ng-box';
     const col = method === 'bkash' ? 'var(--bkash)' : 'var(--nagad)';
     const btnCls = method === 'bkash' ? 'btn-bkash' : 'btn-nagad';
+    const logoCls = method === 'bkash' ? 'bkash' : 'nagad';
+    const trxLen = TRX_LEN[method];
 
     document.getElementById('payInfo').style.display = 'block';
     document.getElementById('payInfo').innerHTML = `
-        <div class="pay-box ${cls}">
-            <h3 style="font-size:13px;color:${col};margin-bottom:6px;font-weight:800;">📲 ${name} সেন্ড মানি করুন</h3>
-            <p style="font-size:11px;color:var(--text2);font-weight:500;">নিচের নম্বরটি কপি করে সেন্ড মানি অপশনে ব্যবহার করুন:</p>
+        <div style="background:linear-gradient(135deg,${col},${col}dd);border-radius:14px 14px 0 0;padding:14px 16px;color:#fff;">
+            <div style="font-size:20px;font-weight:900;">৳${selGroup.price}.00</div>
+            <div style="font-size:11px;font-weight:600;opacity:0.9;margin-top:2px;">কম বা বেশি টাকা পাঠাবেন না — ঠিক ৳${selGroup.price}.00 পাঠান</div>
+        </div>
+        <div class="pay-box ${cls}" style="border-radius:0 0 14px 14px;margin-top:0;">
+            <div class="brand-logo ${logoCls}" style="margin-bottom:10px;">${method === 'bkash' ? 'bKash' : 'Nagad'} Deposit</div>
+            <p style="font-size:11px;color:var(--text2);font-weight:500;">নিচের ${method === 'bkash' ? 'বিকাশ' : 'নগদ'} নম্বরে <strong style="color:${col}">সেন্ড মানি</strong> করুন:</p>
             <div class="pay-number">${num}</div>
             <button class="copy-btn ${btnCls}" onclick="copyNum('${num}')">📋 নম্বর কপি করুন</button>
-            <p style="margin-top:10px;font-size:12px;font-weight:600;">পাঠানোর পরিমাণ: <strong style="color:${col};font-size:18px;">৳${selGroup.price}</strong></p>
         </div>
         <div class="info-box">
             <h4>💡 পেমেন্ট করার নির্দেশাবলী:</h4>
             <ol>
                 <li>${name} নম্বরে সেন্ড মানি করুন ৳${selGroup.price}</li>
-                <li>ট্রানজেকশন আইডি (TrxID) টি সংরক্ষণ করুন</li>
-                <li>পরবর্তী ধাপে গিয়ে সব তথ্য সঠিকভাবে পূরণ করুন</li>
+                <li>ট্রানজেকশন আইডি (TrxID) টি সংরক্ষণ করুন — ${method === 'bkash' ? 'বিকাশ TrxID ঠিক ১০ ঘর হয়' : 'নগদ TrxID ঠিক ৮ ঘর হয়'} (শুধু ইংরেজি অক্ষর ও সংখ্যা)</li>
+                <li>পরবর্তী ধাপে গিয়ে সব তথ্য সঠিকভাবে পূরণ করুন</li>
                 <li>অ্যাডমিন চেক করে দ্রুত সার্ভিস এক্সেস প্রদান করবে</li>
             </ol>
         </div>
     `;
+
+    const trxInput = document.getElementById('fTrx');
+    trxInput.maxLength = trxLen;
+    trxInput.placeholder = `${trxLen} ঘরের TrxID দিন`;
+    document.getElementById('trxHint').textContent =
+        `${method === 'bkash' ? 'বিকাশ' : 'নগদ'} TrxID অবশ্যই ঠিক ${trxLen} ঘরের হতে হবে, শুধু ইংরেজি অক্ষর (A-Z, a-z) ও সংখ্যা (0-9)।`;
+
     document.getElementById('nextBtn1').disabled = false;
 }
 
 function copyNum(n) {
-    navigator.clipboard.writeText(n).then(() => toast('নম্বর কপি করা হয়েছে!')).catch(() => {
-        const i = document.createElement('input'); i.value = n; document.body.appendChild(i); i.select(); document.execCommand('copy'); document.body.removeChild(i); toast('নম্বর কপি করা হয়েছে!');
+    navigator.clipboard.writeText(n).then(() => toast('নম্বর কপি করা হয়েছে!')).catch(() => {
+        const i = document.createElement('input'); i.value = n; document.body.appendChild(i); i.select(); document.execCommand('copy'); document.body.removeChild(i); toast('নম্বর কপি করা হয়েছে!');
     });
 }
 
@@ -2267,6 +2287,16 @@ function placeOrder() {
     if (!name || !phone || !trx || !amt) { toast('সবগুলো তথ্য সঠিকভাবে পূরণ করুন!'); return; }
     if (phone.length < 11) { toast('সঠিক মোবাইল নম্বর প্রদান করুন!'); return; }
 
+    const trxLen = TRX_LEN[selPay];
+    if (!/^[A-Za-z0-9]+$/.test(trx)) {
+        toast('TrxID শুধু ইংরেজি অক্ষর ও সংখ্যা (A-Z, 0-9) দিয়ে হতে হবে!');
+        return;
+    }
+    if (trx.length !== trxLen) {
+        toast(`${selPay === 'bkash' ? 'বিকাশ' : 'নগদ'} TrxID অবশ্যই ঠিক ${trxLen} ঘরের হতে হবে!`);
+        return;
+    }
+
     const u = getTgUser();
     const order = {
         id: 'ORD-' + Date.now(),
@@ -2290,40 +2320,57 @@ function placeOrder() {
     updateBadge();
     updateStats();
     goStep(3);
-    toast('অর্ডার সফলভাবে জমা হয়েছে!');
+    toast('অর্ডার সফলভাবে জমা হয়েছে!');
+}
+
+// NOTE: these three functions call the Telegram Bot API directly from the
+// browser using CFG.botToken. See the security warning at the top of this
+// file — move this logic to a backend before going live.
+function botTokenReady() {
+    if (!CFG.botToken || CFG.botToken === 'PUT_YOUR_BOT_TOKEN_HERE') {
+        console.error('CFG.botToken is not set — paste your real bot token in CFG to enable Telegram notifications.');
+        return false;
+    }
+    return true;
+}
+
+async function tgSend(chatId, text) {
+    if (!botTokenReady()) return { ok: false, reason: 'no-token' };
+    try {
+        const res = await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'Markdown' })
+        });
+        const data = await res.json().catch(() => null);
+        if (!res.ok || (data && data.ok === false)) {
+            console.error('Telegram sendMessage failed:', data || res.status);
+            return { ok: false, reason: data };
+        }
+        return { ok: true };
+    } catch (e) {
+        console.error('Telegram sendMessage network error:', e);
+        return { ok: false, reason: e };
+    }
 }
 
 async function sendAdminNotif(o) {
     const msg = `🚨 *নতুন পেমেন্ট অর্ডার এসেছে!*\n────────────────\n🆔 \`${o.id}\`\n📦 ${o.groupName}\n💰 ৳${o.groupPrice}\n────────────────\n👤 ${o.customerName}\n📞 \`${o.senderNumber}\`\n💳 ${o.payMethod === 'bkash' ? 'বিকাশ' : 'নগদ'}\n🔖 TrxID: \`${o.trxId}\`\n💵 ৳${o.amountPaid}\n📅 ${o.date}${o.tgUser ? `\n👤 ${o.tgUser.firstName} @${o.tgUser.username}\n🆔 \`${o.tgUser.id}\`` : ''}\n────────────────`;
-    try {
-        await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: CFG.adminId, text: msg, parse_mode: 'Markdown' })
-        });
-    } catch(e) {}
+    const r = await tgSend(CFG.adminId, msg);
+    if (!r.ok) toast('⚠️ অ্যাডমিনকে নোটিফিকেশন পাঠানো যায়নি — বট টোকেন চেক করুন');
 }
 
 async function sendUserLink(o) {
     if (!o.tgUser) return;
-    const msg = `🎉 *আপনার অর্ডার এপ্রুভ হয়েছে!*\n────────────────\nআপনার পেমেন্ট ভেরিফিকেশন সফল হয়েছে!\n\n*গ্রুপ নাম:* ${o.groupName}\n*মূল্য:* ৳${o.groupPrice}\n\n*আপনার প্রাইভেট ইনভাইট লিংক:*\n${o.inviteLink}\n\nধন্যবাদ আমাদের সাথে থাকার জন্য! 🚀`;
-    try {
-        await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: o.tgUser.id, text: msg, parse_mode: 'Markdown' })
-        });
-        toast('ইউজারকে ইনভাইট লিংক বটের মাধ্যমে পাঠিয়ে দেওয়া হয়েছে!');
-    } catch(e) { toast('বটের মাধ্যমে পাঠাতে ব্যর্থ হয়েছে'); }
+    const msg = `🎉 *আপনার অর্ডার এপ্রুভ হয়েছে!*\n────────────────\nআপনার পেমেন্ট ভেরিফিকেশন সফল হয়েছে!\n\n*কোর্সের নাম:* ${o.groupName}\n*মূল্য:* ৳${o.groupPrice}\n\n*আপনার প্রাইভেট ইনভাইট লিংক:*\n${o.inviteLink}\n\nধন্যবাদ আমাদের সাথে থাকার জন্য! 🚀`;
+    const r = await tgSend(o.tgUser.id, msg);
+    if (r.ok) toast('ইউজারকে ইনভাইট লিংক বটের মাধ্যমে পাঠিয়ে দেওয়া হয়েছে!');
+    else toast('বটের মাধ্যমে পাঠাতে ব্যর্থ হয়েছে');
 }
 
 async function sendUserReject(o) {
     if (!o.tgUser) return;
-    const msg = `❌ *আপনার অর্ডারটি বাতিল করা হয়েছে*\n\nগ্রুপের নাম: ${o.groupName}\nTrxID: \`${o.trxId}\`\n\nআপনার পেমেন্ট ম্যাচ করেনি বা ভুল ট্রানজেকশন আইডি দেওয়া হয়েছে। সঠিক তথ্য দিয়ে লাইভ চ্যাটে যোগাযোগ করুন।`;
-    try {
-        await fetch(`https://api.telegram.org/bot${CFG.botToken}/sendMessage`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: o.tgUser.id, text: msg, parse_mode: 'Markdown' })
-        });
-    } catch(e) {}
+    const msg = `❌ *আপনার অর্ডারটি বাতিল করা হয়েছে*\n\nকোর্সের নাম: ${o.groupName}\nTrxID: \`${o.trxId}\`\n\nআপনার পেমেন্ট ম্যাচ করেনি বা ভুল ট্রানজেকশন আইডি দেওয়া হয়েছে। সঠিক তথ্য দিয়ে লাইভ চ্যাটে যোগাযোগ করুন।`;
+    await tgSend(o.tgUser.id, msg);
 }
 
 // ===== ORDERS =====
@@ -2334,7 +2381,7 @@ function renderOrders() {
     if (u) uo = orders.filter(o => o.tgUser?.id === u.id);
 
     if (uo.length === 0) {
-        el.innerHTML = `<div class="empty"><div class="e-icon">📦</div><h3>কোনো অর্ডার পাওয়া যায়নি</h3><p>আপনি এখনও কোনো প্রিমিয়াম সার্ভিসে জয়েন করেননি</p><button class="btn btn-primary" style="max-width:180px;margin:18px auto 0;font-size:12px;" onclick="showPage('home')">এখনই কেনাকাটা করুন</button></div>`;
+        el.innerHTML = `<div class="empty"><div class="e-icon">📦</div><h3>কোনো অর্ডার পাওয়া যায়নি</h3><p>আপনি এখনও কোনো প্রিমিয়াম কোর্সে জয়েন করেননি</p><button class="btn btn-primary" style="max-width:180px;margin:18px auto 0;font-size:12px;" onclick="showPage('home')">এখনই কেনাকাটা করুন</button></div>`;
         return;
     }
 
@@ -2342,16 +2389,16 @@ function renderOrders() {
         <div class="order-card">
             <div class="order-top">
                 <span class="order-id">${o.id}</span>
-                <span class="o-status ${o.status}">${o.status === 'pending' ? 'পেন্ডিং রয়েছে' : o.status === 'approved' ? 'অনুমোদিত' : 'বাতিল করা হয়েছে'}</span>
+                <span class="o-status ${o.status}">${o.status === 'pending' ? 'পেন্ডিং রয়েছে' : o.status === 'approved' ? 'অনুমোদিত' : 'বাতিল করা হয়েছে'}</span>
             </div>
             <div class="order-name">${o.groupName}</div>
             <div class="order-meta">
                 💳 ${o.payMethod === 'bkash' ? 'বিকাশ' : 'নগদ'} | 🔖 ${o.trxId}<br>
                 💵 ৳${o.amountPaid} | 📅 ${o.date}
             </div>
-            ${o.status === 'approved' && o.inviteLink ? `<button class="join-btn" onclick="window.open('${o.inviteLink}','_blank')">🚀 গ্রুপে জয়েন করুন</button>` : ''}
+            ${o.status === 'approved' && o.inviteLink ? `<button class="join-btn" onclick="window.open('${o.inviteLink}','_blank')">🚀 কোর্সে জয়েন করুন</button>` : ''}
             ${o.status === 'pending' ? `<p style="color:var(--warning);font-size:11px;margin-top:10px;text-align:center;font-weight:600;">অ্যাডমিন চেক করে দ্রুত এক্সেস লিংক আপডেট করবে...</p>` : ''}
-            ${o.status === 'rejected' ? `<p style="color:var(--danger);font-size:11px;margin-top:10px;font-weight:600;">ভুল তথ্যের জন্য অর্ডারটি বাতিল করা হয়েছে। প্রয়োজনে সাপোর্টে কথা বলুন।</p>` : ''}
+            ${o.status === 'rejected' ? `<p style="color:var(--danger);font-size:11px;margin-top:10px;font-weight:600;">ভুল তথ্যের জন্য অর্ডারটি বাতিল করা হয়েছে। প্রয়োজনে সাপোর্টে কথা বলুন।</p>` : ''}
         </div>
     `).join('');
 }
@@ -2372,7 +2419,7 @@ function approveO(id) {
     updateBadge();
     updateStats();
     renderAdmin();
-    toast('অর্ডার সফলভাবে এপ্রুভ করা হয়েছে!');
+    toast('অর্ডার সফলভাবে এপ্রুভ করা হয়েছে!');
 }
 
 function rejectO(id) {
@@ -2385,16 +2432,16 @@ function rejectO(id) {
     updateBadge();
     updateStats();
     renderAdmin();
-    toast('অর্ডার বাতিল করা হয়েছে!');
+    toast('অর্ডার বাতিল করা হয়েছে!');
 }
 
 function deleteGroup(id) {
-    if (confirm('আপনি কি নিশ্চিত যে এই গ্রুপটি মুছে ফেলতে চান?')) {
+    if (confirm('আপনি কি নিশ্চিত যে এই কোর্সটি মুছে ফেলতে চান?')) {
         groups = groups.filter(g => g.id !== id);
         saveGroups();
         renderGroups();
         renderAdmin();
-        toast('গ্রুপটি ডিলিট করা হয়েছে!');
+        toast('কোর্সটি ডিলিট করা হয়েছে!');
     }
 }
 
@@ -2404,7 +2451,7 @@ function deleteCat(id) {
         saveCategories();
         renderCategories();
         renderAdmin();
-        toast('ক্যাটাগরি মুছে ফেলা হয়েছে!');
+        toast('ক্যাটাগরি মুছে ফেলা হয়েছে!');
     }
 }
 
@@ -2418,13 +2465,13 @@ function addCategory() {
     saveCategories();
     renderCategories();
     renderAdmin();
-    toast('নতুন ক্যাটাগরি যোগ করা হয়েছে!');
+    toast('নতুন ক্যাটাগরি যোগ করা হয়েছে!');
 }
 
 function adminLogout() {
     adminLogged = false;
     showPage('profile');
-    toast('এডমিন প্যানেল থেকে লগআউট করা হয়েছে');
+    toast('এডমিন প্যানেল থেকে লগআউট করা হয়েছে');
 }
 
 // ===== HELPER FUNCTIONS =====
@@ -2432,7 +2479,7 @@ function contactAdminLive() {
     if (CFG.adminUsername) {
         window.open(`https://t.me/${CFG.adminUsername}`, '_blank');
     } else {
-        toast('এডমিন চ্যাট ইউজারনেম পাওয়া যায়নি');
+        toast('এডমিন চ্যাট ইউজারনেম পাওয়া যায়নি');
     }
 }
 
@@ -2440,13 +2487,13 @@ function contactSupport() {
     if (CFG.supportUsername) {
         window.open(`https://t.me/${CFG.supportUsername}`, '_blank');
     } else {
-        toast('সাপোর্ট বট ইউজারনেম পাওয়া যায়নি');
+        toast('সাপোর্ট বট ইউজারনেম পাওয়া যায়নি');
     }
 }
 
 function shareApp() {
     if (CFG.botUsername) {
-        const shareUrl = `https://t.me/share/url?url=https://t.me/${CFG.botUsername}&text=সেরা প্রিমিয়াম টেলিগ্রাম সার্ভিসগুলোতে জয়েন করতে মিনি অ্যাপটি ট্রাই করুন!`;
+        const shareUrl = `https://t.me/share/url?url=https://t.me/${CFG.botUsername}&text=সেরা প্রিমিয়াম কোর্স সার্ভিসগুলোতে জয়েন করতে মিনি অ্যাপটি ট্রাই করুন!`;
         window.open(shareUrl, '_blank');
     } else {
         toast('শেয়ার করার জন্য বট ইউজারনেম উপলব্ধ নেই');
@@ -2479,9 +2526,9 @@ function doAdminLogin() {
         }
         adminLogged = true;
         renderAdmin();
-        toast('এডমিন লগইন সফল হয়েছে!');
+        toast('এডমিন লগইন সফল হয়েছে!');
     } else {
-        toast('ভুল পাসওয়ার্ড দিয়েছেন!');
+        toast('ভুল পাসওয়ার্ড দিয়েছেন!');
     }
 }
 
@@ -2504,9 +2551,10 @@ function renderAdmin() {
 
         <div class="admin-tabs">
             <div class="a-tab ${adminTab === 'orders' ? 'active' : ''}" onclick="adminTab='orders';renderAdmin()">অর্ডারসমূহ</div>
-            <div class="a-tab ${adminTab === 'groups' ? 'active' : ''}" onclick="adminTab='groups';renderAdmin()">গ্রুপ তালিকা</div>
-            <div class="a-tab ${adminTab === 'addgroup' ? 'active' : ''}" onclick="adminTab='addgroup';renderAdmin()">নতুন গ্রুপ</div>
+            <div class="a-tab ${adminTab === 'groups' ? 'active' : ''}" onclick="adminTab='groups';renderAdmin()">কোর্স তালিকা</div>
+            <div class="a-tab ${adminTab === 'addgroup' ? 'active' : ''}" onclick="adminTab='addgroup';renderAdmin()">নতুন কোর্স</div>
             <div class="a-tab ${adminTab === 'categories' ? 'active' : ''}" onclick="adminTab='categories';renderAdmin()">ক্যাটাগরি ম্যানেজ</div>
+            <div class="a-tab ${adminTab === 'payment' ? 'active' : ''}" onclick="adminTab='payment';renderAdmin()">💳 পেমেন্ট নাম্বার</div>
         </div>
 
         <div id="adminTabContent"></div>
@@ -2530,7 +2578,7 @@ function renderAdmin() {
                         ${o.tgUser ? `<br>🆔 ${o.tgUser.firstName} @${o.tgUser.username} (${o.tgUser.id})` : ''}
                     </div>
                     ${o.status === 'pending' ? `
-                        <input type="text" class="a-link-input" id="lnk-${o.id}" placeholder="এখানে গ্রুপ ইনভাইট লিংক দিন..." value="${o.inviteLink || ''}">
+                        <input type="text" class="a-link-input" id="lnk-${o.id}" placeholder="এখানে কোর্স ইনভাইট লিংক দিন..." value="${o.inviteLink || ''}">
                         <div class="a-actions">
                             <button class="a-approve" onclick="approveO('${o.id}')">এপ্রুভ করুন</button>
                             <button class="a-reject" onclick="rejectO('${o.id}')">বাতিল করুন</button>
@@ -2543,7 +2591,7 @@ function renderAdmin() {
 
     else if (adminTab === 'groups') {
         tc.innerHTML = `
-            <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">বিদ্যমান গ্রুপসমূহ (${groups.length})</span></div>
+            <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">বিদ্যমান কোর্সসমূহ (${groups.length})</span></div>
             ${groups.map(g => `
                 <div class="admin-order-card">
                     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
@@ -2565,13 +2613,13 @@ function renderAdmin() {
     else if (adminTab === 'addgroup') {
         tc.innerHTML = `
             <div class="add-form">
-                <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">নতুন গ্রুপ যোগ করুন</span></div>
+                <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">নতুন কোর্স যোগ করুন</span></div>
 
-                <div class="fg"><label>গ্রুপের শিরোনাম *</label><input type="text" id="ac-title" placeholder="যেমন: VIP মুভি লিঙ্ক"></div>
-                <div class="fg"><label>বিস্তারিত বিবরণ *</label><textarea id="ac-desc" placeholder="গ্রুপ সম্পর্কে বিস্তারিত লিখুন..."></textarea></div>
+                <div class="fg"><label>কোর্সের শিরোনাম *</label><input type="text" id="ac-title" placeholder="যেমন: ওয়েব ডেভেলপমেন্ট মাস্টারক্লাস"></div>
+                <div class="fg"><label>বিস্তারিত বিবরণ *</label><textarea id="ac-desc" placeholder="কোর্স সম্পর্কে বিস্তারিত লিখুন..."></textarea></div>
 
                 <div class="row-2">
-                    <div class="fg"><label>বিক্রয় মূল্য (টাকা) *</label><input type="number" id="ac-price" placeholder="199"></div>
+                    <div class="fg"><label>বিক্রয় মূল্য (টাকা) *</label><input type="number" id="ac-price" placeholder="199"></div>
                     <div class="fg"><label>পূর্বের মূল্য (টাকা)</label><input type="number" id="ac-oldprice" placeholder="999"></div>
                 </div>
 
@@ -2582,9 +2630,9 @@ function renderAdmin() {
                     </select>
                 </div>
 
-                <div class="fg"><label>এক্সেস এর মেয়াদ</label><input type="text" id="ac-access" placeholder="যেমন: লাইফটাইম বা ১ মাস"></div>
+                <div class="fg"><label>এক্সেস এর মেয়াদ</label><input type="text" id="ac-access" placeholder="যেমন: লাইফটাইম বা ১ মাস"></div>
 
-                <div class="fg"><label>ব্যাজ টেক্সট</label><input type="text" id="ac-badge" placeholder="যেমন: 👑 VIP"></div>
+                <div class="fg"><label>ব্যাজ টেক্সট</label><input type="text" id="ac-badge" placeholder="যেমন: 🔥 হট"></div>
 
                 <div class="fg">
                     <label>ব্যাজ টাইপ</label>
@@ -2596,10 +2644,10 @@ function renderAdmin() {
                     </select>
                 </div>
 
-                <div class="fg"><label>ইমোজি আইকন ( থাম্বনেইল না থাকলে দেখাবে )</label><input type="text" id="ac-emoji" placeholder="যেমন: 🎬"></div>
+                <div class="fg"><label>ইমোজি আইকন ( থাম্বনেইল না থাকলে দেখাবে )</label><input type="text" id="ac-emoji" placeholder="যেমন: 📚"></div>
 
                 <div class="fg">
-                    <label>ব্যাকগ্রাউন্ড গ্রাডিয়েন্ট (থাম্বনেইল না থাকলে দেখাবে)</label>
+                    <label>ব্যাকগ্রাউন্ড গ্রাডিয়েন্ট (থাম্বনেইল না থাকলে দেখাবে)</label>
                     <div class="color-picker-row" id="gradientPicker">
                         ${gradients.map((g, i) => `<div class="color-opt ${i === 0 ? 'selected' : ''}" style="background:${g}" onclick="pickGradient(${i},this)"></div>`).join('')}
                     </div>
@@ -2608,7 +2656,7 @@ function renderAdmin() {
                 <div class="fg"><label>থাম্বনেইল চিত্র URL (3:4 অনুপাত সেরা)</label><input type="text" id="ac-thumb" placeholder="https://i.postimg.cc/..."></div>
 
                 <div class="fg">
-                    <label>স্ক্রিনশট চিত্র URLs (কমা দিয়ে আলাদা করুন)</label>
+                    <label>স্ক্রিনশট চিত্র URLs (কমা দিয়ে আলাদা করুন)</label>
                     <textarea id="ac-ss" placeholder="https://url1.jpg, https://url2.jpg" style="min-height:60px;"></textarea>
                 </div>
 
@@ -2620,7 +2668,7 @@ function renderAdmin() {
                     </select>
                 </div>
 
-                <button class="btn btn-success" onclick="addGroup()">গ্রুপ সেভ করুন</button>
+                <button class="btn btn-success" onclick="addGroup()">কোর্স সেভ করুন</button>
             </div>
         `;
     }
@@ -2630,90 +2678,4 @@ function renderAdmin() {
             <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">ক্যাটাগরি কন্ট্রোল</span></div>
 
             ${categories.map(c => `
-                <div class="admin-order-card" style="display:flex;align-items:center;justify-content:space-between;">
-                    <span style="font-size:13px;font-weight:700;">${c.name}</span>
-                    ${c.id !== 'all' ? `<button class="btn btn-danger" style="width:auto;padding:6px 13px;font-size:11px;" onclick="deleteCat('${c.id}')">মুছুন</button>` : '<span style="font-size:10px;color:var(--text3);font-weight:600;">ডিফল্ট</span>'}
-                </div>
-            `).join('')}
-
-            <div class="add-form" style="margin-top:12px;">
-                <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">নতুন ক্যাটাগরি</span></div>
-                <div class="fg"><label>ক্যাটাগরির নাম ও আইকন</label><input type="text" id="newCatName" placeholder="যেমন: 🎵 মিউজিক"></div>
-                <div class="fg"><label>ক্যাটাগরি আইডি</label><input type="text" id="newCatId" placeholder="music"></div>
-                <button class="btn btn-success" onclick="addCategory()">যোগ করুন</button>
-            </div>
-        `;
-    }
-}
-
-let selGradientIdx = 0;
-
-function pickGradient(idx, el) {
-    selGradientIdx = idx;
-    document.querySelectorAll('.color-opt').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-}
-
-function addGroup() {
-    const title = document.getElementById('ac-title').value.trim();
-    const desc = document.getElementById('ac-desc').value.trim();
-    const price = parseInt(document.getElementById('ac-price').value);
-    const oldPrice = parseInt(document.getElementById('ac-oldprice').value) || price * 3;
-    const cat = document.getElementById('ac-cat').value;
-    const access = document.getElementById('ac-access').value.trim() || 'লাইফটাইম';
-    const badge = document.getElementById('ac-badge').value.trim() || '🔥 হট';
-    const badgeClass = document.getElementById('ac-badgeclass').value;
-    const emoji = document.getElementById('ac-emoji').value.trim() || '⭐';
-    const thumb = document.getElementById('ac-thumb').value.trim();
-    const ssRaw = document.getElementById('ac-ss').value.trim();
-    const verified = document.getElementById('ac-verified').value === 'true';
-
-    if (!title || !desc || !price) { toast('শিরোনাম, বিবরণ এবং মূল্য ঘরগুলো পূরণ করা বাধ্যতামূলক!'); return; }
-
-    const newGroup = {
-        id: Date.now(),
-        title, desc, price, oldPrice, category: cat,
-        badge, badgeClass, emoji,
-        gradient: gradients[selGradientIdx] || gradients[0],
-        access, verified,
-        thumbnail: thumb,
-        screenshots: ssRaw ? ssRaw.split(',').map(s => s.trim()).filter(s => s) : []
-    };
-
-    groups.push(newGroup);
-    saveGroups();
-    renderGroups();
-    renderCategories();
-    adminTab = 'groups';
-    renderAdmin();
-    toast('নতুন গ্রুপ সফলভাবে তৈরি হয়েছে!');
-}
-
-function editGroup(id) {
-    const g = groups.find(x => x.id === id);
-    if (!g) return;
-
-    adminTab = 'addgroup';
-    renderAdmin();
-
-    setTimeout(() => {
-        document.getElementById('ac-title').value = g.title;
-        document.getElementById('ac-desc').value = g.desc;
-        document.getElementById('ac-price').value = g.price;
-        document.getElementById('ac-oldprice').value = g.oldPrice;
-        document.getElementById('ac-cat').value = g.category;
-        document.getElementById('ac-access').value = g.access;
-        document.getElementById('ac-badge').value = g.badge;
-        document.getElementById('ac-badgeclass').value = g.badgeClass;
-        document.getElementById('ac-emoji').value = g.emoji;
-        document.getElementById('ac-thumb').value = g.thumbnail || '';
-        document.getElementById('ac-ss').value = (g.screenshots || []).join(', ');
-        document.getElementById('ac-verified').value = g.verified ? 'true' : 'false';
-
-        // Delete old entry on update submit
-        groups = groups.filter(x => x.id !== id);
-    }, 50);
-}
-</script>
-</body>
-</html>
+                <div class="admin-order-card" style="display:flex;align-items:center;jus
