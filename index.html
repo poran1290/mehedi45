@@ -1978,10 +1978,20 @@ const gradients = [
 ];
 
 // ===== TELEGRAM =====
-let tg = window.Telegram?.WebApp;
-if (tg) { 
-    tg.ready(); tg.expand(); 
-    try { tg.setHeaderColor('#0A0118'); tg.setBackgroundColor('#0A0118'); } catch(e){} 
+// Wrapped in try/catch: if telegram-web-app.js failed to load (blocked
+// network, opened outside Telegram, GitHub Pages, etc.) this must not
+// throw and stop the rest of the app from starting.
+let tg = null;
+try {
+    tg = window.Telegram?.WebApp || null;
+    if (tg) {
+        tg.ready();
+        tg.expand();
+        try { tg.setHeaderColor('#0A0118'); tg.setBackgroundColor('#0A0118'); } catch(e){}
+    }
+} catch (e) {
+    console.error('Telegram WebApp init skipped:', e);
+    tg = null;
 }
 
 function getTgUser() {
@@ -1996,12 +2006,29 @@ function isAdmin() {
 }
 
 // ===== SPLASH SCREEN =====
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('splash').classList.add('hidden');
+// Two independent triggers hide the splash and start the app — whichever
+// fires first wins, guarded by `appStarted` so it only runs once:
+//  1) the normal `load` event (fast path, fires once all page resources
+//     — including the external telegram-web-app.js script — finish)
+//  2) a hard fallback timer that fires no matter what, so a slow/blocked
+//     network request (e.g. telegram.org being unreachable when this is
+//     opened outside Telegram, like on GitHub Pages) can never leave the
+//     user stuck on the loading screen forever.
+let appStarted = false;
+function startApp() {
+    if (appStarted) return;
+    appStarted = true;
+    const splashEl = document.getElementById('splash');
+    if (splashEl) splashEl.classList.add('hidden');
+    try {
         init();
-    }, 1800);
-});
+    } catch (e) {
+        console.error('init() failed:', e);
+    }
+}
+
+window.addEventListener('load', () => setTimeout(startApp, 1200));
+setTimeout(startApp, 4000); // hard fallback — never wait longer than this
 
 // ===== INIT =====
 function init() {
@@ -2010,7 +2037,8 @@ function init() {
     renderGroups();
     updateBadge();
     if (isAdmin()) {
-        document.getElementById('adminMenuItem').classList.remove('hidden');
+        const el = document.getElementById('adminMenuItem');
+        if (el) el.classList.remove('hidden');
     }
 }
 
@@ -2651,31 +2679,4 @@ function renderAdmin() {
                     <div class="color-picker-row" id="gradientPicker">
                         ${gradients.map((g, i) => `<div class="color-opt ${i === 0 ? 'selected' : ''}" style="background:${g}" onclick="pickGradient(${i},this)"></div>`).join('')}
                     </div>
-                </div>
-
-                <div class="fg"><label>থাম্বনেইল চিত্র URL (3:4 অনুপাত সেরা)</label><input type="text" id="ac-thumb" placeholder="https://i.postimg.cc/..."></div>
-
-                <div class="fg">
-                    <label>স্ক্রিনশট চিত্র URLs (কমা দিয়ে আলাদা করুন)</label>
-                    <textarea id="ac-ss" placeholder="https://url1.jpg, https://url2.jpg" style="min-height:60px;"></textarea>
-                </div>
-
-                <div class="fg">
-                    <label>ভেরিফাইড ব্যাজ</label>
-                    <select id="ac-verified">
-                        <option value="true">হ্যাঁ (ভেরিফাইড)</option>
-                        <option value="false">না</option>
-                    </select>
-                </div>
-
-                <button class="btn btn-success" onclick="addGroup()">কোর্স সেভ করুন</button>
-            </div>
-        `;
-    }
-
-    else if (adminTab === 'categories') {
-        tc.innerHTML = `
-            <div class="section-title" style="font-size:14px;padding:0;"><span class="grad-text">ক্যাটাগরি কন্ট্রোল</span></div>
-
-            ${categories.map(c => `
-                <div class="admin-order-card" style="display:flex;align-items:center;jus
+                </
