@@ -1647,6 +1647,19 @@
         <div class="splash-loader"></div>
     </div>
 
+    <script>
+        // Independent, minimal safety net: this tiny script is completely
+        // separate from the big app script further down the page. Even if
+        // that larger script has a bug (bad localStorage data, a network
+        // issue, anything) and never runs, this alone guarantees the splash
+        // screen disappears within 5 seconds so the user is never stuck
+        // looking at only the loading screen.
+        setTimeout(function () {
+            var el = document.getElementById('splash');
+            if (el) el.classList.add('hidden');
+        }, 5000);
+    </script>
+
     <!-- HEADER -->
     <div class="header">
         <div class="header-orb o1"></div>
@@ -1904,9 +1917,28 @@ function getAdminPw() {
     try { return atob(CFG._ap).split('').reverse().join(''); } catch(e) { return ''; }
 }
 
+// Safely parse JSON from localStorage. If old/incompatible data from a
+// previous version of this app is sitting in localStorage (very likely
+// after testing several versions on the same GitHub Pages URL), a plain
+// JSON.parse() can throw and — because this file runs as one top-level
+// script — that would silently stop EVERYTHING below it from ever
+// running, including the code that hides the loading screen. This
+// wrapper makes a bad value fall back instead of crashing the app.
+function safeParse(key, fallback) {
+    try {
+        const raw = localStorage.getItem(key);
+        if (raw === null || raw === undefined) return fallback;
+        return JSON.parse(raw);
+    } catch (e) {
+        console.error(`Corrupted localStorage data for "${key}" — resetting it.`, e);
+        try { localStorage.removeItem(key); } catch (e2) {}
+        return fallback;
+    }
+}
+
 // ===== DATA =====
 // Only legitimate course / educational categories are included below.
-let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
+let groups = safeParse('pg_groups', null) || [
     {
         id: 1, title: 'প্রিমিয়াম স্কিল অ্যান্ড কোর্স বান্ডেল',
         desc: 'ওয়েব ডেভেলপমেন্ট, ডিজাইন, মার্কেটিং সহ বিভিন্ন স্কিল ডেভেলপমেন্ট কোর্স ও টিউটোরিয়াল একসাথে পাওয়ার সেরা সুযোগ।',
@@ -1945,7 +1977,7 @@ let groups = JSON.parse(localStorage.getItem('pg_groups') || 'null') || [
     }
 ];
 
-let categories = JSON.parse(localStorage.getItem('pg_categories') || 'null') || [
+let categories = safeParse('pg_categories', null) || [
     { id: 'all', name: 'সকল' },
     { id: 'course', name: '📚 কোর্স' },
     { id: 'trading', name: '📈 ট্রেডিং' },
@@ -1953,7 +1985,7 @@ let categories = JSON.parse(localStorage.getItem('pg_categories') || 'null') || 
     { id: 'islamic', name: '🌙 ইসলামিক' }
 ];
 
-let orders = JSON.parse(localStorage.getItem('pg_orders') || '[]');
+let orders = safeParse('pg_orders', []);
 let selGroup = null;
 let selPay = null;
 let adminLogged = false;
@@ -2654,29 +2686,4 @@ function renderAdmin() {
                 <div class="fg">
                     <label>ক্যাটাগরি *</label>
                     <select id="ac-cat">
-                        ${categories.filter(c => c.id !== 'all').map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
-                    </select>
-                </div>
-
-                <div class="fg"><label>এক্সেস এর মেয়াদ</label><input type="text" id="ac-access" placeholder="যেমন: লাইফটাইম বা ১ মাস"></div>
-
-                <div class="fg"><label>ব্যাজ টেক্সট</label><input type="text" id="ac-badge" placeholder="যেমন: 🔥 হট"></div>
-
-                <div class="fg">
-                    <label>ব্যাজ টাইপ</label>
-                    <select id="ac-badgeclass">
-                        <option value="vip">👑 VIP (গোল্ডেন)</option>
-                        <option value="hot">🔥 হট (অরেঞ্জ)</option>
-                        <option value="new">✨ নতুন (গ্রিন)</option>
-                        <option value="exclusive">⚡ এক্সক্লুসিভ (পার্পল)</option>
-                    </select>
-                </div>
-
-                <div class="fg"><label>ইমোজি আইকন ( থাম্বনেইল না থাকলে দেখাবে )</label><input type="text" id="ac-emoji" placeholder="যেমন: 📚"></div>
-
-                <div class="fg">
-                    <label>ব্যাকগ্রাউন্ড গ্রাডিয়েন্ট (থাম্বনেইল না থাকলে দেখাবে)</label>
-                    <div class="color-picker-row" id="gradientPicker">
-                        ${gradients.map((g, i) => `<div class="color-opt ${i === 0 ? 'selected' : ''}" style="background:${g}" onclick="pickGradient(${i},this)"></div>`).join('')}
-                    </div>
-                </
+                        ${categories.filter(c => c.id !== 'all').map(c => `<option value="$
